@@ -162,9 +162,14 @@
     display: inline-block; padding: 0.12rem 0.4rem; border-radius: 4px;
     font-size: 0.72rem; font-weight: 600; letter-spacing: 0.01em;
   }
+  .finish-green { background: #d8f3e3; color: #1e5c32; }
+  .finish-yellow { background: #fdebd0; color: #9a5b0a; }
+  .finish-red { background: #fadbd8; color: #922b21; }
+  .finish-none { background: #eef1f4; color: #6b7280; }
+  /* legacy aliases */
   .finish-schluesselfertig { background: #d8f3e3; color: #1e5c32; }
   .finish-belagsfertig { background: #fdebd0; color: #9a5b0a; }
-  .finish-ausbauhaus, .finish-rohbaufertig { background: #e5e8eb; color: #4a5560; }
+  .finish-ausbauhaus, .finish-rohbaufertig { background: #fadbd8; color: #922b21; }
   .finish-sanierungsbedarf { background: #fadbd8; color: #922b21; }
   .finish-unknown { background: #eef1f4; color: #6b7280; }
 </style>
@@ -237,7 +242,8 @@
         <option value="belagsfertig">Belagsfertig</option>
         <option value="ausbau_rohbau">Ausbau/Rohbau</option>
         <option value="sanierungsbedarf">Sanierung</option>
-        <option value="unknown">Unknown</option>
+        <option value="recent_2006">Recent (since 2006)</option>
+        <option value="unknown">Unknown / year only</option>
       </select>
     </div>
     <button type="button" id="resetFilters" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font:inherit">Reset filters</button>
@@ -293,6 +299,7 @@
     <div class="panel">
       <h3>Results <span style="font-weight:400;color:var(--muted)" id="tableHint">(★ favourite · click row to highlight map + charts · hover row to emphasize chart point · click column to sort)</span>
         <span class="score-legend" title="Four lights: price · PT commute · living m² · energy. Empty ring = missing that factor.">Score: <span class="tl-dot tl-green"></span> good · <span class="tl-dot tl-yellow"></span> ok · <span class="tl-dot tl-red"></span> weak · empty = missing · <span class="tl-order">order: price · PT · m² · energy</span></span>
+        <span class="score-legend" title="Finish: explicit stage, or Baujahr when unknown. Green = schlüssel/recent (≥2006); yellow = belags/mid-age; red = rohbau/sanierung/heavy reno.">Finish: <span class="tl-dot tl-green"></span> ready/recent · <span class="tl-dot tl-yellow"></span> mid/partial · <span class="tl-dot tl-red"></span> reno/rohbau · year = Baujahr</span>
       </h3>
       <div class="table-wrap">
         <table>
@@ -303,7 +310,7 @@
               <th class="score-th" data-sort="score_rank" title="Four lights: price · PT · size · energy (empty = missing)">Score</th>
               <th data-sort="title">Title</th>
               <th data-sort="location_town">Town</th>
-              <th data-sort="finish_status" title="Finish readiness from listing text">Finish</th>
+              <th data-sort="finish_status" title="Finish stage or Baujahr (year built) with traffic-light by condition/age">Finish</th>
               <th data-sort="price_eur">Price</th>
               <th data-sort="seller_type" title="Makler = buyer commission 3%+USt assumed; Privat/provisionsfrei = 0">Seller</th>
               <th data-sort="living_m2">m²</th>
@@ -514,6 +521,68 @@ function badge(cat) {
 }
 
 
+const FINISH_COLOR_SORT = { green: 0, yellow: 1, red: 2, none: 3 };
+const HEAVY_RENO_RE = /sanierungsbedarf|renovierungsbed[uü]rftig|stark\s+renovierungsbed|entkernung|unsaniert|vollsanierung|generalsanierung|kernsanierung/i;
+
+function hasHeavyRenoLanguage(p) {
+  const bits = [
+    p.finish_status_note,
+    p.price_note,
+    p.notes,
+    p.condition,
+    p.condition_note,
+    p.seller_type_note
+  ].filter(Boolean).join(" ");
+  return HEAVY_RENO_RE.test(bits);
+}
+
+function deriveFinish(p) {
+  const st = p.finish_status || "unknown";
+  const year = p.year_built != null && p.year_built !== "" ? Number(p.year_built) : null;
+  const yearOk = year != null && !Number.isNaN(year) && year > 1800 && year < 2100;
+
+  let display = "—";
+  let color = "none";
+
+  if (st === "schluesselfertig") {
+    display = "Schlüsselfertig";
+    color = "green";
+  } else if (st === "belagsfertig") {
+    display = "Belagsfertig";
+    color = "yellow";
+  } else if (st === "rohbaufertig") {
+    display = "Rohbau";
+    color = "red";
+  } else if (st === "ausbauhaus") {
+    display = "Ausbau";
+    color = "red";
+  } else if (st === "sanierungsbedarf") {
+    display = yearOk ? String(year) : "Sanierung";
+    color = "red";
+  } else {
+    // unknown / empty → Baujahr when available
+    if (yearOk) {
+      display = String(year);
+      if (year >= 2006) {
+        color = "green";
+      } else if (year >= 1985) {
+        color = hasHeavyRenoLanguage(p) ? "red" : "yellow";
+      } else {
+        color = hasHeavyRenoLanguage(p) ? "red" : "yellow";
+      }
+    } else {
+      display = "—";
+      color = "none";
+    }
+  }
+
+  return {
+    finish_display: display,
+    finish_color: color,
+    finish_sort: FINISH_COLOR_SORT[color] != null ? FINISH_COLOR_SORT[color] : 3
+  };
+}
+
 function finishLabel(status) {
   switch (status) {
     case "schluesselfertig": return "Schlüsselfertig";
@@ -525,16 +594,24 @@ function finishLabel(status) {
   }
 }
 function finishPill(p) {
+  const d = deriveFinish(p);
   const st = p.finish_status || "unknown";
-  const label = finishLabel(st);
-  const tip = (p.finish_status_note || "").replace(/"/g, "&quot;");
-  const cls = "finish-pill finish-" + (st === "unknown" || !st ? "unknown" : st);
-  return `<span class="${cls}" title="${tip}">${label}</span>`;
+  const tipParts = [];
+  if (p.year_built != null && p.year_built !== "") tipParts.push("Baujahr " + p.year_built);
+  tipParts.push("status: " + st);
+  if (p.finish_status_note) tipParts.push(p.finish_status_note);
+  const tip = tipParts.join(" · ").replace(/"/g, "&quot;");
+  const cls = "finish-pill finish-" + d.finish_color;
+  return `<span class="${cls}" title="${tip}">${d.finish_display}</span>`;
 }
 function matchesFinishFilter(p, finish) {
   if (!finish || finish === "any") return true;
   const st = p.finish_status || "unknown";
   if (finish === "ausbau_rohbau") return st === "ausbauhaus" || st === "rohbaufertig";
+  if (finish === "recent_2006") {
+    const y = p.year_built != null ? Number(p.year_built) : null;
+    return y != null && !Number.isNaN(y) && y >= 2006;
+  }
   return st === finish;
 }
 
@@ -579,6 +656,10 @@ function sortProps(list) {
     if (key === "score_rank") {
       va = computeScore(a).rank;
       vb = computeScore(b).rank;
+    }
+    if (key === "finish_status") {
+      va = deriveFinish(a).finish_sort;
+      vb = deriveFinish(b).finish_sort;
     }
     if (va == null && vb == null) return 0;
     if (va == null) return 1;
