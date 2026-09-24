@@ -214,6 +214,14 @@
         <label for="hideSold" style="margin:0;font-weight:500">Hide sold</label>
       </div>
       <div class="check-row">
+        <input type="checkbox" id="favOnly"/>
+        <label for="favOnly" style="margin:0;font-weight:500">Favourites only ★</label>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="soldOnly"/>
+        <label for="soldOnly" style="margin:0;font-weight:500">Sold / gone only</label>
+      </div>
+      <div class="check-row">
         <input type="checkbox" id="underBudget"/>
         <label for="underBudget" style="margin:0;font-weight:500">Under €450k only</label>
       </div>
@@ -391,6 +399,7 @@ function toggleFavourite(id, ev) {
   else favourites.push(id);
   saveFavourites();
   updateFavouritesPanel();
+  if (document.getElementById("favOnly") && document.getElementById("favOnly").checked) { refresh(); return; }
   document.querySelectorAll("button.fav-star[data-id]").forEach(btn => {
     const bid = btn.dataset.id;
     const on = isFavourite(bid);
@@ -622,6 +631,8 @@ function getFilters() {
     sauna: document.getElementById("saunaFilter").value,
     shortlistOnly: document.getElementById("shortlistOnly").checked,
     hideSold: document.getElementById("hideSold").checked,
+    favOnly: document.getElementById("favOnly").checked,
+    soldOnly: document.getElementById("soldOnly").checked,
     underBudget: document.getElementById("underBudget").checked,
     town: document.getElementById("townSearch").value.trim().toLowerCase(),
     category: document.getElementById("categoryFilter").value,
@@ -638,7 +649,10 @@ function filterProps() {
     if (f.sauna === "yes" && !p.has_sauna) return false;
     if (f.sauna === "no" && p.has_sauna) return false;
     if (f.shortlistOnly && p.category !== "shortlist") return false;
-    if (f.hideSold && (p.category === "sold" || p.listing_status === "sold" || p.listing_status === "disappeared")) return false;
+    const isGone = p.category === "sold" || p.listing_status === "sold" || p.listing_status === "disappeared";
+    if (f.soldOnly) { if (!isGone) return false; }
+    else if (f.hideSold && isGone) return false;
+    if (f.favOnly && !isFavourite(p.id)) return false;
     if (f.category !== "all" && p.category !== f.category) return false;
     if (!matchesFinishFilter(p, f.finish)) return false;
     if (f.town) {
@@ -995,7 +1009,7 @@ function refresh() {
 }
 
 document.getElementById("maxPrice").addEventListener("input", refresh);
-["minRooms","saunaFilter","shortlistOnly","hideSold","underBudget","townSearch","categoryFilter","finishFilter"].forEach(id => {
+["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","townSearch","categoryFilter","finishFilter"].forEach(id => {
   document.getElementById(id).addEventListener("input", refresh);
   document.getElementById(id).addEventListener("change", refresh);
 });
@@ -1005,6 +1019,8 @@ document.getElementById("resetFilters").addEventListener("click", () => {
   document.getElementById("saunaFilter").value = "any";
   document.getElementById("shortlistOnly").checked = false;
   document.getElementById("hideSold").checked = true;
+  document.getElementById("favOnly").checked = false;
+  document.getElementById("soldOnly").checked = false;
   document.getElementById("underBudget").checked = false;
   document.getElementById("townSearch").value = "";
   document.getElementById("categoryFilter").value = "all";
