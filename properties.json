@@ -60,7 +60,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 62,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Renovierungsbedürftig; BJ 1966 gekuppelt; Keller ~61 m² Covered terrace, balcony, Brunnen;",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SL2",
@@ -123,7 +126,10 @@
     "drive_anton_boeck_min": 37,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 83,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "EG bezugsfertig; DG+Keller roh; Nutzfläche ~192 m² ~20–25 min to Tulln. Town centroid",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SL3",
@@ -186,7 +192,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SL4",
@@ -249,7 +258,10 @@
     "drive_anton_boeck_min": 37,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 83,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "Turnkey 2019 massiv; Terrasse ~12 m²; Grünruhelage Best plug-and-play under b",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SL5",
@@ -312,7 +324,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 51,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 100 m² Grundfläche 414 m² Zimmer 3 Nut…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SL6",
@@ -375,7 +390,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 92,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SL7",
@@ -438,7 +456,10 @@
     "drive_anton_boeck_min": 34,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 89,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "Die Übergabe erfolgt im belagsfertigen Zustand, um Ihren individuellen Bedürfnissen be",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SL8",
@@ -501,7 +522,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 90,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "Belagsfertig; +~€50k schlüsselfertig",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM1",
@@ -564,7 +588,10 @@
     "drive_anton_boeck_min": 45,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 108,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "fetch unavailable (blocked_or_captcha); no clear cached finish signal",
+    "finish_status_source": "unavailable"
   },
   {
     "id": "HM2",
@@ -627,7 +654,10 @@
     "drive_anton_boeck_min": 39,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 55,
-    "pt_lange_gasse_note": "vao_hafas_via_Absdorf-Hippersdorf_Bf_weekday_100000"
+    "pt_lange_gasse_note": "vao_hafas_via_Absdorf-Hippersdorf_Bf_weekday_100000",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "# LIEBEVOLLES, SANIERUNGSBEDÜRFTIGES LANDHAUS MIT KLEINEM HOLZSCHUPPEN UND RUHIGEM INNENHOF MIT BESTER INF",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SA1",
@@ -690,7 +720,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 90,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SA2",
@@ -753,7 +786,10 @@
     "drive_anton_boeck_min": 49,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 109,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "AU1",
@@ -816,7 +852,10 @@
     "drive_anton_boeck_min": 43,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 133,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "fetch unavailable (http_403); no clear cached finish signal",
+    "finish_status_source": "unavailable"
   },
   {
     "id": "OB1",
@@ -879,7 +918,10 @@
     "drive_anton_boeck_min": 40,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 86,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "fetch unavailable (http_403); no clear cached finish signal",
+    "finish_status_source": "unavailable"
   },
   {
     "id": "OB2",
@@ -942,7 +984,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 53,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB3",
@@ -1005,7 +1050,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 62,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7",
+    "finish_status": "unknown",
+    "finish_status_note": "fetch unavailable (http_410); no clear cached finish signal",
+    "finish_status_source": "unavailable"
   },
   {
     "id": "OB4",
@@ -1068,7 +1116,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 69,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB5",
@@ -1131,7 +1182,10 @@
     "drive_anton_boeck_min": 35,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 79,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB6",
@@ -1194,7 +1248,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 62,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SO1",
@@ -1257,7 +1314,10 @@
     "drive_anton_boeck_min": 40,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 60,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "fetch unavailable (no_url); no clear cached finish signal",
+    "finish_status_source": "unavailable"
   },
   {
     "id": "NEW1",
@@ -1320,7 +1380,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 51,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Preisreduktion: Sanierungsbedürftige Villa Im Jugendstil Mit Traumhaftem Garten Samt Altbaumbestand In All",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW2",
@@ -1383,7 +1446,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "SANIERUNGSBEDÜRFTIGES, CHARAKTERSTARKES EINFAMILIENHAUS IN GUTER WOHNLAGE UND BAHNHOFSNÄHE",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW3",
@@ -1446,7 +1512,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 90,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "lternativ Beschreibung Bauträgerliegenschaft oder sanierungsbedürftiges Landhaus mit herrlichem Garten in guter, sehr n…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW4",
@@ -1509,7 +1578,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 90,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "WF1",
@@ -1572,7 +1644,10 @@
     "drive_anton_boeck_min": 37,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 66,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "bau/Erstbezug auf Eigengrund; Terrasse ~15.75 m²; belagsfertig (Malen/Boden); 3 SZ + Büro Wife find 2026-09-21. Agent D…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SIM1",
@@ -1635,7 +1710,10 @@
     "drive_anton_boeck_min": 37,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 66,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "fetch unavailable (http_403); no clear cached finish signal",
+    "finish_status_source": "unavailable"
   },
   {
     "id": "SIM2",
@@ -1698,7 +1776,10 @@
     "drive_anton_boeck_min": 34,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 89,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "Die Übergabe erfolgt im belagsfertigen Zustand, um Ihren individuellen Bedürfnissen be",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SIM3",
@@ -1761,7 +1842,10 @@
     "drive_anton_boeck_min": 34,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 89,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "Die Übergabe erfolgt im belagsfertigen Zustand, um Ihren individuellen Bedürfnissen be",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SIM4",
@@ -1824,7 +1908,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "fetch unavailable (http_403); no clear cached finish signal",
+    "finish_status_source": "unavailable"
   },
   {
     "id": "SIM5",
@@ -1887,7 +1974,10 @@
     "drive_anton_boeck_min": 35,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 98,
-    "pt_lange_gasse_note": "vao_hafas_via_Neuaigen_Tulln_weekday_100000"
+    "pt_lange_gasse_note": "vao_hafas_via_Neuaigen_Tulln_weekday_100000",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "Belagsfertig; schlüsselfertig option available; Top B sold",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW5",
@@ -1950,7 +2040,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 78,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW6",
@@ -2013,7 +2106,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 86,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "Schlüsselfertig für Sie ausgebaut. Die Fotos sind Beispiele, wie es S…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW7",
@@ -2076,7 +2172,10 @@
     "drive_anton_boeck_min": 47,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 101,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW8",
@@ -2139,7 +2238,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 82,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW9",
@@ -2202,7 +2304,10 @@
     "drive_anton_boeck_min": 34,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 56,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW10",
@@ -2265,7 +2370,10 @@
     "drive_anton_boeck_min": 43,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 92,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW11",
@@ -2328,7 +2436,10 @@
     "drive_anton_boeck_min": 39,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 74,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SA3",
@@ -2391,7 +2502,10 @@
     "drive_anton_boeck_min": 38,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 73,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SA4",
@@ -2454,7 +2568,10 @@
     "drive_anton_boeck_min": 44,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 110,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB7",
@@ -2517,7 +2634,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 51,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "er Ofen für feste Brennstoffe. Dieses Gebäude ist sanierungsbedürftig . Die Raumaufteilung kann dem beigelegten Grundri…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM3",
@@ -2580,7 +2700,10 @@
     "drive_anton_boeck_min": 38,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 73,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Sanierungsbedarf ist hier notwendig. Beheizt wird das gesamte Haus de…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW12",
@@ -2643,7 +2766,10 @@
     "drive_anton_boeck_min": 34,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 80,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW13",
@@ -2706,7 +2832,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 91,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW14",
@@ -2769,7 +2898,10 @@
     "drive_anton_boeck_min": 40,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 72,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_8"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_8",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Das Haus weist starken Sanierungsbedarf auf, überzeugt jedoch durch seinen Charme, die ebene…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW15",
@@ -2832,7 +2964,10 @@
     "drive_anton_boeck_min": 38,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 81,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW16",
@@ -2895,7 +3030,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 63,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW17",
@@ -2958,7 +3096,10 @@
     "drive_anton_boeck_min": 34,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 72,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB8",
@@ -3021,7 +3162,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 60,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SA5",
@@ -3084,7 +3228,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 74,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM4",
@@ -3147,7 +3294,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 74,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM5",
@@ -3210,7 +3360,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 84,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 98 m² Grundfläche 558 m² Zimmer 3,5 Nu…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM6",
@@ -3273,7 +3426,10 @@
     "drive_anton_boeck_min": 52,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 94,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW18",
@@ -3336,7 +3492,10 @@
     "drive_anton_boeck_min": 50,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 120,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 143 m² Grundfläche 997 m² Zimmer 4 Ver…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW19",
@@ -3399,7 +3558,10 @@
     "drive_anton_boeck_min": 35,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 83,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW20",
@@ -3462,7 +3624,10 @@
     "drive_anton_boeck_min": 37,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 96,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW21",
@@ -3525,7 +3690,10 @@
     "drive_anton_boeck_min": 37,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 84,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "178,42 m² Moderne und durchdachte Raumaufteilung Bezugsfertig ab Anfang Dezember 2026 Modern wohnen - privat und naturn…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM7",
@@ -3588,7 +3756,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 56,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Liegenschaft mit Bestandsgebäuden und Sanierungsbedarf in St. Andrä- Wördern, 150 m², € 279.000,-, (3423 St. Andrä-Wörd…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM8",
@@ -3651,7 +3822,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB9",
@@ -3714,7 +3888,10 @@
     "drive_anton_boeck_min": 40,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 88,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "Belagsfertig Plus - EUR 479.000,- Eine gute Wahl für alle, die bei",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB10",
@@ -3777,7 +3954,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 106,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_3"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_3",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB11",
@@ -3840,7 +4020,10 @@
     "drive_anton_boeck_min": 37,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 84,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "167,41 m² Moderne und durchdachte Raumaufteilung Bezugsfertig ab Anfang Dezember 2026 Modern wohnen - privat und naturn…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM11",
@@ -3903,7 +4086,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW25",
@@ -3966,7 +4152,10 @@
     "drive_anton_boeck_min": 40,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 88,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "Der schlüsselfertige Zustand mit Keller bietet zusätzlichen Stauraum und…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB13",
@@ -4029,7 +4218,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 51,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW27",
@@ -4092,7 +4284,10 @@
     "drive_anton_boeck_min": 42,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 91,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM9",
@@ -4155,7 +4350,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "rohbaufertig",
+    "finish_status_note": "ASST: SELTENE GELEGENHEIT AUF EIN EINFAMILIENHAUS IM ROHBAU MIT ENTWICKLUNGS- UND GESTALTUNGSMÖGLICHKEITEN, 101,21 m²,…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW23",
@@ -4218,7 +4416,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 58,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "PREISREDUKTION: SANIERUNGSBEDÜRFTIGE JAHRHUNDERTWENDEVILLA ALS FAMILIENWOHNTRAUM IN BESTLAGE, 203,6 m², €",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW22",
@@ -4281,7 +4482,10 @@
     "drive_anton_boeck_min": 50,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 120,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW24",
@@ -4344,7 +4548,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB14",
@@ -4407,7 +4614,10 @@
     "drive_anton_boeck_min": 41,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 78,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "Das bezugsfertige Wohnhaus befindet sich in einer ruhigen Siedlungslage m…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM10",
@@ -4470,7 +4680,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 157 m² Grundfläche 688 m² Nutzfläche 1…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "OB12",
@@ -4533,7 +4746,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 60,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM12",
@@ -4596,7 +4812,10 @@
     "drive_anton_boeck_min": 36,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 70,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 100 m² Grundfläche 256 m² Zimmer 4 Hei…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "NEW26",
@@ -4659,7 +4878,10 @@
     "drive_anton_boeck_min": 40,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 86,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST1",
@@ -4722,7 +4944,10 @@
     "drive_anton_boeck_min": 31,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 66,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST2",
@@ -4785,7 +5010,10 @@
     "drive_anton_boeck_min": 20,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 54,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST3",
@@ -4848,7 +5076,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 77,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "igstellung Ende 2027. Reihenhäuser ab EUR 350.000 schlüsselfertig! Die Häuser der ersten Reihe bieten rund 127-128 m² W…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST4",
@@ -4911,7 +5142,10 @@
     "drive_anton_boeck_min": 31,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 79,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "Nähe Stockerau: Letzte Einheit-Teilschlüsselfertiges Familieneigentum in bester Lage zu fairem Preis., 118 m², € 397.50…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST5",
@@ -4974,7 +5208,10 @@
     "drive_anton_boeck_min": 23,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 59,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST6",
@@ -5037,7 +5274,10 @@
     "drive_anton_boeck_min": 10,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 49,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "belagsfertig",
+    "finish_status_note": "Übergabe belagsfertig, schlüsselfertig gegen Aufpreis möglich Das Haus",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST7",
@@ -5100,7 +5340,10 @@
     "drive_anton_boeck_min": 20,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 60,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST8",
@@ -5163,7 +5406,10 @@
     "drive_anton_boeck_min": 21,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 55,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST9",
@@ -5226,7 +5472,10 @@
     "drive_anton_boeck_min": 21,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 62,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Grundfläche 627 m² Zimmer 4 Verfügbar Kaufvetrag…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST10",
@@ -5289,7 +5538,10 @@
     "drive_anton_boeck_min": 23,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 67,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Grundfläche 863 m² Zimmer 4 Verfügbar ab sofort H…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST11",
@@ -5352,7 +5604,10 @@
     "drive_anton_boeck_min": 25,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 86,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "rohbaufertig",
+    "finish_status_note": "Rohbau in Sierndorf. Bitte beachten Sie bei Anfragen Ihre Telefonn…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST12",
@@ -5415,7 +5670,10 @@
     "drive_anton_boeck_min": 16,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 56,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 120 m² Grundfläche 610 m² Zimmer 5 Nut…",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST13",
@@ -5478,7 +5736,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 76,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "ST14",
@@ -5541,7 +5802,10 @@
     "drive_anton_boeck_min": 23,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 76,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "HM13",
@@ -5604,7 +5868,10 @@
     "drive_anton_boeck_min": 32,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 76,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "unknown",
+    "finish_status_note": "no finish keywords found",
+    "finish_status_source": "listing_text"
   },
   {
     "id": "SA6",
@@ -5667,6 +5934,9 @@
     "drive_anton_boeck_min": 40,
     "drive_anton_boeck_note": "osrm_free_flow",
     "pt_lange_gasse_min": 76,
-    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "1973 Ziegelmassiv; Sanierungs-/Modernisierungsbedarf (Dornröschen); uneinsehbar Wienerwald-Rand",
+    "finish_status_source": "listing_text"
   }
 ]
