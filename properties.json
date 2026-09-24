@@ -54,7 +54,9 @@
     "fee_notar_eur": 6000,
     "fee_makler_eur": 14400,
     "fees_total_eur": 38800,
-    "all_in_price_eur": 438800
+    "all_in_price_eur": 438800,
+    "betriebskosten_monat_eur": 83.34,
+    "betriebskosten_note": "src: Betriebskosten: 83,34 € (ir.at)"
   },
   {
     "id": "SL2",
@@ -111,7 +113,9 @@
     "fee_notar_eur": 5700,
     "fee_makler_eur": 13680,
     "fees_total_eur": 36860,
-    "all_in_price_eur": 416860
+    "all_in_price_eur": 416860,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben (RE/MAX Kosten section has Kaufpreis/Makler only; findheim mirror removed)"
   },
   {
     "id": "SL3",
@@ -168,7 +172,9 @@
     "fee_notar_eur": 6525,
     "fee_makler_eur": 15660,
     "fees_total_eur": 42195,
-    "all_in_price_eur": 477195
+    "all_in_price_eur": 477195,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben (ImmoScout24 expose; no monthly BK field)"
   },
   {
     "id": "SL4",
@@ -225,7 +231,9 @@
     "fee_notar_eur": 5535,
     "fee_makler_eur": 13284,
     "fees_total_eur": 35793,
-    "all_in_price_eur": 404793
+    "all_in_price_eur": 404793,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "SL5",
@@ -282,7 +290,9 @@
     "fee_notar_eur": 4800,
     "fee_makler_eur": 11520,
     "fees_total_eur": 31040,
-    "all_in_price_eur": 351040
+    "all_in_price_eur": 351040,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "SL6",
@@ -339,7 +349,9 @@
     "fee_notar_eur": 4650,
     "fee_makler_eur": 11160,
     "fees_total_eur": 30070,
-    "all_in_price_eur": 340070
+    "all_in_price_eur": 340070,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "SL7",
@@ -396,7 +408,9 @@
     "fee_notar_eur": 6375,
     "fee_makler_eur": 15300,
     "fees_total_eur": 41225,
-    "all_in_price_eur": 466225
+    "all_in_price_eur": 466225,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "SL8",
@@ -453,7 +467,9 @@
     "fee_notar_eur": 5985,
     "fee_makler_eur": 14364,
     "fees_total_eur": 38703,
-    "all_in_price_eur": 437703
+    "all_in_price_eur": 437703,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben (ir.at detail has no Betriebskosten row)"
   },
   {
     "id": "HM1",
@@ -510,7 +526,9 @@
     "fee_notar_eur": 4950,
     "fee_makler_eur": 11880,
     "fees_total_eur": 32010,
-    "all_in_price_eur": 362010
+    "all_in_price_eur": 362010,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "page gone/removed (RE/MAX 404; findheim mirror removed)"
   },
   {
     "id": "HM2",
@@ -567,7 +585,9 @@
     "fee_notar_eur": 2100,
     "fee_makler_eur": 5040,
     "fees_total_eur": 13580,
-    "all_in_price_eur": 153580
+    "all_in_price_eur": 153580,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "SA1",
@@ -624,7 +644,9 @@
     "fee_notar_eur": 5625,
     "fee_makler_eur": 13500,
     "fees_total_eur": 36375,
-    "all_in_price_eur": 411375
+    "all_in_price_eur": 411375,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "SA2",
@@ -681,7 +703,9 @@
     "fee_notar_eur": 5520,
     "fee_makler_eur": 13248,
     "fees_total_eur": 35696,
-    "all_in_price_eur": 403696
+    "all_in_price_eur": 403696,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "AU1",
@@ -738,7 +762,9 @@
     "fee_notar_eur": 3496,
     "fee_makler_eur": 0,
     "fees_total_eur": 14219,
-    "all_in_price_eur": 247319
+    "all_in_price_eur": 247319,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "fetch blocked (immowelt anti-bot); no alt URL"
   },
   {
     "id": "OB1",
@@ -795,7 +821,9 @@
     "fee_notar_eur": 7485,
     "fee_makler_eur": 17964,
     "fees_total_eur": 48403,
-    "all_in_price_eur": 547403
+    "all_in_price_eur": 547403,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "OB2",
@@ -852,7 +880,9 @@
     "fee_notar_eur": 10200,
     "fee_makler_eur": 24480,
     "fees_total_eur": 65960,
-    "all_in_price_eur": 745960
+    "all_in_price_eur": 745960,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB3",
@@ -909,7 +939,9 @@
     "fee_notar_eur": 11700,
     "fee_makler_eur": 0,
     "fees_total_eur": 47580,
-    "all_in_price_eur": 827580
+    "all_in_price_eur": 827580,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "listing_status=disappeared; not fetched"
   },
   {
     "id": "OB4",
@@ -966,7 +998,9 @@
     "fee_notar_eur": 9990,
     "fee_makler_eur": 23976,
     "fees_total_eur": 64602,
-    "all_in_price_eur": 730602
+    "all_in_price_eur": 730602,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB5",
@@ -1023,7 +1057,9 @@
     "fee_notar_eur": 14985,
     "fee_makler_eur": 35964,
     "fees_total_eur": 96903,
-    "all_in_price_eur": 1095903
+    "all_in_price_eur": 1095903,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "OB6",
@@ -1080,7 +1116,9 @@
     "fee_notar_eur": 7485,
     "fee_makler_eur": 17964,
     "fees_total_eur": 48403,
-    "all_in_price_eur": 547403
+    "all_in_price_eur": 547403,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "listing_status=disappeared; not fetched"
   },
   {
     "id": "SO1",
@@ -1137,7 +1175,9 @@
     "fee_notar_eur": 6375,
     "fee_makler_eur": 0,
     "fees_total_eur": 25925,
-    "all_in_price_eur": 450925
+    "all_in_price_eur": 450925,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "listing_status=sold; not fetched"
   },
   {
     "id": "NEW1",
@@ -1194,7 +1234,9 @@
     "fee_notar_eur": 5985,
     "fee_makler_eur": 14364,
     "fees_total_eur": 38703,
-    "all_in_price_eur": 437703
+    "all_in_price_eur": 437703,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW2",
@@ -1251,7 +1293,9 @@
     "fee_notar_eur": 3585,
     "fee_makler_eur": 8604,
     "fees_total_eur": 23183,
-    "all_in_price_eur": 262183
+    "all_in_price_eur": 262183,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "NEW3",
@@ -1308,7 +1352,9 @@
     "fee_notar_eur": 3705,
     "fee_makler_eur": 8892,
     "fees_total_eur": 23959,
-    "all_in_price_eur": 270959
+    "all_in_price_eur": 270959,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "NEW4",
@@ -1365,7 +1411,9 @@
     "fee_notar_eur": 6660,
     "fee_makler_eur": 15984,
     "fees_total_eur": 43068,
-    "all_in_price_eur": 487068
+    "all_in_price_eur": 487068,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "WF1",
@@ -1422,7 +1470,9 @@
     "fee_notar_eur": 7425,
     "fee_makler_eur": 17820,
     "fees_total_eur": 48015,
-    "all_in_price_eur": 543015
+    "all_in_price_eur": 543015,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "SIM1",
@@ -1479,7 +1529,9 @@
     "fee_notar_eur": 7950,
     "fee_makler_eur": 19080,
     "fees_total_eur": 51410,
-    "all_in_price_eur": 581410
+    "all_in_price_eur": 581410,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben (ir.at detail has no Betriebskosten row)"
   },
   {
     "id": "SIM2",
@@ -1536,7 +1588,9 @@
     "fee_notar_eur": 5985,
     "fee_makler_eur": 14364,
     "fees_total_eur": 38703,
-    "all_in_price_eur": 437703
+    "all_in_price_eur": 437703,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": null
   },
   {
     "id": "SIM3",
@@ -1593,7 +1647,9 @@
     "fee_notar_eur": 6735,
     "fee_makler_eur": 16164,
     "fees_total_eur": 43553,
-    "all_in_price_eur": 492553
+    "all_in_price_eur": 492553,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "SIM4",
@@ -1650,7 +1706,9 @@
     "fee_notar_eur": 5850,
     "fee_makler_eur": 14040,
     "fees_total_eur": 37830,
-    "all_in_price_eur": 427830
+    "all_in_price_eur": 427830,
+    "betriebskosten_monat_eur": 125.0,
+    "betriebskosten_note": "src: Betriebskosten 125,00 €"
   },
   {
     "id": "SIM5",
@@ -1707,7 +1765,9 @@
     "fee_notar_eur": 8085,
     "fee_makler_eur": 0,
     "fees_total_eur": 32879,
-    "all_in_price_eur": 571879
+    "all_in_price_eur": 571879,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "fetch blocked (immowelt anti-bot); no alt URL"
   },
   {
     "id": "NEW5",
@@ -1764,7 +1824,9 @@
     "fee_notar_eur": 4035,
     "fee_makler_eur": 9684,
     "fees_total_eur": 26093,
-    "all_in_price_eur": 295093
+    "all_in_price_eur": 295093,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW6",
@@ -1821,7 +1883,9 @@
     "fee_notar_eur": 4350,
     "fee_makler_eur": 10440,
     "fees_total_eur": 28130,
-    "all_in_price_eur": 318130
+    "all_in_price_eur": 318130,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW7",
@@ -1878,7 +1942,9 @@
     "fee_notar_eur": 5235,
     "fee_makler_eur": 12564,
     "fees_total_eur": 33853,
-    "all_in_price_eur": 382853
+    "all_in_price_eur": 382853,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW8",
@@ -1935,7 +2001,9 @@
     "fee_notar_eur": 5535,
     "fee_makler_eur": 13284,
     "fees_total_eur": 35793,
-    "all_in_price_eur": 404793
+    "all_in_price_eur": 404793,
+    "betriebskosten_monat_eur": 133.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=133"
   },
   {
     "id": "NEW9",
@@ -1992,7 +2060,9 @@
     "fee_notar_eur": 6750,
     "fee_makler_eur": 16200,
     "fees_total_eur": 43650,
-    "all_in_price_eur": 493650
+    "all_in_price_eur": 493650,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW10",
@@ -2049,7 +2119,9 @@
     "fee_notar_eur": 4275,
     "fee_makler_eur": 10260,
     "fees_total_eur": 27645,
-    "all_in_price_eur": 312645
+    "all_in_price_eur": 312645,
+    "betriebskosten_monat_eur": 89.49,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=89,49"
   },
   {
     "id": "NEW11",
@@ -2106,7 +2178,9 @@
     "fee_notar_eur": 5475,
     "fee_makler_eur": 13140,
     "fees_total_eur": 35405,
-    "all_in_price_eur": 400405
+    "all_in_price_eur": 400405,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "SA3",
@@ -2163,7 +2237,9 @@
     "fee_notar_eur": 6735,
     "fee_makler_eur": 16164,
     "fees_total_eur": 43553,
-    "all_in_price_eur": 492553
+    "all_in_price_eur": 492553,
+    "betriebskosten_monat_eur": 119.9,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=119,9"
   },
   {
     "id": "SA4",
@@ -2220,7 +2296,9 @@
     "fee_notar_eur": 6735,
     "fee_makler_eur": 16164,
     "fees_total_eur": 43553,
-    "all_in_price_eur": 492553
+    "all_in_price_eur": 492553,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB7",
@@ -2277,7 +2355,9 @@
     "fee_notar_eur": 7485,
     "fee_makler_eur": 17964,
     "fees_total_eur": 48403,
-    "all_in_price_eur": 547403
+    "all_in_price_eur": 547403,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "HM3",
@@ -2334,7 +2414,9 @@
     "fee_notar_eur": 3405,
     "fee_makler_eur": 8172,
     "fees_total_eur": 22019,
-    "all_in_price_eur": 249019
+    "all_in_price_eur": 249019,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW12",
@@ -2391,7 +2473,9 @@
     "fee_notar_eur": 5550,
     "fee_makler_eur": 13320,
     "fees_total_eur": 35890,
-    "all_in_price_eur": 405890
+    "all_in_price_eur": 405890,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW13",
@@ -2448,7 +2532,9 @@
     "fee_notar_eur": 5625,
     "fee_makler_eur": 13500,
     "fees_total_eur": 36375,
-    "all_in_price_eur": 411375
+    "all_in_price_eur": 411375,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW14",
@@ -2505,7 +2591,9 @@
     "fee_notar_eur": 5970,
     "fee_makler_eur": 14328,
     "fees_total_eur": 38606,
-    "all_in_price_eur": 436606
+    "all_in_price_eur": 436606,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW15",
@@ -2562,7 +2650,9 @@
     "fee_notar_eur": 6675,
     "fee_makler_eur": 16020,
     "fees_total_eur": 43165,
-    "all_in_price_eur": 488165
+    "all_in_price_eur": 488165,
+    "betriebskosten_monat_eur": 120.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=120"
   },
   {
     "id": "NEW16",
@@ -2619,7 +2709,9 @@
     "fee_notar_eur": 6750,
     "fee_makler_eur": 16200,
     "fees_total_eur": 43650,
-    "all_in_price_eur": 493650
+    "all_in_price_eur": 493650,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW17",
@@ -2676,7 +2768,9 @@
     "fee_notar_eur": 6375,
     "fee_makler_eur": 15300,
     "fees_total_eur": 41225,
-    "all_in_price_eur": 466225
+    "all_in_price_eur": 466225,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB8",
@@ -2733,7 +2827,9 @@
     "fee_notar_eur": 7500,
     "fee_makler_eur": 18000,
     "fees_total_eur": 48500,
-    "all_in_price_eur": 548500
+    "all_in_price_eur": 548500,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "SA5",
@@ -2790,7 +2886,9 @@
     "fee_notar_eur": 7350,
     "fee_makler_eur": 17640,
     "fees_total_eur": 47530,
-    "all_in_price_eur": 537530
+    "all_in_price_eur": 537530,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "HM4",
@@ -2847,7 +2945,9 @@
     "fee_notar_eur": 2998,
     "fee_makler_eur": 7196,
     "fees_total_eur": 19390,
-    "all_in_price_eur": 219290
+    "all_in_price_eur": 219290,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "HM5",
@@ -2904,7 +3004,9 @@
     "fee_notar_eur": 4425,
     "fee_makler_eur": 10620,
     "fees_total_eur": 28615,
-    "all_in_price_eur": 323615
+    "all_in_price_eur": 323615,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "HM6",
@@ -2961,7 +3063,9 @@
     "fee_notar_eur": 2970,
     "fee_makler_eur": 7128,
     "fees_total_eur": 19206,
-    "all_in_price_eur": 217206
+    "all_in_price_eur": 217206,
+    "betriebskosten_monat_eur": 80.0,
+    "betriebskosten_note": "exkl. Heizung (Heizkosten netto €40 separately listed); willhaben MONTHCOSTS_GROSS=80"
   },
   {
     "id": "NEW18",
@@ -3018,7 +3122,9 @@
     "fee_notar_eur": 3735,
     "fee_makler_eur": 8964,
     "fees_total_eur": 24153,
-    "all_in_price_eur": 273153
+    "all_in_price_eur": 273153,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW19",
@@ -3075,7 +3181,9 @@
     "fee_notar_eur": 5250,
     "fee_makler_eur": 12600,
     "fees_total_eur": 33950,
-    "all_in_price_eur": 383950
+    "all_in_price_eur": 383950,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW20",
@@ -3132,7 +3240,9 @@
     "fee_notar_eur": 6435,
     "fee_makler_eur": 15444,
     "fees_total_eur": 41613,
-    "all_in_price_eur": 470613
+    "all_in_price_eur": 470613,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW21",
@@ -3189,7 +3299,9 @@
     "fee_notar_eur": 6450,
     "fee_makler_eur": 15480,
     "fees_total_eur": 41710,
-    "all_in_price_eur": 471710
+    "all_in_price_eur": 471710,
+    "betriebskosten_monat_eur": 275.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=275"
   },
   {
     "id": "HM7",
@@ -3246,7 +3358,9 @@
     "fee_notar_eur": 4185,
     "fee_makler_eur": 10044,
     "fees_total_eur": 27063,
-    "all_in_price_eur": 306063
+    "all_in_price_eur": 306063,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "HM8",
@@ -3303,7 +3417,9 @@
     "fee_notar_eur": 5992,
     "fee_makler_eur": 14382,
     "fees_total_eur": 38751,
-    "all_in_price_eur": 438252
+    "all_in_price_eur": 438252,
+    "betriebskosten_monat_eur": 121.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=121"
   },
   {
     "id": "OB9",
@@ -3360,7 +3476,9 @@
     "fee_notar_eur": 7185,
     "fee_makler_eur": 17244,
     "fees_total_eur": 46463,
-    "all_in_price_eur": 525463
+    "all_in_price_eur": 525463,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB10",
@@ -3417,7 +3535,9 @@
     "fee_notar_eur": 7200,
     "fee_makler_eur": 17280,
     "fees_total_eur": 46560,
-    "all_in_price_eur": 526560
+    "all_in_price_eur": 526560,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB11",
@@ -3474,7 +3594,9 @@
     "fee_notar_eur": 7200,
     "fee_makler_eur": 17280,
     "fees_total_eur": 46560,
-    "all_in_price_eur": 526560
+    "all_in_price_eur": 526560,
+    "betriebskosten_monat_eur": 275.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=275"
   },
   {
     "id": "HM11",
@@ -3531,7 +3653,9 @@
     "fee_notar_eur": 4185,
     "fee_makler_eur": 10044,
     "fees_total_eur": 27063,
-    "all_in_price_eur": 306063
+    "all_in_price_eur": 306063,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW25",
@@ -3588,7 +3712,9 @@
     "fee_notar_eur": 6300,
     "fee_makler_eur": 15120,
     "fees_total_eur": 40740,
-    "all_in_price_eur": 460740
+    "all_in_price_eur": 460740,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB13",
@@ -3645,7 +3771,9 @@
     "fee_notar_eur": 7275,
     "fee_makler_eur": 17460,
     "fees_total_eur": 47045,
-    "all_in_price_eur": 532045
+    "all_in_price_eur": 532045,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW27",
@@ -3702,7 +3830,9 @@
     "fee_notar_eur": 5505,
     "fee_makler_eur": 13212,
     "fees_total_eur": 35599,
-    "all_in_price_eur": 402599
+    "all_in_price_eur": 402599,
+    "betriebskosten_monat_eur": 99.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=99"
   },
   {
     "id": "HM9",
@@ -3759,7 +3889,9 @@
     "fee_notar_eur": 3435,
     "fee_makler_eur": 8244,
     "fees_total_eur": 22213,
-    "all_in_price_eur": 251213
+    "all_in_price_eur": 251213,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW23",
@@ -3816,7 +3948,9 @@
     "fee_notar_eur": 5025,
     "fee_makler_eur": 12060,
     "fees_total_eur": 32495,
-    "all_in_price_eur": 367495
+    "all_in_price_eur": 367495,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW22",
@@ -3873,7 +4007,9 @@
     "fee_notar_eur": 3300,
     "fee_makler_eur": 7920,
     "fees_total_eur": 21340,
-    "all_in_price_eur": 241340
+    "all_in_price_eur": 241340,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "NEW24",
@@ -3930,7 +4066,9 @@
     "fee_notar_eur": 5535,
     "fee_makler_eur": 13284,
     "fees_total_eur": 35793,
-    "all_in_price_eur": 404793
+    "all_in_price_eur": 404793,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB14",
@@ -3987,7 +4125,9 @@
     "fee_notar_eur": 7635,
     "fee_makler_eur": 18324,
     "fees_total_eur": 49373,
-    "all_in_price_eur": 558373
+    "all_in_price_eur": 558373,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "HM10",
@@ -4044,7 +4184,9 @@
     "fee_notar_eur": 4020,
     "fee_makler_eur": 9648,
     "fees_total_eur": 25996,
-    "all_in_price_eur": 293996
+    "all_in_price_eur": 293996,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "OB12",
@@ -4101,7 +4243,9 @@
     "fee_notar_eur": 6900,
     "fee_makler_eur": 16560,
     "fees_total_eur": 44620,
-    "all_in_price_eur": 504620
+    "all_in_price_eur": 504620,
+    "betriebskosten_monat_eur": 114.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=114"
   },
   {
     "id": "HM12",
@@ -4158,7 +4302,9 @@
     "fee_notar_eur": 4185,
     "fee_makler_eur": 10044,
     "fees_total_eur": 27063,
-    "all_in_price_eur": 306063
+    "all_in_price_eur": 306063,
+    "betriebskosten_monat_eur": 204.26,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=204,26"
   },
   {
     "id": "NEW26",
@@ -4215,7 +4361,9 @@
     "fee_notar_eur": 5235,
     "fee_makler_eur": 12564,
     "fees_total_eur": 33853,
-    "all_in_price_eur": 382853
+    "all_in_price_eur": 382853,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST1",
@@ -4272,7 +4420,9 @@
     "fee_notar_eur": 7035,
     "fee_makler_eur": 16884,
     "fees_total_eur": 45493,
-    "all_in_price_eur": 514493
+    "all_in_price_eur": 514493,
+    "betriebskosten_monat_eur": 305.4,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=305,4"
   },
   {
     "id": "ST2",
@@ -4329,7 +4479,9 @@
     "fee_notar_eur": 5835,
     "fee_makler_eur": 14004,
     "fees_total_eur": 37733,
-    "all_in_price_eur": 426733
+    "all_in_price_eur": 426733,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST3",
@@ -4386,7 +4538,9 @@
     "fee_notar_eur": 5250,
     "fee_makler_eur": 12600,
     "fees_total_eur": 33950,
-    "all_in_price_eur": 383950
+    "all_in_price_eur": 383950,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST4",
@@ -4443,7 +4597,9 @@
     "fee_notar_eur": 5962,
     "fee_makler_eur": 14310,
     "fees_total_eur": 38557,
-    "all_in_price_eur": 436058
+    "all_in_price_eur": 436058,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST5",
@@ -4500,7 +4656,9 @@
     "fee_notar_eur": 6299,
     "fee_makler_eur": 15117,
     "fees_total_eur": 40732,
-    "all_in_price_eur": 460652
+    "all_in_price_eur": 460652,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST6",
@@ -4557,7 +4715,9 @@
     "fee_notar_eur": 6750,
     "fee_makler_eur": 0,
     "fees_total_eur": 27450,
-    "all_in_price_eur": 477450
+    "all_in_price_eur": 477450,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST7",
@@ -4614,7 +4774,9 @@
     "fee_notar_eur": 6300,
     "fee_makler_eur": 15120,
     "fees_total_eur": 40740,
-    "all_in_price_eur": 460740
+    "all_in_price_eur": 460740,
+    "betriebskosten_monat_eur": 100.0,
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=100"
   },
   {
     "id": "ST8",
@@ -4671,7 +4833,9 @@
     "fee_notar_eur": 5925,
     "fee_makler_eur": 14220,
     "fees_total_eur": 38315,
-    "all_in_price_eur": 433315
+    "all_in_price_eur": 433315,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST9",
@@ -4728,7 +4892,9 @@
     "fee_notar_eur": 6735,
     "fee_makler_eur": 16164,
     "fees_total_eur": 43553,
-    "all_in_price_eur": 492553
+    "all_in_price_eur": 492553,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST10",
@@ -4785,7 +4951,9 @@
     "fee_notar_eur": 6675,
     "fee_makler_eur": 16020,
     "fees_total_eur": 43165,
-    "all_in_price_eur": 488165
+    "all_in_price_eur": 488165,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST11",
@@ -4842,7 +5010,9 @@
     "fee_notar_eur": 5400,
     "fee_makler_eur": 12960,
     "fees_total_eur": 34920,
-    "all_in_price_eur": 394920
+    "all_in_price_eur": 394920,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST12",
@@ -4899,7 +5069,9 @@
     "fee_notar_eur": 5985,
     "fee_makler_eur": 14364,
     "fees_total_eur": 38703,
-    "all_in_price_eur": 437703
+    "all_in_price_eur": 437703,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST13",
@@ -4956,7 +5128,9 @@
     "fee_notar_eur": 5559,
     "fee_makler_eur": 13343,
     "fees_total_eur": 35951,
-    "all_in_price_eur": 406576
+    "all_in_price_eur": 406576,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   },
   {
     "id": "ST14",
@@ -5013,6 +5187,8 @@
     "fee_notar_eur": 7485,
     "fee_makler_eur": 17964,
     "fees_total_eur": 48403,
-    "all_in_price_eur": 547403
+    "all_in_price_eur": 547403,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben"
   }
 ]
