@@ -56,7 +56,11 @@
     "fees_total_eur": 38800,
     "all_in_price_eur": 438800,
     "betriebskosten_monat_eur": 83.34,
-    "betriebskosten_note": "src: Betriebskosten: 83,34 € (ir.at)"
+    "betriebskosten_note": "src: Betriebskosten: 83,34 € (ir.at)",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 62,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
   },
   {
     "id": "SL2",
@@ -115,7 +119,11 @@
     "fees_total_eur": 36860,
     "all_in_price_eur": 416860,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben (RE/MAX Kosten section has Kaufpreis/Makler only; findheim mirror removed)"
+    "betriebskosten_note": "nicht angegeben (RE/MAX Kosten section has Kaufpreis/Makler only; findheim mirror removed)",
+    "drive_anton_boeck_min": 37,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 83,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SL3",
@@ -174,7 +182,11 @@
     "fees_total_eur": 42195,
     "all_in_price_eur": 477195,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben (ImmoScout24 expose; no monthly BK field)"
+    "betriebskosten_note": "nicht angegeben (ImmoScout24 expose; no monthly BK field)",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "SL4",
@@ -233,7 +245,11 @@
     "fees_total_eur": 35793,
     "all_in_price_eur": 404793,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 37,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 83,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SL5",
@@ -292,7 +308,11 @@
     "fees_total_eur": 31040,
     "all_in_price_eur": 351040,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 51,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SL6",
@@ -351,7 +371,11 @@
     "fees_total_eur": 30070,
     "all_in_price_eur": 340070,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 92,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "SL7",
@@ -410,7 +434,11 @@
     "fees_total_eur": 41225,
     "all_in_price_eur": 466225,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 34,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 89,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SL8",
@@ -469,7 +497,11 @@
     "fees_total_eur": 38703,
     "all_in_price_eur": 437703,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben (ir.at detail has no Betriebskosten row)"
+    "betriebskosten_note": "nicht angegeben (ir.at detail has no Betriebskosten row)",
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 90,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "HM1",
@@ -528,7 +560,11 @@
     "fees_total_eur": 32010,
     "all_in_price_eur": 362010,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "page gone/removed (RE/MAX 404; findheim mirror removed)"
+    "betriebskosten_note": "page gone/removed (RE/MAX 404; findheim mirror removed)",
+    "drive_anton_boeck_min": 45,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 108,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM2",
@@ -587,7 +623,11 @@
     "fees_total_eur": 13580,
     "all_in_price_eur": 153580,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 39,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 55,
+    "pt_lange_gasse_note": "vao_hafas_via_Absdorf-Hippersdorf_Bf_weekday_100000"
   },
   {
     "id": "SA1",
@@ -646,7 +686,11 @@
     "fees_total_eur": 36375,
     "all_in_price_eur": 411375,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 90,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "SA2",
@@ -705,7 +749,11 @@
     "fees_total_eur": 35696,
     "all_in_price_eur": 403696,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 49,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 109,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "AU1",
@@ -764,7 +812,11 @@
     "fees_total_eur": 14219,
     "all_in_price_eur": 247319,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "fetch blocked (immowelt anti-bot); no alt URL"
+    "betriebskosten_note": "fetch blocked (immowelt anti-bot); no alt URL",
+    "drive_anton_boeck_min": 43,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 133,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB1",
@@ -823,7 +875,11 @@
     "fees_total_eur": 48403,
     "all_in_price_eur": 547403,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 86,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "OB2",
@@ -882,7 +938,11 @@
     "fees_total_eur": 65960,
     "all_in_price_eur": 745960,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 53,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB3",
@@ -941,7 +1001,11 @@
     "fees_total_eur": 47580,
     "all_in_price_eur": 827580,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "listing_status=disappeared; not fetched"
+    "betriebskosten_note": "listing_status=disappeared; not fetched",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 62,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
   },
   {
     "id": "OB4",
@@ -1000,7 +1064,11 @@
     "fees_total_eur": 64602,
     "all_in_price_eur": 730602,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 69,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "OB5",
@@ -1059,7 +1127,11 @@
     "fees_total_eur": 96903,
     "all_in_price_eur": 1095903,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 35,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 79,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB6",
@@ -1118,7 +1190,11 @@
     "fees_total_eur": 48403,
     "all_in_price_eur": 547403,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "listing_status=disappeared; not fetched"
+    "betriebskosten_note": "listing_status=disappeared; not fetched",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 62,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
   },
   {
     "id": "SO1",
@@ -1177,7 +1253,11 @@
     "fees_total_eur": 25925,
     "all_in_price_eur": 450925,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "listing_status=sold; not fetched"
+    "betriebskosten_note": "listing_status=sold; not fetched",
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 60,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW1",
@@ -1236,7 +1316,11 @@
     "fees_total_eur": 38703,
     "all_in_price_eur": 437703,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 51,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW2",
@@ -1295,7 +1379,11 @@
     "fees_total_eur": 23183,
     "all_in_price_eur": 262183,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW3",
@@ -1354,7 +1442,11 @@
     "fees_total_eur": 23959,
     "all_in_price_eur": 270959,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 90,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW4",
@@ -1413,7 +1505,11 @@
     "fees_total_eur": 43068,
     "all_in_price_eur": 487068,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 90,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "WF1",
@@ -1472,7 +1568,11 @@
     "fees_total_eur": 48015,
     "all_in_price_eur": 543015,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 37,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 66,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SIM1",
@@ -1531,7 +1631,11 @@
     "fees_total_eur": 51410,
     "all_in_price_eur": 581410,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben (ir.at detail has no Betriebskosten row)"
+    "betriebskosten_note": "nicht angegeben (ir.at detail has no Betriebskosten row)",
+    "drive_anton_boeck_min": 37,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 66,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SIM2",
@@ -1590,7 +1694,11 @@
     "fees_total_eur": 38703,
     "all_in_price_eur": 437703,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": null
+    "betriebskosten_note": null,
+    "drive_anton_boeck_min": 34,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 89,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SIM3",
@@ -1649,7 +1757,11 @@
     "fees_total_eur": 43553,
     "all_in_price_eur": 492553,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 34,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 89,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SIM4",
@@ -1708,7 +1820,11 @@
     "fees_total_eur": 37830,
     "all_in_price_eur": 427830,
     "betriebskosten_monat_eur": 125.0,
-    "betriebskosten_note": "src: Betriebskosten 125,00 €"
+    "betriebskosten_note": "src: Betriebskosten 125,00 €",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "SIM5",
@@ -1767,7 +1883,11 @@
     "fees_total_eur": 32879,
     "all_in_price_eur": 571879,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "fetch blocked (immowelt anti-bot); no alt URL"
+    "betriebskosten_note": "fetch blocked (immowelt anti-bot); no alt URL",
+    "drive_anton_boeck_min": 35,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 98,
+    "pt_lange_gasse_note": "vao_hafas_via_Neuaigen_Tulln_weekday_100000"
   },
   {
     "id": "NEW5",
@@ -1826,7 +1946,11 @@
     "fees_total_eur": 26093,
     "all_in_price_eur": 295093,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 78,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW6",
@@ -1885,7 +2009,11 @@
     "fees_total_eur": 28130,
     "all_in_price_eur": 318130,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 86,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW7",
@@ -1944,7 +2072,11 @@
     "fees_total_eur": 33853,
     "all_in_price_eur": 382853,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 47,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 101,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4"
   },
   {
     "id": "NEW8",
@@ -2003,7 +2135,11 @@
     "fees_total_eur": 35793,
     "all_in_price_eur": 404793,
     "betriebskosten_monat_eur": 133.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=133"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=133",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 82,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW9",
@@ -2062,7 +2198,11 @@
     "fees_total_eur": 43650,
     "all_in_price_eur": 493650,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 34,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 56,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7"
   },
   {
     "id": "NEW10",
@@ -2121,7 +2261,11 @@
     "fees_total_eur": 27645,
     "all_in_price_eur": 312645,
     "betriebskosten_monat_eur": 89.49,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=89,49"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=89,49",
+    "drive_anton_boeck_min": 43,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 92,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW11",
@@ -2180,7 +2324,11 @@
     "fees_total_eur": 35405,
     "all_in_price_eur": 400405,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 39,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 74,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SA3",
@@ -2239,7 +2387,11 @@
     "fees_total_eur": 43553,
     "all_in_price_eur": 492553,
     "betriebskosten_monat_eur": 119.9,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=119,9"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=119,9",
+    "drive_anton_boeck_min": 38,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 73,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SA4",
@@ -2298,7 +2450,11 @@
     "fees_total_eur": 43553,
     "all_in_price_eur": 492553,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 44,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 110,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB7",
@@ -2357,7 +2513,11 @@
     "fees_total_eur": 48403,
     "all_in_price_eur": 547403,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 51,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM3",
@@ -2416,7 +2576,11 @@
     "fees_total_eur": 22019,
     "all_in_price_eur": 249019,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 38,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 73,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW12",
@@ -2475,7 +2639,11 @@
     "fees_total_eur": 35890,
     "all_in_price_eur": 405890,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 34,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 80,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW13",
@@ -2534,7 +2702,11 @@
     "fees_total_eur": 36375,
     "all_in_price_eur": 411375,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 91,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW14",
@@ -2593,7 +2765,11 @@
     "fees_total_eur": 38606,
     "all_in_price_eur": 436606,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 72,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_8"
   },
   {
     "id": "NEW15",
@@ -2652,7 +2828,11 @@
     "fees_total_eur": 43165,
     "all_in_price_eur": 488165,
     "betriebskosten_monat_eur": 120.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=120"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=120",
+    "drive_anton_boeck_min": 38,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 81,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW16",
@@ -2711,7 +2891,11 @@
     "fees_total_eur": 43650,
     "all_in_price_eur": 493650,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 63,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW17",
@@ -2770,7 +2954,11 @@
     "fees_total_eur": 41225,
     "all_in_price_eur": 466225,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 34,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 72,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB8",
@@ -2829,7 +3017,11 @@
     "fees_total_eur": 48500,
     "all_in_price_eur": 548500,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 60,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SA5",
@@ -2888,7 +3080,11 @@
     "fees_total_eur": 47530,
     "all_in_price_eur": 537530,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 74,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM4",
@@ -2947,7 +3143,11 @@
     "fees_total_eur": 19390,
     "all_in_price_eur": 219290,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 74,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "HM5",
@@ -3006,7 +3206,11 @@
     "fees_total_eur": 28615,
     "all_in_price_eur": 323615,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 84,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "HM6",
@@ -3065,7 +3269,11 @@
     "fees_total_eur": 19206,
     "all_in_price_eur": 217206,
     "betriebskosten_monat_eur": 80.0,
-    "betriebskosten_note": "exkl. Heizung (Heizkosten netto €40 separately listed); willhaben MONTHCOSTS_GROSS=80"
+    "betriebskosten_note": "exkl. Heizung (Heizkosten netto €40 separately listed); willhaben MONTHCOSTS_GROSS=80",
+    "drive_anton_boeck_min": 52,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 94,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW18",
@@ -3124,7 +3332,11 @@
     "fees_total_eur": 24153,
     "all_in_price_eur": 273153,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 50,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 120,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW19",
@@ -3183,7 +3395,11 @@
     "fees_total_eur": 33950,
     "all_in_price_eur": 383950,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 35,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 83,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW20",
@@ -3242,7 +3458,11 @@
     "fees_total_eur": 41613,
     "all_in_price_eur": 470613,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 37,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 96,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW21",
@@ -3301,7 +3521,11 @@
     "fees_total_eur": 41710,
     "all_in_price_eur": 471710,
     "betriebskosten_monat_eur": 275.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=275"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=275",
+    "drive_anton_boeck_min": 37,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 84,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM7",
@@ -3360,7 +3584,11 @@
     "fees_total_eur": 27063,
     "all_in_price_eur": 306063,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 56,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "HM8",
@@ -3419,7 +3647,11 @@
     "fees_total_eur": 38751,
     "all_in_price_eur": 438252,
     "betriebskosten_monat_eur": 121.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=121"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=121",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB9",
@@ -3478,7 +3710,11 @@
     "fees_total_eur": 46463,
     "all_in_price_eur": 525463,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 88,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB10",
@@ -3537,7 +3773,11 @@
     "fees_total_eur": 46560,
     "all_in_price_eur": 526560,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 106,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_3"
   },
   {
     "id": "OB11",
@@ -3596,7 +3836,11 @@
     "fees_total_eur": 46560,
     "all_in_price_eur": 526560,
     "betriebskosten_monat_eur": 275.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=275"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=275",
+    "drive_anton_boeck_min": 37,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 84,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM11",
@@ -3655,7 +3899,11 @@
     "fees_total_eur": 27063,
     "all_in_price_eur": 306063,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW25",
@@ -3714,7 +3962,11 @@
     "fees_total_eur": 40740,
     "all_in_price_eur": 460740,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 88,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB13",
@@ -3773,7 +4025,11 @@
     "fees_total_eur": 47045,
     "all_in_price_eur": 532045,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 51,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW27",
@@ -3832,7 +4088,11 @@
     "fees_total_eur": 35599,
     "all_in_price_eur": 402599,
     "betriebskosten_monat_eur": 99.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=99"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=99",
+    "drive_anton_boeck_min": 42,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 91,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "HM9",
@@ -3891,7 +4151,11 @@
     "fees_total_eur": 22213,
     "all_in_price_eur": 251213,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW23",
@@ -3950,7 +4214,11 @@
     "fees_total_eur": 32495,
     "all_in_price_eur": 367495,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 58,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW22",
@@ -4009,7 +4277,11 @@
     "fees_total_eur": 21340,
     "all_in_price_eur": 241340,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 50,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 120,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "NEW24",
@@ -4068,7 +4340,11 @@
     "fees_total_eur": 35793,
     "all_in_price_eur": 404793,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB14",
@@ -4127,7 +4403,11 @@
     "fees_total_eur": 49373,
     "all_in_price_eur": 558373,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 41,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 78,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM10",
@@ -4186,7 +4466,11 @@
     "fees_total_eur": 25996,
     "all_in_price_eur": 293996,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "OB12",
@@ -4245,7 +4529,11 @@
     "fees_total_eur": 44620,
     "all_in_price_eur": 504620,
     "betriebskosten_monat_eur": 114.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=114"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=114",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 60,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM12",
@@ -4304,7 +4592,11 @@
     "fees_total_eur": 27063,
     "all_in_price_eur": 306063,
     "betriebskosten_monat_eur": 204.26,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=204,26"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=204,26",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "NEW26",
@@ -4363,7 +4655,11 @@
     "fees_total_eur": 33853,
     "all_in_price_eur": 382853,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 86,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "ST1",
@@ -4422,7 +4718,11 @@
     "fees_total_eur": 45493,
     "all_in_price_eur": 514493,
     "betriebskosten_monat_eur": 305.4,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=305,4"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=305,4",
+    "drive_anton_boeck_min": 31,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 66,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST2",
@@ -4481,7 +4781,11 @@
     "fees_total_eur": 37733,
     "all_in_price_eur": 426733,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 20,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 54,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST3",
@@ -4540,7 +4844,11 @@
     "fees_total_eur": 33950,
     "all_in_price_eur": 383950,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 77,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4"
   },
   {
     "id": "ST4",
@@ -4599,7 +4907,11 @@
     "fees_total_eur": 38557,
     "all_in_price_eur": 436058,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 31,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 79,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST5",
@@ -4658,7 +4970,11 @@
     "fees_total_eur": 40732,
     "all_in_price_eur": 460652,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 23,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 59,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST6",
@@ -4717,7 +5033,11 @@
     "fees_total_eur": 27450,
     "all_in_price_eur": 477450,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 10,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 49,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST7",
@@ -4776,7 +5096,11 @@
     "fees_total_eur": 40740,
     "all_in_price_eur": 460740,
     "betriebskosten_monat_eur": 100.0,
-    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=100"
+    "betriebskosten_note": "willhaben MONTHCOSTS_GROSS=100",
+    "drive_anton_boeck_min": 20,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 60,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST8",
@@ -4807,9 +5131,9 @@
     "commute_pt_min_high": null,
     "commute_car_rush_low": null,
     "commute_car_rush_high": null,
-    "lat": null,
-    "lon": null,
-    "location_precision": "town",
+    "lat": 48.3846124,
+    "lon": 16.2076303,
+    "location_precision": "town_centroid_nominatim",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/korneuburg/liebevolles-stadthaus-mit-herrlichem-ruhigen-garten-samt-laube-und-bester-infrastruktur-der-stadt-stockerau-1975420559/",
     "url_alt": null,
     "notes": "Stockerau 2026-09-24. Charm + plot but only ~87 m² / 3 Zi — HM. Raiffeisen Immobilien.",
@@ -4835,7 +5159,11 @@
     "fees_total_eur": 38315,
     "all_in_price_eur": 433315,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 21,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 55,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST9",
@@ -4894,7 +5222,11 @@
     "fees_total_eur": 43553,
     "all_in_price_eur": 492553,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 21,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 62,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST10",
@@ -4953,7 +5285,11 @@
     "fees_total_eur": 43165,
     "all_in_price_eur": 488165,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 23,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 67,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "ST11",
@@ -5012,7 +5348,11 @@
     "fees_total_eur": 34920,
     "all_in_price_eur": 394920,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 25,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 86,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST12",
@@ -5071,7 +5411,11 @@
     "fees_total_eur": 38703,
     "all_in_price_eur": 437703,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 16,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 56,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST13",
@@ -5102,9 +5446,9 @@
     "commute_pt_min_high": null,
     "commute_car_rush_low": null,
     "commute_car_rush_high": null,
-    "lat": null,
-    "lon": null,
-    "location_precision": "town",
+    "lat": 48.449149,
+    "lon": 16.3003618,
+    "location_precision": "town_centroid_nominatim",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/korneuburg/niederhollabrunn-ib-rh-4-1917455694/",
     "url_alt": null,
     "notes": "Stockerau-area 2026-09-24. Representative GEDESAG RH unit (~€371k after Zuschuss). Check gemeinnützig eligibility before pursuit. Multiple sister units exist.",
@@ -5130,7 +5474,11 @@
     "fees_total_eur": 35951,
     "all_in_price_eur": 406576,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 76,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5"
   },
   {
     "id": "ST14",
@@ -5189,7 +5537,11 @@
     "fees_total_eur": 48403,
     "all_in_price_eur": 547403,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben"
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 23,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 76,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "HM13",
@@ -5248,7 +5600,11 @@
     "fees_total_eur": 19400,
     "all_in_price_eur": 219400,
     "betriebskosten_monat_eur": null,
-    "betriebskosten_note": "nicht angegeben (willhaben detail)"
+    "betriebskosten_note": "nicht angegeben (willhaben detail)",
+    "drive_anton_boeck_min": 32,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 76,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   },
   {
     "id": "SA6",
@@ -5279,9 +5635,9 @@
     "commute_pt_min_high": null,
     "commute_car_rush_low": null,
     "commute_car_rush_high": null,
-    "lat": null,
-    "lon": null,
-    "location_precision": "town",
+    "lat": 48.25531,
+    "lon": 16.0712186,
+    "location_precision": "town_centroid_nominatim",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/tulln/-doernroeschen-im-wienerwald-erwecken-natur-pur-wie-im-maerchen-1167923865/",
     "url_alt": null,
     "notes": "Evening 2026-09-24 NEW. Sauna+pool hook; ~292 m² Wohnfläche / ~820 m² plot (willhaben attr showed 192/292 — body text used). BK €110/Mo. Slightly over budget.",
@@ -5307,6 +5663,10 @@
     "fees_total_eur": 44329,
     "all_in_price_eur": 501329,
     "betriebskosten_monat_eur": 110.0,
-    "betriebskosten_note": "src: ESTATE_PRICE/MONTHCOSTS_GROSS=110"
+    "betriebskosten_note": "src: ESTATE_PRICE/MONTHCOSTS_GROSS=110",
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 76,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6"
   }
 ]
