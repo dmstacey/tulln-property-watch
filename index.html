@@ -231,6 +231,17 @@
       <input type="search" id="townSearch" placeholder="e.g. Tulln, Wördern…"/>
     </div>
     <div class="filter-group">
+      <label for="typeFilter">House type</label>
+      <select id="typeFilter">
+        <option value="all">All types</option>
+        <option value="EFH">Einfamilienhaus (EFH)</option>
+        <option value="DHH">Doppelhaushälfte (DHH)</option>
+        <option value="RH">Reihenhaus (RH)</option>
+        <option value="Bungalow">Bungalow</option>
+        <option value="MFH">Mehrfamilienhaus (MFH)</option>
+      </select>
+    </div>
+    <div class="filter-group">
       <label for="categoryFilter">Category</label>
       <select id="categoryFilter">
         <option value="all">All categories</option>
@@ -636,6 +647,7 @@ function getFilters() {
     underBudget: document.getElementById("underBudget").checked,
     town: document.getElementById("townSearch").value.trim().toLowerCase(),
     category: document.getElementById("categoryFilter").value,
+    houseType: document.getElementById("typeFilter").value,
     finish: document.getElementById("finishFilter").value
   };
 }
@@ -654,6 +666,7 @@ function filterProps() {
     else if (f.hideSold && isGone) return false;
     if (f.favOnly && !isFavourite(p.id)) return false;
     if (f.category !== "all" && p.category !== f.category) return false;
+    if (f.houseType !== "all" && p.type !== f.houseType) return false;
     if (!matchesFinishFilter(p, f.finish)) return false;
     if (f.town) {
       const hay = `${p.location_town || ""} ${p.plz || ""} ${p.district_or_region || ""} ${p.title || ""}`.toLowerCase();
@@ -1009,7 +1022,7 @@ function refresh() {
 }
 
 document.getElementById("maxPrice").addEventListener("input", refresh);
-["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","townSearch","categoryFilter","finishFilter"].forEach(id => {
+["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","townSearch","categoryFilter","typeFilter","finishFilter"].forEach(id => {
   document.getElementById(id).addEventListener("input", refresh);
   document.getElementById(id).addEventListener("change", refresh);
 });
@@ -1024,6 +1037,7 @@ document.getElementById("resetFilters").addEventListener("click", () => {
   document.getElementById("underBudget").checked = false;
   document.getElementById("townSearch").value = "";
   document.getElementById("categoryFilter").value = "all";
+  document.getElementById("typeFilter").value = "all";
   document.getElementById("finishFilter").value = "any";
   selectedId = null;
   hoveredId = null;
