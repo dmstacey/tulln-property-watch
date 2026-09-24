@@ -123,16 +123,25 @@
   .leg-sold::before { background: #7f8c8d; }
   .leg-honourable::before { background: #6c3483; }
 
-  .tl-dot { font-size: 1.15rem; line-height: 1; display: inline-block; }
-  .tl-green { color: #2d6a4f; }
-  .tl-yellow { color: #c9a227; }
-  .tl-red { color: #b54a3a; }
-  .tl-none { color: var(--muted); }
+  .tl-row { display: inline-flex; gap: 0.22rem; align-items: center; vertical-align: middle; }
+  .tl-dot {
+    width: 0.72rem; height: 0.72rem; border-radius: 50%;
+    display: inline-block; box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .tl-green { background: #2d6a4f; }
+  .tl-yellow { background: #c9a227; }
+  .tl-red { background: #b54a3a; }
+  .tl-none {
+    background: transparent;
+    border: 1.5px solid #c5ccd3;
+  }
   .score-legend {
     font-size: 0.75rem; color: var(--muted); font-weight: 400;
     margin-left: 0.5rem;
   }
-  .score-legend .tl-dot { font-size: 0.85rem; }
+  .score-legend .tl-dot { width: 0.55rem; height: 0.55rem; vertical-align: -1px; }
+  .score-legend .tl-order { margin-left: 0.35rem; }
   .fav-star {
     cursor: pointer; font-size: 1.15rem; line-height: 1;
     background: none; border: none; padding: 0 0.15rem;
@@ -261,7 +270,7 @@
     </div>
     <div class="panel">
       <h3>Results <span style="font-weight:400;color:var(--muted)" id="tableHint">(★ favourite · click row to highlight map + charts · hover row to emphasize chart point · click column to sort)</span>
-        <span class="score-legend" title="Score needs price, PT time, living m², and energy class">Score: <span class="tl-dot tl-green">●</span> good · <span class="tl-dot tl-yellow">●</span> ok · <span class="tl-dot tl-red">●</span> weak · no color = missing data</span>
+        <span class="score-legend" title="Four lights: price · PT commute · living m² · energy. Empty ring = missing that factor.">Score: <span class="tl-dot tl-green"></span> good · <span class="tl-dot tl-yellow"></span> ok · <span class="tl-dot tl-red"></span> weak · empty = missing · <span class="tl-order">order: price · PT · m² · energy</span></span>
       </h3>
       <div class="table-wrap">
         <table>
@@ -269,7 +278,7 @@
             <tr>
               <th class="fav-th" title="Favourite">★</th>
               <th data-sort="id">ID</th>
-              <th class="score-th" data-sort="score_rank" title="Traffic-light: price · location (PT) · size · energy">Score</th>
+              <th class="score-th" data-sort="score_rank" title="Four lights: price · PT · size · energy (empty = missing)">Score</th>
               <th data-sort="title">Title</th>
               <th data-sort="location_town">Town</th>
               <th data-sort="price_eur">Price</th>
@@ -377,10 +386,10 @@ function toggleFavourite(id, ev) {
  *   green A++/A+/A/B · yellow C/D · red E/F/G (and unknown worse letters)
  *   missing/empty class → overall missing
  *
- * Aggregate (all four present):
- *   red if any red · else yellow if any yellow · else green
+ * Display: four separate circles (price · PT · size · energy).
+ * Missing factor → empty ring (no fill color). Present factors keep their own color.
  *
- * score_rank for sorting: green=0, yellow=1, red=2, missing=3
+ * score_rank for sorting: sum of per-factor ranks (green=0, yellow=1, red=2, missing=3)
  */
 function normalizeEnergyClass(raw) {
   if (raw == null || raw === "") return null;
@@ -429,34 +438,36 @@ function computeScore(p) {
     size: scoreSize(p),
     energy: scoreEnergy(p)
   };
+  const rankMap = { green: 0, yellow: 1, red: 2 };
   const vals = [factors.price, factors.location, factors.size, factors.energy];
-  if (vals.some(v => v == null)) {
-    return { overall: null, rank: 3, factors };
-  }
-  let overall = "green";
-  if (vals.includes("red")) overall = "red";
-  else if (vals.includes("yellow")) overall = "yellow";
-  const rank = overall === "green" ? 0 : overall === "yellow" ? 1 : 2;
-  return { overall, rank, factors };
+  const rank = vals.reduce((sum, v) => sum + (v == null ? 3 : rankMap[v]), 0);
+  return { factors, rank };
 }
 function scoreTooltip(score) {
   const label = { green: "green", yellow: "yellow", red: "red" };
   const f = score.factors;
   const parts = [
     "Price " + (f.price ? label[f.price] : "—"),
-    "Location " + (f.location ? label[f.location] : "—"),
+    "PT " + (f.location ? label[f.location] : "—"),
     "Size " + (f.size ? label[f.size] : "—"),
     "Energy " + (f.energy ? label[f.energy] : "—")
   ];
   return parts.join(" · ");
 }
+function scoreDot(color, label) {
+  const cls = color ? ("tl-dot tl-" + color) : "tl-dot tl-none";
+  return `<span class="${cls}" title="${escapeHtml(label)}"></span>`;
+}
 function scoreHtml(p) {
   const s = computeScore(p);
   p.score_rank = s.rank;
-  if (!s.overall) {
-    return `<span class="tl-none" title="${escapeHtml(scoreTooltip(s))}">—</span>`;
-  }
-  return `<span class="tl-dot tl-${s.overall}" title="${escapeHtml(scoreTooltip(s))}">●</span>`;
+  const f = s.factors;
+  return `<span class="tl-row" title="${escapeHtml(scoreTooltip(s))}">`
+    + scoreDot(f.price, "Price")
+    + scoreDot(f.location, "PT commute")
+    + scoreDot(f.size, "Living m²")
+    + scoreDot(f.energy, "Energy")
+    + `</span>`;
 }
 PROPERTIES.forEach(p => { p.score_rank = computeScore(p).rank; });
 
