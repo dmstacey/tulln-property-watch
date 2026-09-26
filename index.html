@@ -181,7 +181,7 @@
     Family home (EFH/RH/DHH, not apartment) · Prefer Tulln / NÖ / Vienna Speckgürtel ·
     Budget <strong>&lt; €450k</strong> (over flagged) · Work = 8th district · Prefers sauna when available ·
     Research 2026-09-20 · Coordinates = town centroids (not street-exact)<br/>
-    <strong>Last updated:</strong> <span id="last-updated">Sat 26 Sep 2026, 16:33 (Vienna)</span>
+    <strong>Last updated:</strong> <span id="last-updated">Sat 26 Sep 2026, 16:38 (Vienna)</span>
   </div>
 </header>
 <div class="layout">
@@ -339,7 +339,7 @@
               <th data-sort="energy_hwb_class">Energy</th>
               <th data-sort="all_in_price_eur" title="Asking + GrESt 3.5% + Grundbuch 1.1% + Notar ~1.5% (est.) + Makler 3.6% if buyer pays">All-in €</th>
               <th data-sort="betriebskosten_monat_eur" title="Monatliche Betriebskosten (BK) from listing; hover for note">BK €/Mo</th>
-              <th data-sort="drive_anton_boeck_min" title="car to the 12th district">Drive min</th>
+              <th data-sort="drive_anton_boeck_min" title="car to the 21st district">Drive min</th>
               <th data-sort="pt_lange_gasse_min" title="public transport to the 8th district">PT min</th>
               <th data-sort="rooms">Rooms</th>
               <th data-sort="has_sauna">Sauna</th>
@@ -363,7 +363,7 @@
   €/m² = asking ÷ living m². Hover All-in € or Seller for per-row evidence.
 
   <br/><strong>BK €/Mo</strong> = monatliche Betriebskosten from the listing (willhaben MONTHCOSTS_GROSS / portal labels). Null/"—" when not stated — prefer unknown over guessing. Tooltip shows source note (inkl./exkl. Heizung when known).
-  <br/><strong>Drive min</strong> = OSRM free-flow/off-peak-ish car minutes to the 12th district (not rush-hour peak). <strong>PT min</strong> = VAO/AnachB HAFAS best weekday ~10:00 door-to-door to the 8th district.
+  <br/><strong>Drive min</strong> = OSRM free-flow/off-peak-ish car minutes to the 21st district (not rush-hour peak). <strong>PT min</strong> = VAO/AnachB HAFAS best weekday ~10:00 door-to-door to the 8th district.
 </footer>
 <script>
 const PROPERTIES = [
@@ -6562,7 +6562,7 @@ function toggleFavourite(id, ev) {
 
 /*
  * Traffic-light score (David prefs: budget < €450k, family home,
- * PT to 8th district / drive 12th district).
+ * PT to 8th district / drive 21st district).
  *
  * Four factors — if ANY is missing → overall missing (no color).
  *
@@ -6845,7 +6845,7 @@ function popupHtml(p) {
     ? `<a href="${p.url_primary}" target="_blank" rel="noopener">Open listing</a>`
     : "No URL";
   const commuteBits = [];
-  if (p.drive_anton_boeck_min != null) commuteBits.push(`Drive → 12th district: ${p.drive_anton_boeck_min} min`);
+  if (p.drive_anton_boeck_min != null) commuteBits.push(`Drive → 21st district: ${p.drive_anton_boeck_min} min`);
   if (p.pt_lange_gasse_min != null) commuteBits.push(`PT → 8th district: ${p.pt_lange_gasse_min} min`);
   const commute = commuteBits.length ? `<br/>${commuteBits.join(" · ")}` : "";
   const st = p.listing_status || "active";
@@ -6944,7 +6944,7 @@ function updateTable(list) {
       <td title="${p.energy_hwb_value != null ? "HWB " + p.energy_hwb_value : ""}">${p.energy_hwb_class ? escapeHtml(p.energy_hwb_class) : "—"}</td>
       <td class="${priceClass}" title="${allInTitle}">${fmtPrice(p.all_in_price_eur)}</td>
       <td title="${(p.betriebskosten_note || "").replace(/"/g, "&quot;")}">${p.betriebskosten_monat_eur != null ? Number(p.betriebskosten_monat_eur).toLocaleString("de-AT", {minimumFractionDigits: 0, maximumFractionDigits: 2}) : "—"}</td>
-      <td title="car to the 12th district (OSRM free-flow)">${p.drive_anton_boeck_min != null ? p.drive_anton_boeck_min : "—"}</td>
+      <td title="car to the 21st district (OSRM free-flow)">${p.drive_anton_boeck_min != null ? p.drive_anton_boeck_min : "—"}</td>
       <td title="public transport to the 8th district (VAO/AnachB weekday daytime)">${p.pt_lange_gasse_min != null ? p.pt_lange_gasse_min : "—"}</td>
       <td>${p.rooms != null ? p.rooms : "—"}</td>
       <td>${p.has_sauna ? "Yes" : "No"}</td>
