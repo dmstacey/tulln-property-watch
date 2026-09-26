@@ -339,7 +339,7 @@
               <th data-sort="all_in_price_eur" title="Asking + GrESt 3.5% + Grundbuch 1.1% + Notar ~1.5% (est.) + Makler 3.6% if buyer pays">All-in €</th>
               <th data-sort="betriebskosten_monat_eur" title="Monatliche Betriebskosten (BK) from listing; hover for note">BK €/Mo</th>
               <th data-sort="drive_anton_boeck_min" title="car to Anton-Böck-Gasse 20, 1210">Drive min</th>
-              <th data-sort="pt_lange_gasse_min" title="public transport to Lange Gasse 50, 1080">PT min</th>
+              <th data-sort="pt_lange_gasse_min" title="public transport to the 8th district">PT min</th>
               <th data-sort="rooms">Rooms</th>
               <th data-sort="has_sauna">Sauna</th>
               <th data-sort="type">Type</th>
@@ -362,7 +362,7 @@
   €/m² = asking ÷ living m². Hover All-in € or Seller for per-row evidence.
 
   <br/><strong>BK €/Mo</strong> = monatliche Betriebskosten from the listing (willhaben MONTHCOSTS_GROSS / portal labels). Null/"—" when not stated — prefer unknown over guessing. Tooltip shows source note (inkl./exkl. Heizung when known).
-  <br/><strong>Drive min</strong> = OSRM free-flow/off-peak-ish car minutes to Anton-Böck-Gasse 20, 1210 (not rush-hour peak). <strong>PT min</strong> = VAO/AnachB HAFAS best weekday ~10:00 door-to-door to Lange Gasse 50, 1080.
+  <br/><strong>Drive min</strong> = OSRM free-flow/off-peak-ish car minutes to Anton-Böck-Gasse 20, 1210 (not rush-hour peak). <strong>PT min</strong> = VAO/AnachB HAFAS best weekday ~10:00 door-to-door to the 8th district.
 </footer>
 <script>
 const PROPERTIES = [
@@ -664,7 +664,7 @@ const PROPERTIES = [
     "location_precision": "town",
     "url_primary": "https://findheim.at/de/immobilie/quot-rohdiamant-teilsaniertes-haus-auf-eigengrund-in-woerdern-quot-154af676",
     "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/tulln/-rohdiamant-teilsaniertes-haus-auf-eigengrund-in-woerdern-1283245280/",
-    "notes": "Best PT/car commute to Langegasse 50. Eigengrund stated. Pool spoken of as future option. Town centroid. 2026-09-23: findheim primary flaky/410; willhaben mirror confirmed live. Listing removed from FINDHEIM 2026-09-24 (user confirmed off-market). Marked sold.",
+    "notes": "Best PT/car commute to the 8th district. Eigengrund stated. Pool spoken of as future option. Town centroid. 2026-09-23: findheim primary flaky/410; willhaben mirror confirmed live. Listing removed from FINDHEIM 2026-09-24 (user confirmed off-market). Marked sold.",
     "research_date": "2026-09-22",
     "listing_status": "sold",
     "first_seen": "2026-09-20",
@@ -6561,7 +6561,7 @@ function toggleFavourite(id, ev) {
 
 /*
  * Traffic-light score (David prefs: budget < €450k, family home,
- * PT to Lange Gasse 50 / drive Anton-Böck).
+ * PT to 8th district / drive Anton-Böck).
  *
  * Four factors — if ANY is missing → overall missing (no color).
  *
@@ -6944,7 +6944,7 @@ function updateTable(list) {
       <td class="${priceClass}" title="${allInTitle}">${fmtPrice(p.all_in_price_eur)}</td>
       <td title="${(p.betriebskosten_note || "").replace(/"/g, "&quot;")}">${p.betriebskosten_monat_eur != null ? Number(p.betriebskosten_monat_eur).toLocaleString("de-AT", {minimumFractionDigits: 0, maximumFractionDigits: 2}) : "—"}</td>
       <td title="car to Anton-Böck-Gasse 20, 1210 (OSRM free-flow)">${p.drive_anton_boeck_min != null ? p.drive_anton_boeck_min : "—"}</td>
-      <td title="public transport to Lange Gasse 50, 1080 (VAO/AnachB weekday daytime)">${p.pt_lange_gasse_min != null ? p.pt_lange_gasse_min : "—"}</td>
+      <td title="public transport to the 8th district (VAO/AnachB weekday daytime)">${p.pt_lange_gasse_min != null ? p.pt_lange_gasse_min : "—"}</td>
       <td>${p.rooms != null ? p.rooms : "—"}</td>
       <td>${p.has_sauna ? "Yes" : "No"}</td>
       <td>${p.type || "—"}</td>
