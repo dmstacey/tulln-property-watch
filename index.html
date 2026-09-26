@@ -287,7 +287,7 @@
         <div class="chart-wrap"><canvas id="scatterChart"></canvas></div>
       </div>
       <div class="panel">
-        <h3 id="ptScatterTitle">Price vs PT time</h3>
+        <h3 id="ptScatterTitle" title="PT = public transport to the 8th district">Price vs PT time (public transport)</h3>
         <div class="chart-wrap"><canvas id="ptScatterChart"></canvas></div>
       </div>
     </div>
@@ -307,7 +307,7 @@
               <th>Price</th>
               <th>m²</th>
               <th>Energy</th>
-              <th>PT min</th>
+              <th title="public transport to the 8th district">PT min</th>
               <th>Drive min</th>
               <th>Link</th>
             </tr>
@@ -318,7 +318,7 @@
     </div>
     <div class="panel">
       <h3>Results <span style="font-weight:400;color:var(--muted)" id="tableHint">(★ favourite · click row to highlight map + charts · hover row to emphasize chart point · click column to sort)</span>
-        <span class="score-legend" title="Four lights: price · PT commute · living m² · energy. Empty ring = missing that factor.">Score: <span class="tl-dot tl-green"></span> good · <span class="tl-dot tl-yellow"></span> ok · <span class="tl-dot tl-red"></span> weak · empty = missing · <span class="tl-order">order: price · PT · m² · energy</span></span>
+        <span class="score-legend" title="Four lights: price · public transport commute · living m² · energy. Empty ring = missing that factor.">Score: <span class="tl-dot tl-green"></span> good · <span class="tl-dot tl-yellow"></span> ok · <span class="tl-dot tl-red"></span> weak · empty = missing · <span class="tl-order">order: price · PT · m² · energy</span></span>
         <span class="score-legend" title="Finish: explicit stage, or Baujahr when unknown. Green = schlüssel/recent (≥2006); yellow = belags/mid-age; red = rohbau/sanierung/heavy reno.">Finish: <span class="tl-dot tl-green"></span> ready/recent · <span class="tl-dot tl-yellow"></span> mid/partial · <span class="tl-dot tl-red"></span> reno/rohbau · year = Baujahr</span>
       </h3>
       <div class="table-wrap">
@@ -327,7 +327,7 @@
             <tr>
               <th class="fav-th" title="Favourite">★</th>
               <th data-sort="id">ID</th>
-              <th class="score-th" data-sort="score_rank" title="Four lights: price · PT · size · energy (empty = missing)">Score</th>
+              <th class="score-th" data-sort="score_rank" title="Four lights: price · public transport · size · energy (empty = missing)">Score</th>
               <th data-sort="title">Title</th>
               <th data-sort="location_town">Town</th>
               <th data-sort="finish_status" title="Finish stage or Baujahr (year built) with traffic-light by condition/age">Finish</th>
@@ -363,7 +363,7 @@
   €/m² = asking ÷ living m². Hover All-in € or Seller for per-row evidence.
 
   <br/><strong>BK €/Mo</strong> = monatliche Betriebskosten from the listing (willhaben MONTHCOSTS_GROSS / portal labels). Null/"—" when not stated — prefer unknown over guessing. Tooltip shows source note (inkl./exkl. Heizung when known).
-  <br/><strong>Drive min</strong> = OSRM free-flow/off-peak-ish car minutes to the 21st district (not rush-hour peak). <strong>PT min</strong> = VAO/AnachB HAFAS best weekday ~10:00 door-to-door to the 8th district.
+  <br/><strong>Drive min</strong> = OSRM free-flow/off-peak-ish car minutes to the 21st district (not rush-hour peak). <strong>PT min</strong> = public transport minutes, VAO/AnachB HAFAS best weekday ~10:00 door-to-door to the 8th district.
 </footer>
 <script>
 const PROPERTIES = [
@@ -6657,7 +6657,7 @@ function scoreTooltip(score) {
   const f = score.factors;
   const parts = [
     "Price " + (f.price ? label[f.price] : "—"),
-    "PT " + (f.location ? label[f.location] : "—"),
+    "Public transport " + (f.location ? label[f.location] : "—"),
     "Size " + (f.size ? label[f.size] : "—"),
     "Energy " + (f.energy ? label[f.energy] : "—")
   ];
@@ -6673,7 +6673,7 @@ function scoreHtml(p) {
   const f = s.factors;
   return `<span class="tl-row" title="${escapeHtml(scoreTooltip(s))}">`
     + scoreDot(f.price, "Price")
-    + scoreDot(f.location, "PT commute")
+    + scoreDot(f.location, "Public transport commute")
     + scoreDot(f.size, "Living m²")
     + scoreDot(f.energy, "Energy")
     + `</span>`;
@@ -6865,7 +6865,7 @@ function popupHtml(p) {
     : "No URL";
   const commuteBits = [];
   if (p.drive_anton_boeck_min != null) commuteBits.push(`Drive → 21st district: ${p.drive_anton_boeck_min} min`);
-  if (p.pt_lange_gasse_min != null) commuteBits.push(`PT → 8th district: ${p.pt_lange_gasse_min} min`);
+  if (p.pt_lange_gasse_min != null) commuteBits.push(`Public transport → 8th district: ${p.pt_lange_gasse_min} min`);
   const commute = commuteBits.length ? `<br/>${commuteBits.join(" · ")}` : "";
   const st = p.listing_status || "active";
   const flags = p.change_flags ? ` · <em>${p.change_flags}</em>` : "";
@@ -7023,7 +7023,7 @@ function updateFavouritesPanel() {
       <td class="${priceClass}">${fmtPrice(p.price_eur)}</td>
       <td>${fmtNum(p.living_m2)}</td>
       <td>${p.energy_hwb_class ? escapeHtml(p.energy_hwb_class) : "—"}</td>
-      <td>${p.pt_lange_gasse_min != null ? p.pt_lange_gasse_min : "—"}</td>
+      <td title="public transport to the 8th district">${p.pt_lange_gasse_min != null ? p.pt_lange_gasse_min : "—"}</td>
       <td>${p.drive_anton_boeck_min != null ? p.drive_anton_boeck_min : "—"}</td>
       <td>${p.url_primary ? `<a href="${p.url_primary}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Link</a>` : "—"}</td>`;
     tr.addEventListener("click", () => selectRow(p.id, true));
@@ -7158,14 +7158,14 @@ function updateCharts(list) {
     }));
 
   const titleEl = document.getElementById("ptScatterTitle");
-  if (titleEl) titleEl.textContent = "Price vs PT time";
+  if (titleEl) titleEl.textContent = "Price vs PT time (public transport)";
 
   ptScatterChart = makeScatterChart(
     "ptScatterChart",
     ptScatterChart,
     ptData,
-    "PT minutes → 8th district",
-    d => `${d.id}: ${fmtPrice(d.y)} · ${d.x} min PT`
+    "Public transport minutes → 8th district",
+    d => `${d.id}: ${fmtPrice(d.y)} · ${d.x} min public transport`
   );
 }
 
