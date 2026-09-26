@@ -33,6 +33,9 @@ What it does, per listing (active listings first, then sold/disappeared):
   * Rebuilds archive/index.html.
   * Sites that block bots (immowelt/DataDome, remax/Turnstile) are skipped – never bypassed.
 
+Links inside archive pages are root-relative (/archive/<id>, /img/<id>.jpg) because Vercel
+cleanUrls serves /archive/<id>.html as /archive/<id> and /archive/ as /archive.
+
 Requires: Python 3.9+, Pillow, beautifulsoup4  (pip install Pillow beautifulsoup4)
 """
 import argparse, csv, glob, html, io, json, os, re, sys, time, urllib.parse, urllib.request, ssl
@@ -625,7 +628,7 @@ def render_archive(p, L, photos):
     parts = [f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
 <title>{esc(p['id'])} · {esc(title)} — Archiv</title><style>{CSS}</style></head><body>
-<header class="top"><a href="../">← Dashboard</a><a href="./">Archive index</a>Tulln Property Watch · archived listing {esc(p['id'])}</header>
+<header class="top"><a href="/">← Dashboard</a><a href="/archive">Archive index</a>Tulln Property Watch · archived listing {esc(p['id'])}</header>
 <main><h1>{esc(title)}</h1><div class="price">{esc(price)}</div>
 <div class="meta">{esc(loc)} · archived {esc(L['fetched'])} · <a href="{esc(L['source_url'] or p.get('url_primary') or '')}" rel="noopener nofollow" target="_blank">original listing</a></div>
 {status_note}"""]
@@ -654,8 +657,8 @@ def render_index(props):
     rows = []
     order = {"active": 0, "sold": 1, "disappeared": 2}
     for p in sorted([p for p in props if p.get("archive")], key=lambda p: (order.get(p.get("listing_status"), 3), p["id"])):
-        thumb = f'<img src="../{esc(p["image"])}" alt="" loading="lazy">' if p.get("image") else ""
-        rows.append(f"""<tr><td class="th">{thumb}</td><td><a href="{esc(os.path.basename(p['archive']))}"><b>{esc(p['id'])}</b> · {esc(p.get('title'))}</a>
+        thumb = f'<img src="/{esc(p["image"])}" alt="" loading="lazy">' if p.get("image") else ""
+        rows.append(f"""<tr><td class="th">{thumb}</td><td><a href="/archive/{esc(p['id'])}"><b>{esc(p['id'])}</b> · {esc(p.get('title'))}</a>
 <div class="meta">{esc(p.get('location_town') or '')} · {esc(fmt_num(p.get('living_m2'), ' m²') or '—')} · {esc(fmt_num(p.get('plot_m2'), ' m² Grund') or '—')}</div></td>
 <td>{esc(fmt_eur(p.get('price_eur')) or '—')}</td><td><span class="st st-{esc(p.get('listing_status'))}">{esc(p.get('listing_status'))}</span></td><td>{esc(p.get('archived_at') or '')}</td></tr>""")
     css = CSS + """.th img{width:96px;height:64px;object-fit:cover;border-radius:6px}.th{width:104px}
@@ -663,7 +666,7 @@ def render_index(props):
 @media(max-width:600px){.th img{width:64px;height:44px}.th{width:70px}}"""
     return scrub(f"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>Archived listings — Tulln Property Watch</title><style>{css}</style></head><body>
-<header class="top"><a href="../">← Dashboard</a>Tulln Property Watch · listing archive</header><main>
+<header class="top"><a href="/">← Dashboard</a>Tulln Property Watch · listing archive</header><main>
 <h1>Archived listings</h1><p class="meta">{len(rows)} static snapshots of listing pages (facts, description, photos). Updated {esc(TODAY)}.</p>
 <div class="card"><table><thead><tr><th></th><th>Listing</th><th>Price</th><th>Status</th><th>Archived</th></tr></thead><tbody>
 {''.join(rows)}</tbody></table></div></main></body></html>""")
