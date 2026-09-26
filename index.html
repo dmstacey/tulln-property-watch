@@ -6845,7 +6845,7 @@ function popupHtml(p) {
     : "No URL";
   const commuteBits = [];
   if (p.drive_anton_boeck_min != null) commuteBits.push(`Drive → Anton-Böck: ${p.drive_anton_boeck_min} min`);
-  if (p.pt_lange_gasse_min != null) commuteBits.push(`PT → Lange Gasse: ${p.pt_lange_gasse_min} min`);
+  if (p.pt_lange_gasse_min != null) commuteBits.push(`PT → 8th district: ${p.pt_lange_gasse_min} min`);
   const commute = commuteBits.length ? `<br/>${commuteBits.join(" · ")}` : "";
   const st = p.listing_status || "active";
   const flags = p.change_flags ? ` · <em>${p.change_flags}</em>` : "";
@@ -7144,7 +7144,7 @@ function updateCharts(list) {
     "ptScatterChart",
     ptScatterChart,
     ptData,
-    "PT minutes → Lange Gasse",
+    "PT minutes → 8th district",
     d => `${d.id}: ${fmtPrice(d.y)} · ${d.x} min PT`
   );
 }
