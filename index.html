@@ -181,7 +181,7 @@
     Family home (EFH/RH/DHH, not apartment) · Prefer Tulln / NÖ / Vienna Speckgürtel ·
     Budget <strong>&lt; €450k</strong> (over flagged) · Work = 8th district · Prefers sauna when available ·
     Research 2026-09-20 · Coordinates = town centroids (not street-exact)<br/>
-    <strong>Last updated:</strong> <span id="last-updated">Sat 26 Sep 2026, 16:38 (Vienna)</span>
+    <strong>Newest listing added:</strong> <span id="last-updated">—</span>
   </div>
 </header>
 <div class="layout">
@@ -6371,7 +6371,8 @@ const PROPERTIES = [
     "betriebskosten_note": "nicht angegeben (willhaben detail); heating costs net €140 mentioned",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "renovierungsbedürftig; BJ 1972 ausbaufähig",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "first_seen_at": "2026-09-25T06:19"
   },
   {
     "id": "OB15",
@@ -6437,7 +6438,8 @@ const PROPERTIES = [
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Dornröschen / Modernisierungspotenzial; weitgehend Originalzustand seit ~1969",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "first_seen_at": "2026-09-25T17:19"
   },
   {
     "id": "OB16",
@@ -6503,10 +6505,27 @@ const PROPERTIES = [
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Renovierungsbedürftig aber bewohnbar; Soforteinzug möglich",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "first_seen_at": "2026-09-25T17:19"
   }
 ];
 const BUDGET = 450000;
+
+// "Newest listing added" stamp: latest first_seen_at (or first_seen date) across all listings
+(function () {
+  const el = document.getElementById("last-updated");
+  if (!el || !PROPERTIES.length) return;
+  let best = "", ids = [];
+  for (const p of PROPERTIES) {
+    const t = p.first_seen_at || p.first_seen || "";
+    if (t > best) { best = t; ids = [p.id]; } else if (t && t === best) ids.push(p.id);
+  }
+  if (!best) return;
+  const [d, tm] = best.split("T");
+  const dt = new Date(d + "T12:00:00");
+  const day = dt.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+  el.textContent = day + (tm ? ", " + tm + " (Vienna)" : "") + " · " + ids.join(", ");
+})();
 const FAV_KEY = "tulln-favourites";
 
 const CAT_COLORS = {
