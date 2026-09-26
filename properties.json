@@ -63,7 +63,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Renovierungsbedürftig; BJ 1966 gekuppelt; Keller ~61 m² Covered terrace, balcony, Brunnen;",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SL1.jpg",
+    "archive": "archive/SL1.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SL2",
@@ -195,7 +198,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SL3.jpg",
+    "archive": "archive/SL3.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SL4",
@@ -261,7 +267,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "schluesselfertig",
     "finish_status_note": "Turnkey 2019 massiv; Terrasse ~12 m²; Grünruhelage Best plug-and-play under b",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SL4.jpg",
+    "archive": "archive/SL4.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SL5",
@@ -327,7 +336,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 100 m² Grundfläche 414 m² Zimmer 3 Nut…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SL5.jpg",
+    "archive": "archive/SL5.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SL6",
@@ -393,7 +405,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SL6.jpg",
+    "archive": "archive/SL6.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SL7",
@@ -459,7 +474,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "belagsfertig",
     "finish_status_note": "Die Übergabe erfolgt im belagsfertigen Zustand, um Ihren individuellen Bedürfnissen be",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SL7.jpg",
+    "archive": "archive/SL7.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SL8",
@@ -525,7 +543,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "belagsfertig",
     "finish_status_note": "Belagsfertig; +~€50k schlüsselfertig",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SL8.jpg",
+    "archive": "archive/SL8.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM1",
@@ -657,7 +678,10 @@
     "pt_lange_gasse_note": "vao_hafas_via_Absdorf-Hippersdorf_Bf_weekday_100000",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "# LIEBEVOLLES, SANIERUNGSBEDÜRFTIGES LANDHAUS MIT KLEINEM HOLZSCHUPPEN UND RUHIGEM INNENHOF MIT BESTER INF",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM2.jpg",
+    "archive": "archive/HM2.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SA1",
@@ -723,7 +747,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SA1.jpg",
+    "archive": "archive/SA1.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SA2",
@@ -789,7 +816,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SA2.jpg",
+    "archive": "archive/SA2.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "AU1",
@@ -921,7 +951,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "fetch unavailable (http_403); no clear cached finish signal",
-    "finish_status_source": "unavailable"
+    "finish_status_source": "unavailable",
+    "image": "img/OB1.jpg",
+    "archive": "archive/OB1.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB2",
@@ -987,7 +1020,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB2.jpg",
+    "archive": "archive/OB2.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB3",
@@ -1119,7 +1155,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB4.jpg",
+    "archive": "archive/OB4.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB5",
@@ -1185,7 +1224,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB5.jpg",
+    "archive": "archive/OB5.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB6",
@@ -1383,7 +1425,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Preisreduktion: Sanierungsbedürftige Villa Im Jugendstil Mit Traumhaftem Garten Samt Altbaumbestand In All",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW1.jpg",
+    "archive": "archive/NEW1.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW2",
@@ -1449,7 +1494,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "SANIERUNGSBEDÜRFTIGES, CHARAKTERSTARKES EINFAMILIENHAUS IN GUTER WOHNLAGE UND BAHNHOFSNÄHE",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "archive": "archive/NEW2.html",
+    "archived_at": "2026-09-26",
+    "image": "img/NEW2.jpg"
   },
   {
     "id": "NEW3",
@@ -1515,7 +1563,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "lternativ Beschreibung Bauträgerliegenschaft oder sanierungsbedürftiges Landhaus mit herrlichem Garten in guter, sehr n…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW3.jpg",
+    "archive": "archive/NEW3.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW4",
@@ -1581,7 +1632,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW4.jpg",
+    "archive": "archive/NEW4.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "WF1",
@@ -1647,7 +1701,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "belagsfertig",
     "finish_status_note": "bau/Erstbezug auf Eigengrund; Terrasse ~15.75 m²; belagsfertig (Malen/Boden); 3 SZ + Büro Wife find 2026-09-21. Agent D…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/WF1.jpg",
+    "archive": "archive/WF1.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SIM1",
@@ -1713,7 +1770,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "fetch unavailable (http_403); no clear cached finish signal",
-    "finish_status_source": "unavailable"
+    "finish_status_source": "unavailable",
+    "image": "img/SIM1.jpg",
+    "archive": "archive/SIM1.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SIM2",
@@ -1779,7 +1839,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "belagsfertig",
     "finish_status_note": "Die Übergabe erfolgt im belagsfertigen Zustand, um Ihren individuellen Bedürfnissen be",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SIM2.jpg",
+    "archive": "archive/SIM2.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SIM3",
@@ -1845,7 +1908,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "belagsfertig",
     "finish_status_note": "Die Übergabe erfolgt im belagsfertigen Zustand, um Ihren individuellen Bedürfnissen be",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SIM3.jpg",
+    "archive": "archive/SIM3.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SIM4",
@@ -1911,7 +1977,9 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "fetch unavailable (http_403); no clear cached finish signal",
-    "finish_status_source": "unavailable"
+    "finish_status_source": "unavailable",
+    "archive": "archive/SIM4.html",
+    "archived_at": "2026-09-24"
   },
   {
     "id": "SIM5",
@@ -2043,7 +2111,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW5.jpg",
+    "archive": "archive/NEW5.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW6",
@@ -2109,7 +2180,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "schluesselfertig",
     "finish_status_note": "Schlüsselfertig für Sie ausgebaut. Die Fotos sind Beispiele, wie es S…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW6.jpg",
+    "archive": "archive/NEW6.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW7",
@@ -2175,7 +2249,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW7.jpg",
+    "archive": "archive/NEW7.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW8",
@@ -2241,7 +2318,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW8.jpg",
+    "archive": "archive/NEW8.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW9",
@@ -2307,7 +2387,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_7",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW9.jpg",
+    "archive": "archive/NEW9.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW10",
@@ -2373,7 +2456,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW10.jpg",
+    "archive": "archive/NEW10.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW11",
@@ -2439,7 +2525,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW11.jpg",
+    "archive": "archive/NEW11.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SA3",
@@ -2505,7 +2594,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SA3.jpg",
+    "archive": "archive/SA3.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SA4",
@@ -2571,7 +2663,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SA4.jpg",
+    "archive": "archive/SA4.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB7",
@@ -2637,7 +2732,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "er Ofen für feste Brennstoffe. Dieses Gebäude ist sanierungsbedürftig . Die Raumaufteilung kann dem beigelegten Grundri…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB7.jpg",
+    "archive": "archive/OB7.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM3",
@@ -2703,7 +2801,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Sanierungsbedarf ist hier notwendig. Beheizt wird das gesamte Haus de…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM3.jpg",
+    "archive": "archive/HM3.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW12",
@@ -2769,7 +2870,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW12.jpg",
+    "archive": "archive/NEW12.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW13",
@@ -2835,7 +2939,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW13.jpg",
+    "archive": "archive/NEW13.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW14",
@@ -2901,7 +3008,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_8",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Das Haus weist starken Sanierungsbedarf auf, überzeugt jedoch durch seinen Charme, die ebene…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW14.jpg",
+    "archive": "archive/NEW14.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW15",
@@ -2967,7 +3077,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW15.jpg",
+    "archive": "archive/NEW15.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW16",
@@ -3033,7 +3146,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW16.jpg",
+    "archive": "archive/NEW16.html",
+    "archived_at": "2026-09-24"
   },
   {
     "id": "NEW17",
@@ -3099,7 +3215,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW17.jpg",
+    "archive": "archive/NEW17.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB8",
@@ -3165,7 +3284,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB8.jpg",
+    "archive": "archive/OB8.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SA5",
@@ -3231,7 +3353,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SA5.jpg",
+    "archive": "archive/SA5.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM4",
@@ -3297,7 +3422,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM4.jpg",
+    "archive": "archive/HM4.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM5",
@@ -3363,7 +3491,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 98 m² Grundfläche 558 m² Zimmer 3,5 Nu…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM5.jpg",
+    "archive": "archive/HM5.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM6",
@@ -3429,7 +3560,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM6.jpg",
+    "archive": "archive/HM6.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW18",
@@ -3495,7 +3629,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 143 m² Grundfläche 997 m² Zimmer 4 Ver…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW18.jpg",
+    "archive": "archive/NEW18.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW19",
@@ -3561,7 +3698,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW19.jpg",
+    "archive": "archive/NEW19.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW20",
@@ -3627,7 +3767,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW20.jpg",
+    "archive": "archive/NEW20.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW21",
@@ -3693,7 +3836,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "schluesselfertig",
     "finish_status_note": "178,42 m² Moderne und durchdachte Raumaufteilung Bezugsfertig ab Anfang Dezember 2026 Modern wohnen - privat und naturn…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW21.jpg",
+    "archive": "archive/NEW21.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM7",
@@ -3759,7 +3905,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Liegenschaft mit Bestandsgebäuden und Sanierungsbedarf in St. Andrä- Wördern, 150 m², € 279.000,-, (3423 St. Andrä-Wörd…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM7.jpg",
+    "archive": "archive/HM7.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM8",
@@ -3825,7 +3974,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM8.jpg",
+    "archive": "archive/HM8.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB9",
@@ -3891,7 +4043,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "belagsfertig",
     "finish_status_note": "Belagsfertig Plus - EUR 479.000,- Eine gute Wahl für alle, die bei",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB9.jpg",
+    "archive": "archive/OB9.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB10",
@@ -3957,7 +4112,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_3",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB10.jpg",
+    "archive": "archive/OB10.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB11",
@@ -4023,7 +4181,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "schluesselfertig",
     "finish_status_note": "167,41 m² Moderne und durchdachte Raumaufteilung Bezugsfertig ab Anfang Dezember 2026 Modern wohnen - privat und naturn…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB11.jpg",
+    "archive": "archive/OB11.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM11",
@@ -4089,7 +4250,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM11.jpg",
+    "archive": "archive/HM11.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW25",
@@ -4155,7 +4319,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "schluesselfertig",
     "finish_status_note": "Der schlüsselfertige Zustand mit Keller bietet zusätzlichen Stauraum und…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW25.jpg",
+    "archive": "archive/NEW25.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB13",
@@ -4221,7 +4388,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB13.jpg",
+    "archive": "archive/OB13.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW27",
@@ -4287,7 +4457,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW27.jpg",
+    "archive": "archive/NEW27.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM9",
@@ -4353,7 +4526,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "rohbaufertig",
     "finish_status_note": "ASST: SELTENE GELEGENHEIT AUF EIN EINFAMILIENHAUS IM ROHBAU MIT ENTWICKLUNGS- UND GESTALTUNGSMÖGLICHKEITEN, 101,21 m²,…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM9.jpg",
+    "archive": "archive/HM9.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW23",
@@ -4419,7 +4595,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "PREISREDUKTION: SANIERUNGSBEDÜRFTIGE JAHRHUNDERTWENDEVILLA ALS FAMILIENWOHNTRAUM IN BESTLAGE, 203,6 m², €",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW23.jpg",
+    "archive": "archive/NEW23.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW22",
@@ -4485,7 +4664,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW22.jpg",
+    "archive": "archive/NEW22.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW24",
@@ -4551,7 +4733,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW24.jpg",
+    "archive": "archive/NEW24.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB14",
@@ -4617,7 +4802,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "schluesselfertig",
     "finish_status_note": "Das bezugsfertige Wohnhaus befindet sich in einer ruhigen Siedlungslage m…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB14.jpg",
+    "archive": "archive/OB14.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM10",
@@ -4683,7 +4871,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 157 m² Grundfläche 688 m² Nutzfläche 1…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM10.jpg",
+    "archive": "archive/HM10.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB12",
@@ -4749,7 +4940,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/OB12.jpg",
+    "archive": "archive/OB12.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM12",
@@ -4815,7 +5009,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 100 m² Grundfläche 256 m² Zimmer 4 Hei…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM12.jpg",
+    "archive": "archive/HM12.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "NEW26",
@@ -4881,7 +5078,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/NEW26.jpg",
+    "archive": "archive/NEW26.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST1",
@@ -4947,7 +5147,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST1.jpg",
+    "archive": "archive/ST1.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST2",
@@ -5013,7 +5216,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST2.jpg",
+    "archive": "archive/ST2.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST3",
@@ -5079,7 +5285,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_4",
     "finish_status": "schluesselfertig",
     "finish_status_note": "igstellung Ende 2027. Reihenhäuser ab EUR 350.000 schlüsselfertig! Die Häuser der ersten Reihe bieten rund 127-128 m² W…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST3.jpg",
+    "archive": "archive/ST3.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST4",
@@ -5145,7 +5354,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "schluesselfertig",
     "finish_status_note": "Nähe Stockerau: Letzte Einheit-Teilschlüsselfertiges Familieneigentum in bester Lage zu fairem Preis., 118 m², € 397.50…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST4.jpg",
+    "archive": "archive/ST4.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST5",
@@ -5211,7 +5423,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST5.jpg",
+    "archive": "archive/ST5.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST6",
@@ -5277,7 +5492,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "belagsfertig",
     "finish_status_note": "Übergabe belagsfertig, schlüsselfertig gegen Aufpreis möglich Das Haus",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST6.jpg",
+    "archive": "archive/ST6.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST7",
@@ -5343,7 +5561,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST7.jpg",
+    "archive": "archive/ST7.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST8",
@@ -5409,7 +5630,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST8.jpg",
+    "archive": "archive/ST8.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST9",
@@ -5475,7 +5699,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Grundfläche 627 m² Zimmer 4 Verfügbar Kaufvetrag…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST9.jpg",
+    "archive": "archive/ST9.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST10",
@@ -5541,7 +5768,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Grundfläche 863 m² Zimmer 4 Verfügbar ab sofort H…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST10.jpg",
+    "archive": "archive/ST10.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST11",
@@ -5607,7 +5837,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "rohbaufertig",
     "finish_status_note": "Rohbau in Sierndorf. Bitte beachten Sie bei Anfragen Ihre Telefonn…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST11.jpg",
+    "archive": "archive/ST11.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST12",
@@ -5673,7 +5906,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Zustand Sanierungsbedürftig Wohnfläche 120 m² Grundfläche 610 m² Zimmer 5 Nut…",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST12.jpg",
+    "archive": "archive/ST12.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST13",
@@ -5739,7 +5975,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST13.jpg",
+    "archive": "archive/ST13.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "ST14",
@@ -5805,7 +6044,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/ST14.jpg",
+    "archive": "archive/ST14.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM13",
@@ -5871,7 +6113,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "unknown",
     "finish_status_note": "no finish keywords found",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/HM13.jpg",
+    "archive": "archive/HM13.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "SA6",
@@ -5937,7 +6182,10 @@
     "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_6",
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "1973 Ziegelmassiv; Sanierungs-/Modernisierungsbedarf (Dornröschen); uneinsehbar Wienerwald-Rand",
-    "finish_status_source": "listing_text"
+    "finish_status_source": "listing_text",
+    "image": "img/SA6.jpg",
+    "archive": "archive/SA6.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "HM14",
@@ -6004,7 +6252,10 @@
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "renovierungsbedürftig; BJ 1972 ausbaufähig",
     "finish_status_source": "listing_text",
-    "first_seen_at": "2026-09-25T06:19"
+    "first_seen_at": "2026-09-25T06:19",
+    "image": "img/HM14.jpg",
+    "archive": "archive/HM14.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB15",
@@ -6071,7 +6322,10 @@
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Dornröschen / Modernisierungspotenzial; weitgehend Originalzustand seit ~1969",
     "finish_status_source": "listing_text",
-    "first_seen_at": "2026-09-25T17:19"
+    "first_seen_at": "2026-09-25T17:19",
+    "image": "img/OB15.jpg",
+    "archive": "archive/OB15.html",
+    "archived_at": "2026-09-26"
   },
   {
     "id": "OB16",
@@ -6138,6 +6392,9 @@
     "finish_status": "sanierungsbedarf",
     "finish_status_note": "Renovierungsbedürftig aber bewohnbar; Soforteinzug möglich",
     "finish_status_source": "listing_text",
-    "first_seen_at": "2026-09-25T17:19"
+    "first_seen_at": "2026-09-25T17:19",
+    "image": "img/OB16.jpg",
+    "archive": "archive/OB16.html",
+    "archived_at": "2026-09-26"
   }
 ]
