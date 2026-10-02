@@ -189,6 +189,21 @@
     .pp-img img { width: 100%; height: auto; max-height: 170px; }
   }
   .arch-link { margin-left: 5px; text-decoration: none; font-size: 0.9em; }
+  .price-drop, .price-rise {
+    display: inline-block; margin-left: 0.35rem; padding: 0.05rem 0.32rem;
+    border-radius: 4px; font-size: 0.72rem; font-weight: 650; letter-spacing: 0.01em;
+    border: 0; font-family: inherit; line-height: 1.3; vertical-align: 1px; cursor: pointer;
+  }
+  .price-drop { background: #d8f3e3; color: #1e5c32; }
+  .price-rise { background: #eef1f4; color: #5c6570; }
+  .delta-sort {
+    margin-left: 0.25rem; border: 1px solid var(--border); background: #fff;
+    border-radius: 4px; font: inherit; font-size: 0.72rem; font-weight: 650;
+    color: var(--muted); padding: 0 0.28rem; cursor: pointer; vertical-align: 1px;
+  }
+  .delta-sort.active { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .pp-drop { color: #1e5c32; font-size: 0.92em; }
+  .pp-rise { color: var(--muted); font-size: 0.92em; }
 </style>
 </head>
 <body>
@@ -243,6 +258,10 @@
       <div class="check-row">
         <input type="checkbox" id="underBudget"/>
         <label for="underBudget" style="margin:0;font-weight:500">Under €450k only</label>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="priceDropped"/>
+        <label for="priceDropped" style="margin:0;font-weight:500">Price dropped</label>
       </div>
     </div>
     <div class="filter-group">
@@ -349,7 +368,7 @@
               <th data-sort="title">Title</th>
               <th data-sort="location_town">Town</th>
               <th data-sort="finish_status" title="Finish stage or Baujahr (year built) with traffic-light by condition/age">Finish</th>
-              <th data-sort="price_eur">Price</th>
+              <th data-sort="price_eur">Price <button type="button" class="delta-sort" title="Sort by price change, biggest drop first" onclick="sortByPriceChange(event)">Δ</button></th>
               <th data-sort="seller_type" title="Makler = buyer commission 3%+USt assumed; Privat/provisionsfrei = 0">Seller</th>
               <th data-sort="living_m2">m²</th>
               <th data-sort="price_per_m2" title="Asking € / living m²">€/m²</th>
@@ -1828,6 +1847,16 @@ const PROPERTIES = [
     "price_eur_previous": 399000,
     "price_changed_at": "2026-09-28",
     "price_change_eur": -49000,
+    "price_history": [
+      {
+        "price_eur": 399000,
+        "at": "2026-09-21"
+      },
+      {
+        "price_eur": 350000,
+        "at": "2026-09-28"
+      }
+    ],
     "change_flags": "price_drop|seen",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Raiffeisen Immobilien Vermittlung Ges.m.b.H; Provision:3% des Kaufpreises plus 20% USt.",
@@ -2108,6 +2137,16 @@ const PROPERTIES = [
     "price_eur_previous": 499000,
     "price_changed_at": "2026-09-23",
     "price_change_eur": -4000,
+    "price_history": [
+      {
+        "price_eur": 499000,
+        "at": "2026-09-21"
+      },
+      {
+        "price_eur": 495000,
+        "at": "2026-09-23"
+      }
+    ],
     "change_flags": "price_drop|seen|wife_find",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; DECUS Immobilien GmbH",
@@ -3368,6 +3407,16 @@ const PROPERTIES = [
     "price_eur_previous": 375000,
     "price_changed_at": "2026-09-28",
     "price_change_eur": -16000,
+    "price_history": [
+      {
+        "price_eur": 375000,
+        "at": "2026-09-23"
+      },
+      {
+        "price_eur": 359000,
+        "at": "2026-09-28"
+      }
+    ],
     "change_flags": "price_drop|seen",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Immobilien Corner GmbH & Co KG REMAX GOLD; Provision:3% des Kaufpreises zzgl. 20% USt.",
@@ -3928,6 +3977,16 @@ const PROPERTIES = [
     "price_eur_previous": 295000,
     "price_changed_at": "2026-10-02",
     "price_change_eur": -55100,
+    "price_history": [
+      {
+        "price_eur": 295000,
+        "at": "2026-09-23"
+      },
+      {
+        "price_eur": 239900,
+        "at": "2026-10-02"
+      }
+    ],
     "change_flags": "seen|price_drop",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Immobilien Corner GmbH & Co KG REMAX GOLD; Provision:3% des Kaufpreises zzgl. 20% USt.",
@@ -6732,6 +6791,16 @@ const PROPERTIES = [
     "price_eur_previous": 259000,
     "price_changed_at": "2026-09-25",
     "price_change_eur": -20000,
+    "price_history": [
+      {
+        "price_eur": 259000,
+        "at": "2026-09-25"
+      },
+      {
+        "price_eur": 239000,
+        "at": "2026-09-25"
+      }
+    ],
     "change_flags": "price_drop|seen",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Netmakler - Zuzana Rueff; Provision:3% des Kaufpreises zzgl. 20% USt.",
@@ -7778,6 +7847,16 @@ const PROPERTIES = [
     "price_eur_previous": 419000,
     "price_changed_at": "2026-10-02",
     "price_change_eur": -19010,
+    "price_history": [
+      {
+        "price_eur": 419000,
+        "at": null
+      },
+      {
+        "price_eur": 399990,
+        "at": "2026-10-02"
+      }
+    ],
     "change_flags": "new",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Donnerbauer Immobilien GmbH; Doppelmakler; 3% + USt",
@@ -8128,6 +8207,60 @@ function fmtPrice(n) {
   if (n == null || n === "") return "—";
   return "€" + Number(n).toLocaleString("de-AT");
 }
+function fmtK(n) {
+  const v = Number(n);
+  if (!Number.isFinite(v)) return "—";
+  const abs = Math.abs(v);
+  const sign = v < 0 ? "−" : "";
+  if (abs >= 1000) return sign + "€" + Math.round(abs / 1000).toLocaleString("de-AT") + "k";
+  return sign + "€" + abs.toLocaleString("de-AT");
+}
+function fmtShortDate(iso) {
+  if (!iso) return "";
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso));
+  if (!m) return "";
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const day = String(Number(m[3]));
+  const mon = months[Number(m[2]) - 1];
+  return Number(m[1]) === 2026 ? (day + " " + mon) : (day + " " + mon + " " + m[1]);
+}
+function priceChangeTip(p) {
+  const n = Number(p.price_change_eur);
+  if (!Number.isFinite(n) || n === 0) return "";
+  const when = fmtShortDate(p.price_changed_at);
+  const exact = (n < 0 ? "−" : "+") + fmtPrice(Math.abs(n));
+  let tip = (n < 0 ? "Down " : "Up ") + exact + (when ? " on " + when : "");
+  if (p.price_eur_previous != null) tip += " · was " + fmtPrice(p.price_eur_previous);
+  if (Array.isArray(p.price_history) && p.price_history.length > 2) {
+    tip += " · " + p.price_history.map(step => fmtPrice(step.price_eur) + (step.at ? " (" + fmtShortDate(step.at) + ")" : "")).join(" → ");
+  }
+  return tip;
+}
+function priceChangeBadge(p) {
+  const n = Number(p.price_change_eur);
+  if (!Number.isFinite(n) || n === 0) return "";
+  const cls = n < 0 ? "price-drop" : "price-rise";
+  const label = n < 0 ? fmtK(n) : ("+" + fmtK(n));
+  return ` <button type="button" class="${cls}" title="${escapeHtml(priceChangeTip(p))}" onclick="sortByPriceChange(event)">${label}</button>`;
+}
+function priceCell(p) {
+  const priceClass = p.price_eur != null && p.price_eur > BUDGET ? "price-over" : "price-ok";
+  return `<span class="${priceClass}">${fmtPrice(p.price_eur)}</span>${priceChangeBadge(p)}`;
+}
+function priceChangeLine(p) {
+  const n = Number(p.price_change_eur);
+  if (!Number.isFinite(n) || n === 0 || p.price_eur_previous == null) return "";
+  const when = fmtShortDate(p.price_changed_at);
+  const tail = when ? " on " + when : "";
+  if (n < 0) return `<br/><span class="pp-drop">was ${fmtK(p.price_eur_previous)}, down ${fmtK(Math.abs(n))}${tail}</span>`;
+  return `<br/><span class="pp-rise">was ${fmtK(p.price_eur_previous)}, up ${fmtK(n)}${tail}</span>`;
+}
+function sortByPriceChange(ev) {
+  if (ev) ev.stopPropagation();
+  if (sortKey === "price_change_eur") sortAsc = !sortAsc;
+  else { sortKey = "price_change_eur"; sortAsc = true; }
+  refresh();
+}
 function fmtNum(n) {
   if (n == null || n === "") return "—";
   return Number(n).toLocaleString("de-AT");
@@ -8241,6 +8374,7 @@ function getFilters() {
     favOnly: document.getElementById("favOnly").checked,
     soldOnly: document.getElementById("soldOnly").checked,
     underBudget: document.getElementById("underBudget").checked,
+    priceDropped: document.getElementById("priceDropped").checked,
     town: document.getElementById("townSearch").value.trim().toLowerCase(),
     category: document.getElementById("categoryFilter").value,
     houseType: document.getElementById("typeFilter").value,
@@ -8253,6 +8387,7 @@ function filterProps() {
   return PROPERTIES.filter(p => {
     if (p.price_eur != null && p.price_eur > f.maxPrice) return false;
     if (f.underBudget && (p.price_eur == null || p.price_eur > BUDGET)) return false;
+    if (f.priceDropped && !(Number(p.price_change_eur) < 0)) return false;
     if (f.minRooms > 0 && (p.rooms == null || p.rooms < f.minRooms)) return false;
     if (f.sauna === "yes" && !p.has_sauna) return false;
     if (f.sauna === "no" && p.has_sauna) return false;
@@ -8317,6 +8452,7 @@ function popupHtml(p) {
     ${badge(p.category)} · <span class="status-pill">${st}</span>${flags}<br/>
     ${p.type || "?"} · ${p.location_town} ${p.plz || ""}<br/>
     <span class="${p.price_eur > BUDGET ? "price-over" : "price-ok"}">${fmtPrice(p.price_eur)}</span>
+    ${priceChangeLine(p)}
     · all-in ${fmtPrice(p.all_in_price_eur)}
     · ${p.seller_type === "makler" ? "Makler" : (p.seller_type === "private" ? "Privat" : "?")}
     · ${fmtNum(p.living_m2)} m² · ${p.rooms != null ? p.rooms + " Zi" : "— Zi"}
@@ -8406,7 +8542,7 @@ function updateTable(list) {
       <td title="${(p.notes || "").replace(/"/g, "&quot;")}">${escapeHtml(p.title)}</td>
       <td>${escapeHtml(p.location_town || "")}</td>
       <td>${finishPill(p)}</td>
-      <td class="${priceClass}">${fmtPrice(p.price_eur)}</td>
+      <td>${priceCell(p)}</td>
       <td title="${sellerTitle}"><span class="seller-${p.seller_type || "unknown"}">${sellerLabel}</span></td>
       <td>${fmtNum(p.living_m2)}</td>
       <td>${p.price_per_m2 != null ? Math.round(p.price_per_m2).toLocaleString("de-AT") : "—"}</td>
@@ -8471,7 +8607,7 @@ function updateFavouritesPanel() {
       <td>${escapeHtml(p.title)}${note}</td>
       <td>${escapeHtml(p.location_town || "")}</td>
       <td>${finishPill(p)}</td>
-      <td class="${priceClass}">${fmtPrice(p.price_eur)}</td>
+      <td>${priceCell(p)}</td>
       <td>${fmtNum(p.living_m2)}</td>
       <td>${p.energy_hwb_class ? escapeHtml(p.energy_hwb_class) : "—"}</td>
       <td title="public transport to the 8th district">${p.pt_lange_gasse_min != null ? p.pt_lange_gasse_min : "—"}</td>
@@ -8624,6 +8760,7 @@ function refresh() {
   const filtered = sortProps(filterProps());
   document.getElementById("statsBox").innerHTML =
     `Showing <strong>${filtered.length}</strong> of ${PROPERTIES.length}`;
+  document.querySelectorAll(".delta-sort").forEach(btn => btn.classList.toggle("active", sortKey === "price_change_eur"));
   document.getElementById("maxPriceLabel").textContent = fmtPrice(Number(document.getElementById("maxPrice").value));
   updateMap(filtered);
   updateTable(filtered);
@@ -8632,7 +8769,7 @@ function refresh() {
 }
 
 document.getElementById("maxPrice").addEventListener("input", refresh);
-["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","townSearch","categoryFilter","typeFilter","finishFilter"].forEach(id => {
+["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","priceDropped","townSearch","categoryFilter","typeFilter","finishFilter"].forEach(id => {
   document.getElementById(id).addEventListener("input", refresh);
   document.getElementById(id).addEventListener("change", refresh);
 });
@@ -8645,6 +8782,7 @@ document.getElementById("resetFilters").addEventListener("click", () => {
   document.getElementById("favOnly").checked = false;
   document.getElementById("soldOnly").checked = false;
   document.getElementById("underBudget").checked = false;
+  document.getElementById("priceDropped").checked = false;
   document.getElementById("townSearch").value = "";
   document.getElementById("categoryFilter").value = "all";
   document.getElementById("typeFilter").value = "all";

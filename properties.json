@@ -1442,6 +1442,16 @@
     "price_eur_previous": 399000,
     "price_changed_at": "2026-09-28",
     "price_change_eur": -49000,
+    "price_history": [
+      {
+        "price_eur": 399000,
+        "at": "2026-09-21"
+      },
+      {
+        "price_eur": 350000,
+        "at": "2026-09-28"
+      }
+    ],
     "change_flags": "price_drop|seen",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Raiffeisen Immobilien Vermittlung Ges.m.b.H; Provision:3% des Kaufpreises plus 20% USt.",
@@ -1722,6 +1732,16 @@
     "price_eur_previous": 499000,
     "price_changed_at": "2026-09-23",
     "price_change_eur": -4000,
+    "price_history": [
+      {
+        "price_eur": 499000,
+        "at": "2026-09-21"
+      },
+      {
+        "price_eur": 495000,
+        "at": "2026-09-23"
+      }
+    ],
     "change_flags": "price_drop|seen|wife_find",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; DECUS Immobilien GmbH",
@@ -2982,6 +3002,16 @@
     "price_eur_previous": 375000,
     "price_changed_at": "2026-09-28",
     "price_change_eur": -16000,
+    "price_history": [
+      {
+        "price_eur": 375000,
+        "at": "2026-09-23"
+      },
+      {
+        "price_eur": 359000,
+        "at": "2026-09-28"
+      }
+    ],
     "change_flags": "price_drop|seen",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Immobilien Corner GmbH & Co KG REMAX GOLD; Provision:3% des Kaufpreises zzgl. 20% USt.",
@@ -3542,6 +3572,16 @@
     "price_eur_previous": 295000,
     "price_changed_at": "2026-10-02",
     "price_change_eur": -55100,
+    "price_history": [
+      {
+        "price_eur": 295000,
+        "at": "2026-09-23"
+      },
+      {
+        "price_eur": 239900,
+        "at": "2026-10-02"
+      }
+    ],
     "change_flags": "seen|price_drop",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Immobilien Corner GmbH & Co KG REMAX GOLD; Provision:3% des Kaufpreises zzgl. 20% USt.",
@@ -6346,6 +6386,16 @@
     "price_eur_previous": 259000,
     "price_changed_at": "2026-09-25",
     "price_change_eur": -20000,
+    "price_history": [
+      {
+        "price_eur": 259000,
+        "at": "2026-09-25"
+      },
+      {
+        "price_eur": 239000,
+        "at": "2026-09-25"
+      }
+    ],
     "change_flags": "price_drop|seen",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Netmakler - Zuzana Rueff; Provision:3% des Kaufpreises zzgl. 20% USt.",
@@ -7392,6 +7442,16 @@
     "price_eur_previous": 419000,
     "price_changed_at": "2026-10-02",
     "price_change_eur": -19010,
+    "price_history": [
+      {
+        "price_eur": 419000,
+        "at": null
+      },
+      {
+        "price_eur": 399990,
+        "at": "2026-10-02"
+      }
+    ],
     "change_flags": "new",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Donnerbauer Immobilien GmbH; Doppelmakler; 3% + USt",
