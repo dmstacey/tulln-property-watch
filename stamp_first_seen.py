@@ -12,13 +12,23 @@ backfill except the day this hook first notices a change that has no date.
 import csv, io, json, re, os
 from datetime import datetime
 from zoneinfo import ZoneInfo
+import classify_heating
 here = os.path.dirname(os.path.abspath(__file__))
+ARCHIVE = os.path.join(here, "archive")
 research = "/workspace/property-research"
 now = datetime.now(ZoneInfo("Europe/Vienna"))
 today, stamp = now.strftime("%Y-%m-%d"), now.strftime("%Y-%m-%dT%H:%M")
 side_path = os.path.join(here, "first-seen-times.json")
 side = json.load(open(side_path, encoding="utf-8"))
 PROPS_RE = re.compile(r"const PROPERTIES = (\[.*?\n\]);\n", re.S)
+
+def apply_heating(arr):
+    """Fill heating_tech from the listing text. Idempotent. The daily watch
+    has no classifier of its own; this hook is what runs on every commit,
+    after archive_listings.py has saved archive/<id>.html.
+    """
+    for p in arr:
+        classify_heating.annotate_property(p, ARCHIVE)
 
 def fill(arr):
     for p in arr:
@@ -120,6 +130,7 @@ def process_html(path):
         return None
     s, m, arr = load_html(path)
     fill(arr)
+    apply_heating(arr)
     for p in arr:
         reconcile_history(p)
     save_html(path, s, m, arr)
@@ -132,6 +143,7 @@ def process_json(path):
     data = json.loads(raw)
     lst = data if isinstance(data, list) else data.get("properties", [])
     fill(lst)
+    apply_heating(lst)
     for p in lst:
         reconcile_history(p)
     out = json.dumps(data, indent=2, ensure_ascii=False) + ("\n" if raw.endswith("\n") else "")
@@ -150,6 +162,12 @@ def sync_csv(path, by_id):
             cols.insert(cols.index("price_change_eur") + 1, "price_history")
         else:
             cols.append("price_history")
+    for k in ("heating_tech", "heating_tech_source"):
+        if k not in cols:
+            if "heating" in cols:
+                cols.insert(cols.index("heating") + 1 + (1 if k == "heating_tech_source" and "heating_tech" in cols else 0), k)
+            else:
+                cols.append(k)
     changed = False
     for r in rows:
         src = by_id.get(r.get("id"))
@@ -166,7 +184,15 @@ def sync_csv(path, by_id):
                 if (r.get(k) or "") != text:
                     r[k] = text
                     changed = True
-    if not changed and "price_history" in list(csv.DictReader(io.StringIO(raw)).fieldnames or []):
+        if src:
+            for k in ("heating_tech", "heating_tech_source"):
+                val = src.get(k)
+                text = "" if val is None else str(val)
+                if (r.get(k) or "") != text:
+                    r[k] = text
+                    changed = True
+    fields = list(csv.DictReader(io.StringIO(raw)).fieldnames or [])
+    if not changed and "price_history" in fields and "heating_tech" in fields and "heating_tech_source" in fields:
         return
     out = io.StringIO()
     w = csv.DictWriter(out, fieldnames=cols, lineterminator="\r\n" if "\r\n" in raw else "\n")

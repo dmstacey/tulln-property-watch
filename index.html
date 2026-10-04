@@ -303,6 +303,24 @@
         <option value="unknown">Unknown / year only</option>
       </select>
     </div>
+    <div class="filter-group">
+      <label for="heatingFilter">Heating</label>
+      <select id="heatingFilter" title="Matches a system the listing names. A combined home matches each system it uses.">
+        <option value="any">Any</option>
+        <option value="Air-source heat pump">Air-source heat pump</option>
+        <option value="Geothermal">Geothermal</option>
+        <option value="Heat pump">Heat pump (type not stated)</option>
+        <option value="Gas">Gas</option>
+        <option value="Oil">Oil</option>
+        <option value="Pellets">Pellets</option>
+        <option value="Wood">Wood</option>
+        <option value="District heating">District heating</option>
+        <option value="Electric">Electric</option>
+        <option value="Solar">Solar</option>
+        <option value="combined">Combined only</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+    </div>
     <button type="button" id="resetFilters" style="width:100%;padding:0.5rem;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font:inherit">Reset filters</button>
   </aside>
   <main>
@@ -344,6 +362,7 @@
               <th>Price</th>
               <th>m²</th>
               <th>Energy</th>
+              <th title="Heating system named in the listing. Hover a cell for the German phrase.">Heating</th>
               <th title="public transport to the 8th district">PT min</th>
               <th>Drive min</th>
               <th>Link</th>
@@ -374,6 +393,7 @@
               <th data-sort="price_per_m2" title="Asking € / living m²">€/m²</th>
               <th data-sort="plot_m2">Garden m²</th>
               <th data-sort="energy_hwb_class">Energy</th>
+              <th data-sort="heating_tech" title="System named in the listing. Hover for the German phrase it was matched to.">Heating</th>
               <th data-sort="all_in_price_eur" title="Asking + GrESt 3.5% + Grundbuch 1.1% + Notar ~1.5% (est.) + Makler 3.6% if buyer pays">All-in €</th>
               <th data-sort="betriebskosten_monat_eur" title="Monatliche Betriebskosten (BK) from listing; hover for note">BK €/Mo</th>
               <th data-sort="drive_anton_boeck_min" title="car to the 21st district">Drive min</th>
@@ -400,6 +420,7 @@
   €/m² = asking ÷ living m². Hover All-in € or Seller for per-row evidence.
 
   <br/><strong>BK €/Mo</strong> = monatliche Betriebskosten from the listing (willhaben MONTHCOSTS_GROSS / portal labels). Null/"—" when not stated — prefer unknown over guessing. Tooltip shows source note (inkl./exkl. Heizung when known).
+  <br/><strong>Heating</strong> = the system the listing names (gas, air-source heat pump, geothermal, oil, pellets, wood, district heating, electric, or a combination). Hover the cell for the German phrase. Unknown means no fuel was named. Solar and an open fireplace stay in that note unless they are the only system.
   <br/><strong>Drive min</strong> = OSRM free-flow/off-peak-ish car minutes to the 21st district (not rush-hour peak). <strong>PT min</strong> = public transport minutes, VAO/AnachB HAFAS best weekday ~10:00 door-to-door to the 8th district.
 </footer>
 <script>
@@ -422,6 +443,8 @@ const PROPERTIES = [
     "energy_hwb_class": "F",
     "energy_hwb_value": 205.2,
     "heating": "Gas ZH (Vaillant Therme 2025)",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas ZH; Vaillant Therme",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage + Stellplatz",
@@ -492,6 +515,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -562,6 +587,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 280.0,
     "heating": "Gas ZH",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas ZH; Gaszentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage / Nebengebäude",
@@ -632,6 +659,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Luft-Wärmepumpe",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luft-Wärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Stellplatz",
@@ -702,6 +731,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": 63.3,
     "heating": "Gas ZH (BAXI); FBH in Wohn-Ess-Küche",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas ZH; Gasheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": "Garage optional",
@@ -772,6 +803,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Pellets + Solar",
+    "heating_tech": "Pellets",
+    "heating_tech_source": "Pellets · also Holzofen; Solaranlage",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Stadl with Hebebühne",
@@ -842,6 +875,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Wärmepumpe + FBH",
+    "heating_tech": "Heat pump",
+    "heating_tech_source": "Wärmepumpe · air or ground not stated",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Stellplätze",
@@ -912,6 +947,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Wärmepumpe + PV",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe · also PV",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -982,6 +1019,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Holzofen",
+    "heating_tech": "Wood",
+    "heating_tech_source": "Holzofen",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1052,6 +1091,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Wood",
+    "heating_tech_source": "Einzelofenheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1122,6 +1163,8 @@ const PROPERTIES = [
     "energy_hwb_class": "C",
     "energy_hwb_value": 69.5,
     "heating": null,
+    "heating_tech": "District heating",
+    "heating_tech_source": "Fernwärme",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage; Garten ~378 m²",
@@ -1192,6 +1235,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gas-Therme; Gasheizung; Schwedenofen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Doppelgarage + Carport",
@@ -1262,6 +1307,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Doppelgarage + Carport",
@@ -1332,6 +1379,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Kamin mentioned",
+    "heating_tech": "Unknown",
+    "heating_tech_source": "only an open fireplace mentioned (Kamin mentioned), not counted as the heating system",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2er-Garage",
@@ -1402,6 +1451,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gaszentralheizung; Gastherme; Gasheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1472,6 +1523,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1542,6 +1595,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Air-source heat pump + Pellets + Wood",
+    "heating_tech_source": "Luftwärmepumpe; Pelletsheizung; Pelletheizung; Heizungsart: HOLZ · also Holzofen",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1612,6 +1667,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe · also Kachelofen; Allesbrenner; Solaranlage; Photovoltaik",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1682,6 +1739,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": 126.7,
     "heating": "Gas ZH + FBH; Pelletofen",
+    "heating_tech": "Gas + Pellets",
+    "heating_tech_source": "Gas ZH; Pelletofen · also PV; Balkonkraftwerk",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage + 2 Stellplätze",
@@ -1752,6 +1811,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1822,6 +1883,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 268.5,
     "heating": "Gas ZH",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas ZH; Zentralheizung mit Gas; Gasheizung · also feste Brennstoffe",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1902,6 +1965,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Gas ZH",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas ZH; Zentralheizung mit Gas",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -1972,6 +2037,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung Festbrennstoff",
+    "heating_tech": "Wood",
+    "heating_tech_source": "Festbrennstoff; feste Brennstoffe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage + Stellplätze",
@@ -2042,6 +2109,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": 37.0,
     "heating": "Luftwärmepumpe + FBH",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe · also PV",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Stellplätze; Carport optional",
@@ -2112,6 +2181,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": null,
     "heating": "Wärmepumpe + FBH; PV geplant",
+    "heating_tech": "Heat pump",
+    "heating_tech_source": "Wärmepumpe · also PV · air or ground not stated",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Carport",
@@ -2192,6 +2263,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": 39.3,
     "heating": "Luftwärmepumpe + FBH (Kühlfunktion)",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Stellplätze",
@@ -2262,6 +2335,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": 33.0,
     "heating": "Luftwärmepumpe + FBH",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Stellplätze",
@@ -2332,6 +2407,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": null,
     "heating": "Luftwärmepumpe + FBH",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Stellplätze",
@@ -2402,6 +2479,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": 113.0,
     "heating": "Gas ZH (2005) + Solar; Kachelofen",
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gas ZH; Kachelofen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Stellplatz; E-Ladestation vorbereitet",
@@ -2472,6 +2551,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Luft-Wärmepumpe + FBH; PV am Dach",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luft-Wärmepumpe · also PV",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Stellplätze",
@@ -2542,6 +2623,8 @@ const PROPERTIES = [
     "energy_hwb_class": "F",
     "energy_hwb_value": 210.0,
     "heating": null,
+    "heating_tech": "Wood + Electric",
+    "heating_tech_source": "Schwedenofen; Holzofen; Infrarotheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -2612,6 +2695,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": 34.2,
     "heating": "Erdwärme",
+    "heating_tech": "Geothermal",
+    "heating_tech_source": "Erdwärme · also Photovoltaik",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Carport möglich",
@@ -2682,6 +2767,8 @@ const PROPERTIES = [
     "energy_hwb_class": "C",
     "energy_hwb_value": 89.0,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas-Zentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -2752,6 +2839,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": 46.0,
     "heating": "Pellets",
+    "heating_tech": "Pellets + Electric",
+    "heating_tech_source": "Pellets; Pelletheizung; Elektroheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage mentioned in listing text",
@@ -2822,6 +2911,8 @@ const PROPERTIES = [
     "energy_hwb_class": "F",
     "energy_hwb_value": 211.0,
     "heating": null,
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gaszentralheizung · also offene Kamin",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -2892,6 +2983,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": 101.1,
     "heating": "Zentralheizung",
+    "heating_tech": "Oil",
+    "heating_tech_source": "Ölheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -2962,6 +3055,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Pellets",
+    "heating_tech_source": "Pellets",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Stadel / garage-type",
@@ -3032,6 +3127,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Elektroheizung",
+    "heating_tech": "Wood + Electric",
+    "heating_tech_source": "Heizungsart: HOLZ; Elektroheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -3102,6 +3199,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Wood + Electric",
+    "heating_tech_source": "Kaminofen; Heizungsart: HOLZ; Elektroheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -3172,6 +3271,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gaszentralheizung; Gasheizung; Ofen für feste Brennstoffe; Kaminofen; festen Brennstoffen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Lagerhalle/Werkstatt",
@@ -3242,6 +3343,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Oil",
+    "heating_tech_source": "Zentralheizung mit Öl; Ölheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3312,6 +3415,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 329.7,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas-Zentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -3382,6 +3487,8 @@ const PROPERTIES = [
     "energy_hwb_class": "F",
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "District heating",
+    "heating_tech_source": "Fernwärme · also feste Brennstoffe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3462,6 +3569,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 294.4,
     "heating": "Elektroheizung",
+    "heating_tech": "Wood + Electric",
+    "heating_tech_source": "Kachelofen; Elektroheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3532,6 +3641,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": 114.0,
     "heating": "Sonstige",
+    "heating_tech": "Oil + Wood",
+    "heating_tech_source": "Ölkessel; Ölheizung; festen Brennstoffen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3602,6 +3713,8 @@ const PROPERTIES = [
     "energy_hwb_class": "E",
     "energy_hwb_value": 181.5,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3672,6 +3785,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3742,6 +3857,8 @@ const PROPERTIES = [
     "energy_hwb_class": "F",
     "energy_hwb_value": 250.0,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3812,6 +3929,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": 116.0,
     "heating": "Zentralheizung",
+    "heating_tech": "Oil",
+    "heating_tech_source": "Ölheizung · also Photovoltaik",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -3882,6 +4001,8 @@ const PROPERTIES = [
     "energy_hwb_class": "F",
     "energy_hwb_value": 247.4,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gaszentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -3952,6 +4073,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas-Zentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -4032,6 +4155,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Pellets",
+    "heating_tech_source": "Pelletheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -4102,6 +4227,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Sonstige",
+    "heating_tech": "Oil + Electric",
+    "heating_tech_source": "Ölheizung; Elektroheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4172,6 +4299,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Etagenheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasetagenheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4242,6 +4371,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gasheizung; Holzbrenner; Heizungsart: HOLZ",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4312,6 +4443,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4382,6 +4515,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4452,6 +4587,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Wood",
+    "heating_tech_source": "Kachelofen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4522,6 +4659,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -4592,6 +4731,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": null,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung · also Kachelofen; Photovoltaik; PV",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4662,6 +4803,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -4732,6 +4875,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -4802,6 +4947,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas + Oil",
+    "heating_tech_source": "Gasheizung; Öl-Warmwasser-Zentralheizung; Ölheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -4872,6 +5019,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gas-Zentralheizung; Schwedenofen; feste Brennstoffe",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -4942,6 +5091,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Oil",
+    "heating_tech_source": "Ölheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5012,6 +5163,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": false,
     "has_parking": false,
     "parking_note": null,
@@ -5082,6 +5235,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Sonstige",
+    "heating_tech": "Oil + Electric",
+    "heating_tech_source": "Ölheizung; Elektroheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5152,6 +5307,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Oil",
+    "heating_tech_source": "Ölheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5222,6 +5379,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5292,6 +5451,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": false,
     "has_parking": false,
     "parking_note": null,
@@ -5362,6 +5523,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5432,6 +5595,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Luftwärmepumpe",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe · also PV; Photovoltaik",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5502,6 +5667,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Etagenheizung",
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gasheizung; Heizungsart: HOLZ",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5572,6 +5739,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gastherme; Gasheizung",
     "has_garden": true,
     "has_parking": false,
     "parking_note": null,
@@ -5642,6 +5811,8 @@ const PROPERTIES = [
     "energy_hwb_class": "C",
     "energy_hwb_value": 54.22,
     "heating": "Luft-Wärmepumpe",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luft-Wärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "KFZ-Stellplatz (Projekt: 6 Stellplätze)",
@@ -5712,6 +5883,8 @@ const PROPERTIES = [
     "energy_hwb_class": "E",
     "energy_hwb_value": 182.0,
     "heating": "Erdwärme",
+    "heating_tech": "Geothermal",
+    "heating_tech_source": "Erdwärmeheizung · also Schwedenofen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -5782,6 +5955,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Luftwärmepumpe",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe · also Photovoltaik",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -5852,6 +6027,8 @@ const PROPERTIES = [
     "energy_hwb_class": "B",
     "energy_hwb_value": 41.7,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -5922,6 +6099,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": 35.3,
     "heating": "Etagenheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Parkplätze inkl.",
@@ -5992,6 +6171,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6062,6 +6243,8 @@ const PROPERTIES = [
     "energy_hwb_class": "C",
     "energy_hwb_value": 56.0,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas-Zentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6132,6 +6315,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 392.0,
     "heating": "Sonstige",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gaszentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6202,6 +6387,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Gas ZH",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas ZH; Gaszentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6272,6 +6459,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 368.2,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6342,6 +6531,8 @@ const PROPERTIES = [
     "energy_hwb_class": "C",
     "energy_hwb_value": 59.7,
     "heating": "Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe · also Holzofen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -6412,6 +6603,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 237.4,
     "heating": "Etagenheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6482,6 +6675,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luft/Wasser-Wärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6552,6 +6747,8 @@ const PROPERTIES = [
     "energy_hwb_class": "F",
     "energy_hwb_value": 183.2,
     "heating": "Zentralheizung",
+    "heating_tech": "Oil + Wood",
+    "heating_tech_source": "Ölheizung; Kachelofen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6622,6 +6819,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 288.2,
     "heating": "Gasheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -6692,6 +6891,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 253.0,
     "heating": "Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung; Gaskessel · also feste Brennstoffe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -6762,6 +6963,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 390.9,
     "heating": "Zentralheizung",
+    "heating_tech": "Air-source heat pump + Wood",
+    "heating_tech_source": "Luftwärmepumpe; Heizungsart: HOLZ · also Festbrennstoffanlage; Festbrennstoffe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6842,6 +7045,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Gas / Festbrennstoff (Fernwärme an Grundstücksgrenze)",
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gas / Fest; Basis von Gas; Festbrennstoff; festen Brennstoffen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6912,6 +7117,8 @@ const PROPERTIES = [
     "energy_hwb_class": "E",
     "energy_hwb_value": 175,
     "heating": "Gasheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -6982,6 +7189,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Stellplätze auf Eigengrund; Erdkeller-Parzelle",
@@ -7052,6 +7261,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "überdachter Stellplatz / Garagenebene je nach Planungsvariante",
@@ -7122,6 +7333,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Luftwärmepumpe / Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe · also Photovoltaik",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Stellplätze ca. 25 m²",
@@ -7192,6 +7405,8 @@ const PROPERTIES = [
     "energy_hwb_class": "E",
     "energy_hwb_value": 162.8,
     "heating": "Pellets",
+    "heating_tech": "Pellets",
+    "heating_tech_source": "Pellets; Pelletheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage",
@@ -7262,6 +7477,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luft-Wärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -7332,6 +7549,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luft-Wärmepumpe",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -7402,6 +7621,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 257.0,
     "heating": "Zentralheizung (Öl/Elektro/Solar); PV vorhanden",
+    "heating_tech": "Oil + Electric",
+    "heating_tech_source": "Ölheizung; Elektroheizung · also PV; Photovoltaik; thermischer Solaranlage; thermische Solaranlage; Solarheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage + 2 Freiplätze",
@@ -7472,6 +7693,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 353.0,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage + Autoabstellplatz",
@@ -7542,6 +7765,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Pellets",
+    "heating_tech": "Pellets",
+    "heating_tech_source": "Pelletsheizung; Pelletheizung · also Solaranlage",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage ~40 m²",
@@ -7612,6 +7837,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gasheizung; Holzofen",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Hof / Nebengebäude; gut erschlossen",
@@ -7682,6 +7909,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": 248.0,
     "heating": "Ölheizung",
+    "heating_tech": "Oil",
+    "heating_tech_source": "Ölheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Garage + weitere Stellplätze",
@@ -7752,6 +7981,8 @@ const PROPERTIES = [
     "energy_hwb_class": "D",
     "energy_hwb_value": 149.0,
     "heating": "Gas Zentralheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gas Zentralheizung; Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": null,
@@ -7822,6 +8053,8 @@ const PROPERTIES = [
     "energy_hwb_class": "G",
     "energy_hwb_value": 382.0,
     "heating": "Gas Fußbodenheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "2 Garagenplätze",
@@ -7902,6 +8135,8 @@ const PROPERTIES = [
     "energy_hwb_class": "C",
     "energy_hwb_value": 54.0,
     "heating": "Luftwärmepumpe Fußbodenheizung",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe; Luft-Wasser-Wärmepumpe · also PV; Photovoltaik",
     "has_garden": true,
     "has_parking": true,
     "parking_note": "Carport + Stellplatz",
@@ -7972,6 +8207,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": "Gasheizung + Holzofen",
+    "heating_tech": "Gas + Wood",
+    "heating_tech_source": "Gasheizung; Holzofen",
     "has_garden": true,
     "has_parking": null,
     "parking_note": null,
@@ -8042,6 +8279,8 @@ const PROPERTIES = [
     "energy_hwb_class": null,
     "energy_hwb_value": null,
     "heating": null,
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
     "has_garden": true,
     "has_parking": null,
     "parking_note": null,
@@ -8435,6 +8674,14 @@ function matchesFinishFilter(p, finish) {
   return st === finish;
 }
 
+function matchesHeatingFilter(p, heating) {
+  if (!heating || heating === "any") return true;
+  const label = p.heating_tech || "Unknown";
+  const parts = String(label).split(" + ");
+  if (heating === "combined") return parts.length > 1;
+  return parts.indexOf(heating) !== -1;
+}
+
 function getFilters() {
   return {
     maxPrice: Number(document.getElementById("maxPrice").value),
@@ -8449,7 +8696,8 @@ function getFilters() {
     town: document.getElementById("townSearch").value.trim().toLowerCase(),
     category: document.getElementById("categoryFilter").value,
     houseType: document.getElementById("typeFilter").value,
-    finish: document.getElementById("finishFilter").value
+    finish: document.getElementById("finishFilter").value,
+    heating: document.getElementById("heatingFilter").value
   };
 }
 
@@ -8470,6 +8718,7 @@ function filterProps() {
     if (f.category !== "all" && p.category !== f.category) return false;
     if (f.houseType !== "all" && p.type !== f.houseType) return false;
     if (!matchesFinishFilter(p, f.finish)) return false;
+    if (!matchesHeatingFilter(p, f.heating)) return false;
     if (f.town) {
       const hay = `${p.location_town || ""} ${p.plz || ""} ${p.district_or_region || ""} ${p.title || ""}`.toLowerCase();
       if (!hay.includes(f.town)) return false;
@@ -8529,6 +8778,7 @@ function popupHtml(p) {
     · ${fmtNum(p.living_m2)} m² · ${p.rooms != null ? p.rooms + " Zi" : "— Zi"}
     ${p.has_sauna ? " · 🔥 Sauna" : ""}
     ${p.energy_hwb_class ? `<br/>HWB ${p.energy_hwb_class}${p.energy_hwb_value != null ? " (" + p.energy_hwb_value + ")" : ""}` : ""}
+    <br/>Heating: <span title="${String(p.heating_tech_source || p.heating || "").replace(/"/g, "&quot;")}">${escapeHtml(p.heating_tech || "Unknown")}</span>
     ${commute}<br/><span class="pp-links">${link}${archiveLink}</span></div></div>`;
 }
 
@@ -8619,6 +8869,7 @@ function updateTable(list) {
       <td>${p.price_per_m2 != null ? Math.round(p.price_per_m2).toLocaleString("de-AT") : "—"}</td>
       <td>${fmtNum(p.plot_m2)}</td>
       <td title="${p.energy_hwb_value != null ? "HWB " + p.energy_hwb_value : ""}">${p.energy_hwb_class ? escapeHtml(p.energy_hwb_class) : "—"}</td>
+      <td title="${String(p.heating_tech_source || p.heating || "").replace(/"/g, "&quot;")}">${escapeHtml(p.heating_tech || "Unknown")}</td>
       <td class="${priceClass}" title="${allInTitle}">${fmtPrice(p.all_in_price_eur)}</td>
       <td title="${(p.betriebskosten_note || "").replace(/"/g, "&quot;")}">${p.betriebskosten_monat_eur != null ? Number(p.betriebskosten_monat_eur).toLocaleString("de-AT", {minimumFractionDigits: 0, maximumFractionDigits: 2}) : "—"}</td>
       <td title="car to the 21st district (OSRM free-flow)">${p.drive_anton_boeck_min != null ? p.drive_anton_boeck_min : "—"}</td>
@@ -8681,6 +8932,7 @@ function updateFavouritesPanel() {
       <td>${priceCell(p)}</td>
       <td>${fmtNum(p.living_m2)}</td>
       <td>${p.energy_hwb_class ? escapeHtml(p.energy_hwb_class) : "—"}</td>
+      <td title="${String(p.heating_tech_source || p.heating || "").replace(/"/g, "&quot;")}">${escapeHtml(p.heating_tech || "Unknown")}</td>
       <td title="public transport to the 8th district">${p.pt_lange_gasse_min != null ? p.pt_lange_gasse_min : "—"}</td>
       <td>${p.drive_anton_boeck_min != null ? p.drive_anton_boeck_min : "—"}</td>
       <td style="white-space:nowrap">${p.url_primary ? `<a href="${p.url_primary}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Link</a>` : "—"}${p.archive ? `<a class="arch-link" href="${p.archive}" target="_blank" rel="noopener" title="Archived copy (${p.archived_at || ""})" onclick="event.stopPropagation()">🗄</a>` : ""}</td>`;
@@ -8840,7 +9092,7 @@ function refresh() {
 }
 
 document.getElementById("maxPrice").addEventListener("input", refresh);
-["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","priceDropped","townSearch","categoryFilter","typeFilter","finishFilter"].forEach(id => {
+["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","priceDropped","townSearch","categoryFilter","typeFilter","finishFilter","heatingFilter"].forEach(id => {
   document.getElementById(id).addEventListener("input", refresh);
   document.getElementById(id).addEventListener("change", refresh);
 });
@@ -8858,6 +9110,7 @@ document.getElementById("resetFilters").addEventListener("click", () => {
   document.getElementById("categoryFilter").value = "all";
   document.getElementById("typeFilter").value = "all";
   document.getElementById("finishFilter").value = "any";
+  document.getElementById("heatingFilter").value = "any";
   selectedId = null;
   hoveredId = null;
   refresh();
