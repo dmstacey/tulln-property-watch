@@ -156,6 +156,20 @@
   .fav-note { color: var(--muted); font-size: 0.72rem; font-style: italic; }
   tr.data-row.hovered { background: #eef4f9; }
   th.score-th, th.fav-th { cursor: pointer; }
+  .fit-chip { display:inline-block; padding:0.05rem 0.4rem; border-radius:999px; font-size:0.72rem; font-weight:600; white-space:nowrap; }
+  .fit-hr { background:#d8f3dc; color:#1b4332; border:1px solid #74c69d; }
+  .fit-wl { background:#fff3cd; color:#7a5b00; border:1px solid #e0c060; }
+  .fit-nr { background:#f1f1f1; color:#6c757d; border:1px solid #ccc; }
+  .fit-cell { white-space:nowrap; }
+  .fit-toggle { border:0; background:none; cursor:pointer; font-size:0.8rem; padding:0 0.2rem; color:var(--muted); }
+  tr.fit-detail td { background:#fafbf8; font-size:0.8rem; padding:0.6rem 0.9rem; white-space:normal; }
+  .fit-detail-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.6rem 1.2rem; max-width:1100px; }
+  .fit-detail-grid h4 { margin:0 0 0.2rem; font-size:0.78rem; }
+  .fit-detail-grid ul { margin:0; padding-left:1.1rem; }
+  .fit-est { color:var(--muted); font-style:italic; }
+  details.fit-method { margin:0 0 0.6rem; font-size:0.8rem; }
+  details.fit-method summary { cursor:pointer; font-weight:600; }
+  details.fit-method ul { margin:0.3rem 0; padding-left:1.2rem; }
   th.fav-th { width: 2rem; text-align: center; }
 
   .finish-pill {
@@ -229,6 +243,16 @@
     <div class="filter-group">
       <label for="minRooms">Min rooms</label>
       <input type="number" id="minRooms" min="0" max="10" step="1" value="0" placeholder="0"/>
+    </div>
+    <div class="filter-group">
+      <label for="fitFilter">Family fit</label>
+      <select id="fitFilter" title="Family-fit label (estimate-based score, see methodology above Results)">
+        <option value="any">Any</option>
+        <option value="Highly recommended">Highly recommended only</option>
+        <option value="atleast">Highly recommended + Worth a look</option>
+        <option value="Worth a look">Worth a look</option>
+        <option value="Not recommended">Not recommended</option>
+      </select>
     </div>
     <div class="filter-group">
       <label for="saunaFilter">Sauna</label>
@@ -377,6 +401,18 @@
         <span class="score-legend" title="Four lights: price · public transport commute · living m² · energy. Empty ring = missing that factor.">Score: <span class="tl-dot tl-green"></span> good · <span class="tl-dot tl-yellow"></span> ok · <span class="tl-dot tl-red"></span> weak · empty = missing · <span class="tl-order">order: price · PT · m² · energy</span></span>
         <span class="score-legend" title="Finish: explicit stage, or Baujahr when unknown. Green = schlüssel/recent (≥2006); yellow = belags/mid-age; red = rohbau/sanierung/heavy reno.">Finish: <span class="tl-dot tl-green"></span> ready/recent · <span class="tl-dot tl-yellow"></span> mid/partial · <span class="tl-dot tl-red"></span> reno/rohbau · year = Baujahr</span>
       </h3>
+      <details class="fit-method" id="fitMethod"><summary>Fit score methodology (0–100) — renovation &amp; operating costs are estimates</summary>
+        <ul>
+          <li><strong>Cost 45</strong>: all-in price (incl. buying fees) + estimated renovation midpoint + 10 years of estimated operating costs. ≤ €420k = full, ≥ €700k = 0.</li>
+          <li><strong>Commute 25</strong>: public transport to the 8th district 15 (≤ 55 min full, ≥ 110 min 0) · car to the 21st district 10 (≤ 20 min full, ≥ 55 min 0).</li>
+          <li><strong>Space 18</strong>: living area 8 (90→150 m²) · estimated garden 10 (plot minus ~60% of living area; 100→600 m²; unknown = 1).</li>
+          <li><strong>Cellar/storage 5</strong> (cellar 5, other storage 2, unknown 0) · <strong>5th room 4</strong> · <strong>Sauna 3</strong>.</li>
+          <li>Penalties: fewer than 4 rooms −25 · rooms unknown −8 · not a family-home type −15.</li>
+          <li>Renovation rules of thumb (Austria 2026, € per m² living, <em>estimates, not quotes</em>): turnkey €0–10k · belagsfertig €250–450 · Rohbau €1,100–1,700 · renovation needed €500–1,000 (heavy/pre-1960/HWB F–G €700–1,400) · finish unknown by year built/HWB: ≥2010 or A–B €0–15k, 1990–2009 or C €80–250, 1970–89 or D–E €250–600, older or F–G €450–900, nothing known €150–500 · oil heating +€15–25k.</li>
+          <li>Operating costs (estimate): Betriebskosten from the listing, else €150/month assumed; heating = HWB × m² × €0.12/kWh (heat pump €0.07).</li>
+          <li><strong>Highly recommended</strong>: ≥ 4 rooms, family home, total-cost midpoint ≤ ~€510k, public transport ≤ 80 min or car ≤ 40 min, score ≥ 50; best 8 at most (cap relaxes if fewer than 3 qualify). Rescored on every watch run against the current market. <strong>Worth a look</strong>: score ≥ 55.</li>
+        </ul>
+      </details>
       <div class="table-wrap">
         <table>
           <thead>
@@ -384,6 +420,7 @@
               <th class="fav-th" title="Favourite">★</th>
               <th data-sort="id">ID</th>
               <th class="score-th" data-sort="score_rank" title="Four lights: price · public transport · size · energy (empty = missing)">Score</th>
+              <th data-sort="fit_score" title="Family-fit score 0–100 and label (click ▸ for details; see methodology)">Fit</th>
               <th data-sort="title">Title</th>
               <th data-sort="location_town">Town</th>
               <th data-sort="finish_status" title="Finish stage or Baujahr (year built) with traffic-light by condition/age">Finish</th>
@@ -496,7 +533,41 @@ const PROPERTIES = [
     "archive": "archive/SL1.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 54,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 15.0,
+      "pt": 13.1,
+      "drive": 6.6,
+      "living": 4.3,
+      "garden": 6.4,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (54/100): Good public transport to the 8th district (62 min); 5 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (62 min)",
+      "5 rooms: one spare for guests/office",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 85000,
+    "reno_estimate_high": 170000,
+    "total_cost_low": 523800,
+    "total_cost_high": 608800,
+    "operating_monthly_est": 334,
+    "operating_note": "Est. ~€334/month: BK €83 (listing) + heating ~€250 (HWB 205, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 419,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "SL2",
@@ -569,7 +640,41 @@ const PROPERTIES = [
     "image": null,
     "archive": null,
     "archived_at": null,
-    "price_history": null
+    "price_history": null,
+    "fit_score": 63,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 31.6,
+      "pt": 7.4,
+      "drive": 5.1,
+      "living": 4.1,
+      "garden": 6.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (63/100): Low overall cost (est. €447k–€472k incl. renovation); 5 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Low overall cost (est. €447k–€472k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 55000,
+    "total_cost_low": 446860,
+    "total_cost_high": 471860,
+    "operating_monthly_est": 368,
+    "operating_note": "Est. ~€368/month: BK €150 (assumed, not in listing) + heating ~€218 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 398,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey in part, but listing says parts are unfinished (roh): €250–450/m²"
   },
   {
     "id": "SL3",
@@ -642,7 +747,42 @@ const PROPERTIES = [
     "archive": "archive/SL3.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 49,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 16.7,
+      "pt": 10.9,
+      "drive": 5.4,
+      "living": 1.3,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (49/100): 4 rooms: meets the parents/boys/girls need; Large garden (est. ~747 m²).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~747 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 45000,
+    "reno_estimate_high": 90000,
+    "total_cost_low": 522195,
+    "total_cost_high": 567195,
+    "operating_monthly_est": 430,
+    "operating_note": "Est. ~€430/month: BK €150 (assumed, not in listing) + heating ~€280 (HWB 280, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 747,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "SL4",
@@ -715,7 +855,43 @@ const PROPERTIES = [
     "archive": "archive/SL4.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 59,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 41.4,
+      "pt": 7.4,
+      "drive": 5.1,
+      "living": 3.3,
+      "garden": 0.0,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (59/100): Low overall cost (est. €405k–€415k incl. renovation); 4 rooms: meets the parents/boys/girls need; Little garden (est. ~84 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €405k–€415k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Little garden (est. ~84 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 404793,
+    "total_cost_high": 414793,
+    "operating_monthly_est": 270,
+    "operating_note": "Est. ~€270/month: BK €150 (assumed, not in listing) + heating ~€120 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 84,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "SL5",
@@ -934,7 +1110,42 @@ const PROPERTIES = [
     "archive": "archive/SL7.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 42,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 26.5,
+      "pt": 5.7,
+      "drive": 6.0,
+      "living": 2.5,
+      "garden": 1.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (42/100): 4 rooms: meets the parents/boys/girls need; Garden size unknown.",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 25000,
+    "reno_estimate_high": 50000,
+    "total_cost_low": 491225,
+    "total_cost_high": 516225,
+    "operating_monthly_est": 264,
+    "operating_note": "Est. ~€264/month: BK €150 (assumed, not in listing) + heating ~€114 (HWB 180 assumed, Heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "SL8",
@@ -1007,7 +1218,43 @@ const PROPERTIES = [
     "archive": "archive/SL8.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 51,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 29.9,
+      "pt": 5.5,
+      "drive": 3.7,
+      "living": 4.9,
+      "garden": 1.0,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (51/100): Low overall cost (est. €468k–€493k incl. renovation); 5 rooms: one spare for guests/office; Garden size unknown.",
+    "rec_strengths": [
+      "Low overall cost (est. €468k–€493k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 55000,
+    "total_cost_low": 467703,
+    "total_cost_high": 492703,
+    "operating_monthly_est": 283,
+    "operating_note": "Est. ~€283/month: BK €150 (assumed, not in listing) + heating ~€133 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "HM1",
@@ -1080,7 +1327,45 @@ const PROPERTIES = [
     "image": null,
     "archive": null,
     "archived_at": null,
-    "price_history": null
+    "price_history": null,
+    "fit_score": 56,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 35.6,
+      "pt": 0.5,
+      "drive": 2.9,
+      "living": 2.5,
+      "garden": 10.0,
+      "storage": 0,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (56/100): Low overall cost (est. €412k–€462k incl. renovation); 6 rooms: one spare for guests/office; Long public-transport commute to the 8th district (108 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €412k–€462k incl. renovation)",
+      "6 rooms: one spare for guests/office",
+      "Large garden (est. ~8719 m²)"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (108 min)",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 50000,
+    "reno_estimate_high": 100000,
+    "total_cost_low": 412010,
+    "total_cost_high": 462010,
+    "operating_monthly_est": 346,
+    "operating_note": "Est. ~€346/month: BK €150 (assumed, not in listing) + heating ~€196 (HWB 180 assumed, Wood). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 8719,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "HM2",
@@ -1153,7 +1438,44 @@ const PROPERTIES = [
     "archive": "archive/HM2.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 62,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 15.0,
+      "drive": 4.6,
+      "living": 0.0,
+      "garden": 3.4,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Possible fit (62/100): Low overall cost (est. €184k–€214k incl. renovation); Good public transport to the 8th district (55 min); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €184k–€214k incl. renovation)",
+      "Good public transport to the 8th district (55 min)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing",
+      "Small living area (60 m²)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 183580,
+    "total_cost_high": 213580,
+    "operating_monthly_est": 258,
+    "operating_note": "Est. ~€258/month: BK €150 (assumed, not in listing) + heating ~€108 (HWB 180 assumed, Wood). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 270,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "SA1",
@@ -1226,7 +1548,43 @@ const PROPERTIES = [
     "archive": "archive/SA1.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 66,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 38.8,
+      "pt": 5.5,
+      "drive": 3.7,
+      "living": 3.0,
+      "garden": 7.1,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (66/100): Low overall cost (est. €421k–€441k incl. renovation); 4 rooms: meets the parents/boys/girls need.",
+    "rec_strengths": [
+      "Low overall cost (est. €421k–€441k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~455 m²)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 10000,
+    "reno_estimate_high": 30000,
+    "total_cost_low": 421375,
+    "total_cost_high": 441375,
+    "operating_monthly_est": 228,
+    "operating_note": "Est. ~€228/month: BK €150 (assumed, not in listing) + heating ~€78 (HWB 70, District heating). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 455,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1990–2009 or HWB C: refresh €80–250/m²"
   },
   {
     "id": "SA2",
@@ -1299,7 +1657,47 @@ const PROPERTIES = [
     "archive": "archive/SA2.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 34,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 32.9,
+      "pt": 0.3,
+      "drive": 1.7,
+      "living": 8.0,
+      "garden": 8.2,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (34/100): Low overall cost (est. €419k–€454k incl. renovation); Spacious (190 m² living); Long public-transport commute to the 8th district (109 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €419k–€454k incl. renovation)",
+      "Spacious (190 m² living)",
+      "Large garden (est. ~508 m²)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (109 min)",
+      "Long drive to the 21st district (49 min)",
+      "Only 3 rooms — fails the 4-room need"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 15000,
+    "reno_estimate_high": 50000,
+    "total_cost_low": 418696,
+    "total_cost_high": 453696,
+    "operating_monthly_est": 492,
+    "operating_note": "Est. ~€492/month: BK €150 (assumed, not in listing) + heating ~€342 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 508,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1990–2009 or HWB C: refresh €80–250/m²"
   },
   {
     "id": "AU1",
@@ -1372,7 +1770,46 @@ const PROPERTIES = [
     "image": null,
     "archive": null,
     "archived_at": null,
-    "price_history": null
+    "price_history": null,
+    "fit_score": 69,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 0.0,
+      "drive": 3.4,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (69/100): Low overall cost (est. €287k–€337k incl. renovation); 4 rooms: meets the parents/boys/girls need; Long public-transport commute to the 8th district (133 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €287k–€337k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (150 m² living)",
+      "Large garden (est. ~767 m²)",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (133 min)",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 40000,
+    "reno_estimate_high": 90000,
+    "total_cost_low": 287319,
+    "total_cost_high": 337319,
+    "operating_monthly_est": 420,
+    "operating_note": "Est. ~€420/month: BK €150 (assumed, not in listing) + heating ~€270 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 767,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²"
   },
   {
     "id": "OB1",
@@ -1445,7 +1882,45 @@ const PROPERTIES = [
     "archive": "archive/OB1.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 44,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 12.2,
+      "pt": 6.5,
+      "drive": 4.3,
+      "living": 2.5,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (44/100): 4 rooms: meets the parents/boys/girls need; Large garden (est. ~757 m²); High overall cost (est. €562k–€602k incl. renovation).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~757 m²)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €562k–€602k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 15000,
+    "reno_estimate_high": 55000,
+    "total_cost_low": 562403,
+    "total_cost_high": 602403,
+    "operating_monthly_est": 346,
+    "operating_note": "Est. ~€346/month: BK €150 (assumed, not in listing) + heating ~€196 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 757,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "OB2",
@@ -1518,7 +1993,46 @@ const PROPERTIES = [
     "archive": "archive/OB2.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 23,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 15.0,
+      "drive": 6.6,
+      "living": 0.0,
+      "garden": 1.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (23/100): Good public transport to the 8th district (53 min); Cellar mentioned; High overall cost (est. €766k–€806k incl. renovation).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (53 min)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €766k–€806k incl. renovation)",
+      "Room count unknown — check before viewing",
+      "Living area unknown",
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 765960,
+    "total_cost_high": 805960,
+    "operating_monthly_est": 366,
+    "operating_note": "Est. ~€366/month: BK €150 (assumed, not in listing) + heating ~€216 (HWB 180 assumed, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "OB3",
@@ -1737,7 +2251,45 @@ const PROPERTIES = [
     "archive": "archive/OB5.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-20",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 15,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 8.5,
+      "drive": 5.7,
+      "living": 0.0,
+      "garden": 1.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (15/100): Cellar mentioned; Sauna; High overall cost (est. €1.116k–€1.156k incl. renovation).",
+    "rec_strengths": [
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €1.116k–€1.156k incl. renovation)",
+      "Room count unknown — check before viewing",
+      "Living area unknown",
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 1115903,
+    "total_cost_high": 1155903,
+    "operating_monthly_est": 276,
+    "operating_note": "Est. ~€276/month: BK €150 (assumed, not in listing) + heating ~€126 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "OB6",
@@ -1965,7 +2517,44 @@ const PROPERTIES = [
     "image": "img/NEW1.jpg",
     "archive": "archive/NEW1.html",
     "archived_at": "2026-09-26",
-    "first_seen_at": "2026-09-21"
+    "first_seen_at": "2026-09-21",
+    "fit_score": 59,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 15.3,
+      "pt": 15.0,
+      "drive": 4.0,
+      "living": 7.7,
+      "garden": 8.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (59/100): Good public transport to the 8th district (51 min); 5 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (51 min)",
+      "5 rooms: one spare for guests/office",
+      "Spacious (148 m² living)",
+      "Large garden (est. ~502 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Price already cut by €49k: seller may negotiate",
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 105000,
+    "reno_estimate_high": 205000,
+    "total_cost_low": 488950,
+    "total_cost_high": 588950,
+    "operating_monthly_est": 547,
+    "operating_note": "Est. ~€547/month: BK €150 (assumed, not in listing) + heating ~€397 (HWB 268, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 502,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "NEW2",
@@ -2038,7 +2627,42 @@ const PROPERTIES = [
     "archived_at": "2026-09-26",
     "image": "img/NEW2.jpg",
     "first_seen_at": "2026-09-21",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 82,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 43.6,
+      "pt": 10.9,
+      "drive": 5.4,
+      "living": 8.0,
+      "garden": 4.9,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (82/100): Low overall cost (est. €337k–€417k incl. renovation); 5 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Low overall cost (est. €337k–€417k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Spacious (154 m² living)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 75000,
+    "reno_estimate_high": 155000,
+    "total_cost_low": 337183,
+    "total_cost_high": 417183,
+    "operating_monthly_est": 427,
+    "operating_note": "Est. ~€427/month: BK €150 (assumed, not in listing) + heating ~€277 (HWB 180 assumed, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 347,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "NEW3",
@@ -2111,7 +2735,45 @@ const PROPERTIES = [
     "archive": "archive/NEW3.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-21",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 70,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 5.5,
+      "drive": 3.7,
+      "living": 0.0,
+      "garden": 10.0,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (70/100): Low overall cost (est. €336k–€396k incl. renovation); 5 rooms: one spare for guests/office; Small living area (90 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €336k–€396k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Large garden (est. ~1543 m²)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Small living area (90 m²)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 65000,
+    "reno_estimate_high": 125000,
+    "total_cost_low": 335959,
+    "total_cost_high": 395959,
+    "operating_monthly_est": 312,
+    "operating_note": "Est. ~€312/month: BK €150 (assumed, not in listing) + heating ~€162 (HWB 180 assumed, Wood). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 1543,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "NEW4",
@@ -2184,7 +2846,41 @@ const PROPERTIES = [
     "archive": "archive/NEW4.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-21",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 47,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 29.6,
+      "pt": 5.5,
+      "drive": 3.7,
+      "living": 4.6,
+      "garden": 1.4,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (47/100): Low overall cost (est. €487k–€502k incl. renovation); 4 rooms: meets the parents/boys/girls need.",
+    "rec_strengths": [
+      "Low overall cost (est. €487k–€502k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 15000,
+    "total_cost_low": 487068,
+    "total_cost_high": 502068,
+    "operating_monthly_est": 177,
+    "operating_note": "Est. ~€177/month: BK €150 (assumed, not in listing) + heating ~€27 (HWB 37, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 172,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "recent/efficient: €0–15k"
   },
   {
     "id": "WF1",
@@ -2266,7 +2962,43 @@ const PROPERTIES = [
     "image": "img/WF1.jpg",
     "archive": "archive/WF1.html",
     "archived_at": "2026-09-26",
-    "first_seen_at": "2026-09-21"
+    "first_seen_at": "2026-09-21",
+    "fit_score": 48,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 14.6,
+      "pt": 12.0,
+      "drive": 5.1,
+      "living": 4.0,
+      "garden": 2.8,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (48/100): 5 rooms: one spare for guests/office; Cellar mentioned; High overall cost (est. €573k–€598k incl. renovation).",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €573k–€598k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Price already cut by €4k: seller may negotiate",
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 55000,
+    "total_cost_low": 573015,
+    "total_cost_high": 598015,
+    "operating_monthly_est": 196,
+    "operating_note": "Est. ~€196/month: BK €150 (assumed, not in listing) + heating ~€46 (HWB 65 from class B, Heat pump). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 239,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "SIM1",
@@ -2339,7 +3071,42 @@ const PROPERTIES = [
     "archive": "archive/SIM1.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-21",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 46,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 14.4,
+      "pt": 12.0,
+      "drive": 5.1,
+      "living": 4.9,
+      "garden": 3.4,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (46/100): 5 rooms: one spare for guests/office; Some storage (no cellar named); High overall cost (est. €581k–€596k incl. renovation).",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €581k–€596k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 15000,
+    "total_cost_low": 581410,
+    "total_cost_high": 596410,
+    "operating_monthly_est": 179,
+    "operating_note": "Est. ~€179/month: BK €150 (assumed, not in listing) + heating ~€29 (HWB 39, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 269,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "recent/efficient: €0–15k"
   },
   {
     "id": "SIM2",
@@ -2412,7 +3179,43 @@ const PROPERTIES = [
     "archive": "archive/SIM2.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-21",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 48,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 32.8,
+      "pt": 5.7,
+      "drive": 6.0,
+      "living": 2.5,
+      "garden": 1.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (48/100): Low overall cost (est. €463k–€488k incl. renovation); 4 rooms: meets the parents/boys/girls need; Garden size unknown.",
+    "rec_strengths": [
+      "Low overall cost (est. €463k–€488k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 25000,
+    "reno_estimate_high": 50000,
+    "total_cost_low": 462703,
+    "total_cost_high": 487703,
+    "operating_monthly_est": 171,
+    "operating_note": "Est. ~€171/month: BK €150 (assumed, not in listing) + heating ~€21 (HWB 33, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "SIM3",
@@ -2558,7 +3361,42 @@ const PROPERTIES = [
     "archived_at": "2026-09-24",
     "first_seen_at": "2026-09-21",
     "image": null,
-    "price_history": null
+    "price_history": null,
+    "fit_score": 65,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 30.7,
+      "pt": 10.9,
+      "drive": 5.4,
+      "living": 4.0,
+      "garden": 9.3,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (65/100): Low overall cost (est. €458k–€498k incl. renovation); 4 rooms: meets the parents/boys/girls need.",
+    "rec_strengths": [
+      "Low overall cost (est. €458k–€498k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~565 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 70000,
+    "total_cost_low": 457830,
+    "total_cost_high": 497830,
+    "operating_monthly_est": 261,
+    "operating_note": "Est. ~€261/month: BK €125 (listing) + heating ~€136 (HWB 113, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 565,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²"
   },
   {
     "id": "SIM5",
@@ -2631,7 +3469,44 @@ const PROPERTIES = [
     "image": null,
     "archive": null,
     "archived_at": null,
-    "price_history": null
+    "price_history": null,
+    "fit_score": 33,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 5.8,
+      "pt": 3.3,
+      "drive": 5.7,
+      "living": 8.0,
+      "garden": 5.8,
+      "storage": 0,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (33/100): 6 rooms: one spare for guests/office; Spacious (153 m² living); High overall cost (est. €612k–€642k incl. renovation).",
+    "rec_strengths": [
+      "6 rooms: one spare for guests/office",
+      "Spacious (153 m² living)"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €612k–€642k incl. renovation)",
+      "Long public-transport commute to the 8th district (98 min)",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 40000,
+    "reno_estimate_high": 70000,
+    "total_cost_low": 611879,
+    "total_cost_high": 641879,
+    "operating_monthly_est": 311,
+    "operating_note": "Est. ~€311/month: BK €150 (assumed, not in listing) + heating ~€161 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 392,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "NEW5",
@@ -2704,7 +3579,44 @@ const PROPERTIES = [
     "archive": "archive/NEW5.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 60,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 8.7,
+      "drive": 4.0,
+      "living": 0.0,
+      "garden": 10.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Possible fit (60/100): Low overall cost (est. €330k–€360k incl. renovation); Large garden (est. ~1178 m²); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €330k–€360k incl. renovation)",
+      "Large garden (est. ~1178 m²)"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing",
+      "Small living area (73 m²)",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 35000,
+    "reno_estimate_high": 65000,
+    "total_cost_low": 330093,
+    "total_cost_high": 360093,
+    "operating_monthly_est": 303,
+    "operating_note": "Est. ~€303/month: BK €150 (assumed, not in listing) + heating ~€153 (HWB 210, Wood + Electric). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 1178,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "NEW6",
@@ -2777,7 +3689,43 @@ const PROPERTIES = [
     "archive": "archive/NEW6.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 72,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 6.5,
+      "drive": 4.0,
+      "living": 8.0,
+      "garden": 4.5,
+      "storage": 0,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (72/100): Low overall cost (est. €318k–€328k incl. renovation); 5 rooms: one spare for guests/office; Cellar unknown.",
+    "rec_strengths": [
+      "Low overall cost (est. €318k–€328k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Spacious (170 m² living)"
+    ],
+    "rec_weaknesses": [
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 318130,
+    "total_cost_high": 328130,
+    "operating_monthly_est": 184,
+    "operating_note": "Est. ~€184/month: BK €150 (assumed, not in listing) + heating ~€34 (HWB 34, Geothermal). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 325,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "NEW7",
@@ -2850,7 +3798,47 @@ const PROPERTIES = [
     "archive": "archive/NEW7.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 57,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 31.8,
+      "pt": 2.5,
+      "drive": 2.3,
+      "living": 5.2,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (57/100): Low overall cost (est. €443k–€498k incl. renovation); 4 rooms: meets the parents/boys/girls need; Long public-transport commute to the 8th district (101 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €443k–€498k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~1203 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (101 min)",
+      "Long drive to the 21st district (47 min)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 60000,
+    "reno_estimate_high": 115000,
+    "total_cost_low": 442853,
+    "total_cost_high": 497853,
+    "operating_monthly_est": 265,
+    "operating_note": "Est. ~€265/month: BK €150 (assumed, not in listing) + heating ~€115 (HWB 89, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1203,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "NEW8",
@@ -2923,7 +3911,42 @@ const PROPERTIES = [
     "archive": "archive/NEW8.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 74,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 42.5,
+      "pt": 7.6,
+      "drive": 5.4,
+      "living": 5.4,
+      "garden": 7.6,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (74/100): Low overall cost (est. €405k–€420k incl. renovation); 4 rooms: meets the parents/boys/girls need.",
+    "rec_strengths": [
+      "Low overall cost (est. €405k–€420k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~480 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 15000,
+    "total_cost_low": 404793,
+    "total_cost_high": 419793,
+    "operating_monthly_est": 193,
+    "operating_note": "Est. ~€193/month: BK €133 (listing) + heating ~€60 (HWB 46, Pellets + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 480,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "recent/efficient: €0–15k"
   },
   {
     "id": "NEW9",
@@ -2996,7 +4019,43 @@ const PROPERTIES = [
     "archive": "archive/NEW9.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 53,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 13.1,
+      "pt": 14.7,
+      "drive": 6.0,
+      "living": 3.3,
+      "garden": 10.0,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (53/100): Good public transport to the 8th district (56 min); 5 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (56 min)",
+      "5 rooms: one spare for guests/office",
+      "Large garden (est. ~1067 m²)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 50000,
+    "reno_estimate_high": 105000,
+    "total_cost_low": 543650,
+    "total_cost_high": 598650,
+    "operating_monthly_est": 393,
+    "operating_note": "Est. ~€393/month: BK €150 (assumed, not in listing) + heating ~€243 (HWB 211, Gas). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 1067,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "NEW10",
@@ -3069,7 +4128,45 @@ const PROPERTIES = [
     "archive": "archive/NEW10.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 65,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 43.4,
+      "pt": 4.9,
+      "drive": 3.4,
+      "living": 8.0,
+      "garden": 3.1,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (65/100): Low overall cost (est. €368k–€433k incl. renovation); 4 rooms: meets the parents/boys/girls need; Long public-transport commute to the 8th district (92 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €368k–€433k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (160 m² living)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (92 min)",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 55000,
+    "reno_estimate_high": 120000,
+    "total_cost_low": 367645,
+    "total_cost_high": 432645,
+    "operating_monthly_est": 251,
+    "operating_note": "Est. ~€251/month: BK €89 (listing) + heating ~€162 (HWB 101, Oil). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 253,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "NEW11",
@@ -3142,7 +4239,42 @@ const PROPERTIES = [
     "archive": "archive/NEW11.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 67,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 34.7,
+      "pt": 9.8,
+      "drive": 4.6,
+      "living": 4.0,
+      "garden": 8.9,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (67/100): Low overall cost (est. €420k–€460k incl. renovation); 4 rooms: meets the parents/boys/girls need.",
+    "rec_strengths": [
+      "Low overall cost (est. €420k–€460k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~543 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 420405,
+    "total_cost_high": 460405,
+    "operating_monthly_est": 366,
+    "operating_note": "Est. ~€366/month: BK €150 (assumed, not in listing) + heating ~€216 (HWB 180 assumed, Pellets). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 543,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "SA3",
@@ -3215,7 +4347,42 @@ const PROPERTIES = [
     "archive": "archive/SA3.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 50,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 16.2,
+      "pt": 10.1,
+      "drive": 4.9,
+      "living": 8.0,
+      "garden": 2.3,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (50/100): 4 rooms: meets the parents/boys/girls need; Spacious (171 m² living).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (171 m² living)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 25000,
+    "reno_estimate_high": 85000,
+    "total_cost_low": 517553,
+    "total_cost_high": 577553,
+    "operating_monthly_est": 428,
+    "operating_note": "Est. ~€428/month: BK €120 (listing) + heating ~€308 (HWB 180 assumed, Wood + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 216,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "SA4",
@@ -3288,7 +4455,45 @@ const PROPERTIES = [
     "archive": "archive/SA4.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 34,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 14.1,
+      "pt": 0.0,
+      "drive": 3.1,
+      "living": 8.0,
+      "garden": 1.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (34/100): 4 rooms: meets the parents/boys/girls need; Spacious (171 m² living); Long public-transport commute to the 8th district (110 min).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (171 m² living)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (110 min)",
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 45000,
+    "reno_estimate_high": 105000,
+    "total_cost_low": 537553,
+    "total_cost_high": 597553,
+    "operating_monthly_est": 372,
+    "operating_note": "Est. ~€372/month: BK €150 (assumed, not in listing) + heating ~€222 (HWB 130 from class D, Wood + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²"
   },
   {
     "id": "OB7",
@@ -3434,7 +4639,45 @@ const PROPERTIES = [
     "archive": "archive/HM3.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-22",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 76,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 35.6,
+      "pt": 10.1,
+      "drive": 4.9,
+      "living": 6.2,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (76/100): Low overall cost (est. €359k–€464k incl. renovation); 5 rooms: one spare for guests/office; Oil heating: replacement expected.",
+    "rec_strengths": [
+      "Low overall cost (est. €359k–€464k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Large garden (est. ~807 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 110000,
+    "reno_estimate_high": 215000,
+    "total_cost_low": 359019,
+    "total_cost_high": 464019,
+    "operating_monthly_est": 559,
+    "operating_note": "Est. ~€559/month: BK €150 (assumed, not in listing) + heating ~€409 (HWB 300 from class G, Oil). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 807,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "NEW12",
@@ -3507,7 +4750,43 @@ const PROPERTIES = [
     "archive": "archive/NEW12.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 40,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 17.6,
+      "pt": 8.2,
+      "drive": 6.0,
+      "living": 8.0,
+      "garden": 5.8,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": -15
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (40/100): 6 rooms: one spare for guests/office; Spacious (156 m² living); Type MFH is not a plain family home.",
+    "rec_strengths": [
+      "6 rooms: one spare for guests/office",
+      "Spacious (156 m² living)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Type MFH is not a plain family home"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 70000,
+    "reno_estimate_high": 140000,
+    "total_cost_low": 475890,
+    "total_cost_high": 545890,
+    "operating_monthly_est": 664,
+    "operating_note": "Est. ~€664/month: BK €150 (assumed, not in listing) + heating ~€514 (HWB 330, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 390,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "NEW13",
@@ -3589,7 +4868,44 @@ const PROPERTIES = [
     "image": "img/NEW13.jpg",
     "archive": "archive/NEW13.html",
     "archived_at": "2026-09-26",
-    "first_seen_at": "2026-09-23"
+    "first_seen_at": "2026-09-23",
+    "fit_score": 52,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 24.2,
+      "pt": 5.2,
+      "drive": 3.7,
+      "living": 7.3,
+      "garden": 5.1,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (52/100): 6 rooms: one spare for guests/office; Spacious (145 m² living); Long public-transport commute to the 8th district (91 min).",
+    "rec_strengths": [
+      "6 rooms: one spare for guests/office",
+      "Spacious (145 m² living)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (91 min)"
+    ],
+    "rec_opportunities": [
+      "Price already cut by €16k: seller may negotiate",
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 65000,
+    "reno_estimate_high": 130000,
+    "total_cost_low": 458823,
+    "total_cost_high": 523823,
+    "operating_monthly_est": 484,
+    "operating_note": "Est. ~€484/month: BK €150 (assumed, not in listing) + heating ~€334 (HWB 230 from class F, District heating). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 353,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "NEW14",
@@ -3662,7 +4978,43 @@ const PROPERTIES = [
     "archive": "archive/NEW14.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 47,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 14.7,
+      "pt": 10.4,
+      "drive": 4.3,
+      "living": 2.7,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (47/100): 4 rooms: meets the parents/boys/girls need; Large garden (est. ~1644 m²).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~1644 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 75000,
+    "reno_estimate_high": 155000,
+    "total_cost_low": 511606,
+    "total_cost_high": 591606,
+    "operating_monthly_est": 474,
+    "operating_note": "Est. ~€474/month: BK €150 (assumed, not in listing) + heating ~€324 (HWB 294, Wood + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1644,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "NEW15",
@@ -3735,7 +5087,45 @@ const PROPERTIES = [
     "archive": "archive/NEW15.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 52,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 12.6,
+      "pt": 7.9,
+      "drive": 4.9,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (52/100): 7 rooms: one spare for guests/office; Spacious (177 m² living); Oil heating: replacement expected.",
+    "rec_strengths": [
+      "7 rooms: one spare for guests/office",
+      "Spacious (177 m² living)",
+      "Large garden (est. ~1180 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 60000,
+    "reno_estimate_high": 130000,
+    "total_cost_low": 548165,
+    "total_cost_high": 618165,
+    "operating_monthly_est": 322,
+    "operating_note": "Est. ~€322/month: BK €120 (listing) + heating ~€202 (HWB 114, Oil + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1180,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "NEW16",
@@ -3881,7 +5271,42 @@ const PROPERTIES = [
     "archive": "archive/NEW17.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 62,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 18.1,
+      "pt": 10.4,
+      "drive": 6.0,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (62/100): 6 rooms: one spare for guests/office; Spacious (187 m² living).",
+    "rec_strengths": [
+      "6 rooms: one spare for guests/office",
+      "Spacious (187 m² living)",
+      "Large garden (est. ~1886 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 95000,
+    "total_cost_low": 496225,
+    "total_cost_high": 561225,
+    "operating_monthly_est": 487,
+    "operating_note": "Est. ~€487/month: BK €150 (assumed, not in listing) + heating ~€337 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1886,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "OB8",
@@ -3954,7 +5379,46 @@ const PROPERTIES = [
     "archive": "archive/OB8.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 47,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 13.6,
+      "drive": 6.6,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (47/100): Good public transport to the 8th district (60 min); 5 rooms: one spare for guests/office; High overall cost (est. €624k–€694k incl. renovation).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (60 min)",
+      "5 rooms: one spare for guests/office",
+      "Spacious (162 m² living)",
+      "Large garden (est. ~1042 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €624k–€694k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 75000,
+    "reno_estimate_high": 145000,
+    "total_cost_low": 623500,
+    "total_cost_high": 693500,
+    "operating_monthly_est": 555,
+    "operating_note": "Est. ~€555/month: BK €150 (assumed, not in listing) + heating ~€405 (HWB 250, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1042,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "SA5",
@@ -4027,7 +5491,45 @@ const PROPERTIES = [
     "archive": "archive/SA5.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 44,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 9.3,
+      "pt": 9.8,
+      "drive": 4.0,
+      "living": 3.6,
+      "garden": 9.2,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (44/100): 4 rooms: meets the parents/boys/girls need; Large garden (est. ~558 m²); High overall cost (est. €583k–€633k incl. renovation).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~558 m²)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €583k–€633k incl. renovation)",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 45000,
+    "reno_estimate_high": 95000,
+    "total_cost_low": 582530,
+    "total_cost_high": 632530,
+    "operating_monthly_est": 286,
+    "operating_note": "Est. ~€286/month: BK €150 (assumed, not in listing) + heating ~€136 (HWB 116, Oil). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 558,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "HM4",
@@ -4100,7 +5602,42 @@ const PROPERTIES = [
     "archive": "archive/HM4.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 79,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 9.8,
+      "drive": 5.4,
+      "living": 2.7,
+      "garden": 7.5,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (79/100): Low overall cost (est. €269k–€319k incl. renovation); 5 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Low overall cost (est. €269k–€319k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Large garden (est. ~476 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 50000,
+    "reno_estimate_high": 100000,
+    "total_cost_low": 269290,
+    "total_cost_high": 319290,
+    "operating_monthly_est": 422,
+    "operating_note": "Est. ~€422/month: BK €150 (assumed, not in listing) + heating ~€272 (HWB 247, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 476,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "HM5",
@@ -4182,7 +5719,45 @@ const PROPERTIES = [
     "image": "img/HM5.jpg",
     "archive": "archive/HM5.html",
     "archived_at": "2026-09-26",
-    "first_seen_at": "2026-09-23"
+    "first_seen_at": "2026-09-23",
+    "fit_score": 47,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 7.1,
+      "drive": 5.4,
+      "living": 1.1,
+      "garden": 8.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (47/100): Low overall cost (est. €313k–€363k incl. renovation); Large garden (est. ~499 m²); Only 3 rooms — fails the 4-room need.",
+    "rec_strengths": [
+      "Low overall cost (est. €313k–€363k incl. renovation)",
+      "Large garden (est. ~499 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Only 3 rooms — fails the 4-room need",
+      "Small living area (98 m²)"
+    ],
+    "rec_opportunities": [
+      "Price already cut by €55k: seller may negotiate",
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 50000,
+    "reno_estimate_high": 100000,
+    "total_cost_low": 313169,
+    "total_cost_high": 363169,
+    "operating_monthly_est": 326,
+    "operating_note": "Est. ~€326/month: BK €150 (assumed, not in listing) + heating ~€176 (HWB 180 assumed, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 499,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "HM6",
@@ -4255,7 +5830,46 @@ const PROPERTIES = [
     "archive": "archive/HM6.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 31,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 4.4,
+      "drive": 0.9,
+      "living": 0.0,
+      "garden": 0.9,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (31/100): Low overall cost (est. €227k–€257k incl. renovation); Cellar mentioned; Long public-transport commute to the 8th district (94 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €227k–€257k incl. renovation)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (94 min)",
+      "Long drive to the 21st district (52 min)",
+      "Only 3 rooms — fails the 4-room need",
+      "Small living area (77 m²)",
+      "Little garden (est. ~143 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 10000,
+    "reno_estimate_high": 40000,
+    "total_cost_low": 227206,
+    "total_cost_high": 257206,
+    "operating_monthly_est": 219,
+    "operating_note": "Est. ~€219/month: BK €80 (listing) + heating ~€139 (HWB 180 assumed, Pellets). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 143,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "NEW18",
@@ -4328,7 +5942,49 @@ const PROPERTIES = [
     "archive": "archive/NEW18.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 57,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 33.4,
+      "pt": 0.0,
+      "drive": 1.4,
+      "living": 7.1,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (57/100): Low overall cost (est. €388k–€498k incl. renovation); 4 rooms: meets the parents/boys/girls need; Long public-transport commute to the 8th district (120 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €388k–€498k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (143 m² living)",
+      "Large garden (est. ~911 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (120 min)",
+      "Long drive to the 21st district (50 min)",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 115000,
+    "reno_estimate_high": 225000,
+    "total_cost_low": 388153,
+    "total_cost_high": 498153,
+    "operating_monthly_est": 407,
+    "operating_note": "Est. ~€407/month: BK €150 (assumed, not in listing) + heating ~€257 (HWB 180 assumed, Oil + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 911,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "NEW19",
@@ -4474,7 +6130,43 @@ const PROPERTIES = [
     "archive": "archive/NEW20.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 56,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 22.6,
+      "pt": 3.8,
+      "drive": 5.1,
+      "living": 5.3,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (56/100): 5 rooms: one spare for guests/office; Large garden (est. ~1393 m²); Long public-transport commute to the 8th district (96 min).",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office",
+      "Large garden (est. ~1393 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (96 min)"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 65000,
+    "total_cost_low": 490613,
+    "total_cost_high": 535613,
+    "operating_monthly_est": 384,
+    "operating_note": "Est. ~€384/month: BK €150 (assumed, not in listing) + heating ~€234 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1393,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "NEW21",
@@ -4547,7 +6239,42 @@ const PROPERTIES = [
     "archive": "archive/NEW21.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 50,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 28.3,
+      "pt": 7.1,
+      "drive": 5.1,
+      "living": 2.9,
+      "garden": 0.2,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (50/100): 5 rooms: one spare for guests/office; Some storage (no cellar named); Little garden (est. ~110 m²).",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Little garden (est. ~110 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 471710,
+    "total_cost_high": 481710,
+    "operating_monthly_est": 393,
+    "operating_note": "Est. ~€393/month: BK €275 (listing) + heating ~€118 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 110,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "HM7",
@@ -4620,7 +6347,46 @@ const PROPERTIES = [
     "archive": "archive/HM7.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 72,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 37.1,
+      "pt": 14.7,
+      "drive": 5.4,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Possible fit (72/100): Low overall cost (est. €381k–€456k incl. renovation); Good public transport to the 8th district (56 min); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €381k–€456k incl. renovation)",
+      "Good public transport to the 8th district (56 min)",
+      "Spacious (150 m² living)",
+      "Large garden (est. ~1209 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 75000,
+    "reno_estimate_high": 150000,
+    "total_cost_low": 381063,
+    "total_cost_high": 456063,
+    "operating_monthly_est": 420,
+    "operating_note": "Est. ~€420/month: BK €150 (assumed, not in listing) + heating ~€270 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1209,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "HM8",
@@ -4766,7 +6532,42 @@ const PROPERTIES = [
     "archive": "archive/OB9.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 36,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 17.0,
+      "pt": 6.0,
+      "drive": 4.3,
+      "living": 5.3,
+      "garden": 1.2,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (36/100): 4 rooms: meets the parents/boys/girls need; Some storage (no cellar named); High overall cost (est. €555k–€585k incl. renovation).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €555k–€585k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 555463,
+    "total_cost_high": 585463,
+    "operating_monthly_est": 199,
+    "operating_note": "Est. ~€199/month: BK €150 (assumed, not in listing) + heating ~€49 (HWB 65 from class B, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 162,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "OB10",
@@ -4839,7 +6640,44 @@ const PROPERTIES = [
     "archive": "archive/OB10.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 42,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 21.5,
+      "pt": 1.1,
+      "drive": 5.4,
+      "living": 8.0,
+      "garden": 0.9,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (42/100): 4 rooms: meets the parents/boys/girls need; Spacious (180 m² living); Long public-transport commute to the 8th district (106 min).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (180 m² living)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (106 min)",
+      "Little garden (est. ~143 m²)"
+    ],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 15000,
+    "total_cost_low": 526560,
+    "total_cost_high": 541560,
+    "operating_monthly_est": 267,
+    "operating_note": "Est. ~€267/month: BK €150 (assumed, not in listing) + heating ~€117 (HWB 65 from class B, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 143,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "recent/efficient: €0–15k"
   },
   {
     "id": "OB11",
@@ -4912,7 +6750,42 @@ const PROPERTIES = [
     "archive": "archive/OB11.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-23",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 41,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 19.5,
+      "pt": 7.1,
+      "drive": 5.1,
+      "living": 2.9,
+      "garden": 0.0,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (41/100): 5 rooms: one spare for guests/office; Some storage (no cellar named); Little garden (est. ~99 m²).",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Little garden (est. ~99 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 526560,
+    "total_cost_high": 536560,
+    "operating_monthly_est": 393,
+    "operating_note": "Est. ~€393/month: BK €275 (listing) + heating ~€118 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 99,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "HM11",
@@ -4985,7 +6858,44 @@ const PROPERTIES = [
     "archive": "archive/HM11.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 49,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 10.9,
+      "drive": 5.4,
+      "living": 0.0,
+      "garden": 7.8,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (49/100): Low overall cost (est. €321k–€346k incl. renovation); Large garden (est. ~489 m²); Only 3 rooms — fails the 4-room need.",
+    "rec_strengths": [
+      "Low overall cost (est. €321k–€346k incl. renovation)",
+      "Large garden (est. ~489 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Only 3 rooms — fails the 4-room need",
+      "Small living area (85 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 15000,
+    "reno_estimate_high": 40000,
+    "total_cost_low": 321063,
+    "total_cost_high": 346063,
+    "operating_monthly_est": 303,
+    "operating_note": "Est. ~€303/month: BK €150 (assumed, not in listing) + heating ~€153 (HWB 180 assumed, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 489,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "NEW25",
@@ -5058,7 +6968,44 @@ const PROPERTIES = [
     "archive": "archive/NEW25.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 64,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 26.6,
+      "pt": 6.0,
+      "drive": 4.3,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (64/100): 5 rooms: one spare for guests/office; Spacious (235 m² living); Oil heating: replacement expected.",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office",
+      "Spacious (235 m² living)",
+      "Large garden (est. ~869 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 460740,
+    "total_cost_high": 470740,
+    "operating_monthly_est": 573,
+    "operating_note": "Est. ~€573/month: BK €150 (assumed, not in listing) + heating ~€423 (HWB 180 assumed, Gas + Oil). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 869,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "OB13",
@@ -5131,7 +7078,44 @@ const PROPERTIES = [
     "archive": "archive/OB13.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 42,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 13.5,
+      "pt": 15.0,
+      "drive": 4.0,
+      "living": 3.9,
+      "garden": 9.1,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (42/100): Good public transport to the 8th district (51 min); Large garden (est. ~554 m²); High overall cost (est. €552k–€592k incl. renovation).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (51 min)",
+      "Large garden (est. ~554 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €552k–€592k incl. renovation)",
+      "Room count unknown — check before viewing"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 552045,
+    "total_cost_high": 592045,
+    "operating_monthly_est": 364,
+    "operating_note": "Est. ~€364/month: BK €150 (assumed, not in listing) + heating ~€214 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 554,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "NEW27",
@@ -5204,7 +7188,45 @@ const PROPERTIES = [
     "archive": "archive/NEW27.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 34,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 33.9,
+      "pt": 5.2,
+      "drive": 3.7,
+      "living": 1.5,
+      "garden": 9.5,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (34/100): Low overall cost (est. €433k–€478k incl. renovation); Large garden (est. ~577 m²); Long public-transport commute to the 8th district (91 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €433k–€478k incl. renovation)",
+      "Large garden (est. ~577 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (91 min)",
+      "Only 3 rooms — fails the 4-room need",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 75000,
+    "total_cost_low": 432599,
+    "total_cost_high": 477599,
+    "operating_monthly_est": 281,
+    "operating_note": "Est. ~€281/month: BK €99 (listing) + heating ~€182 (HWB 180 assumed, Oil). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 577,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "HM9",
@@ -5277,7 +7299,44 @@ const PROPERTIES = [
     "archive": "archive/HM9.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 61,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 43.2,
+      "pt": 10.9,
+      "drive": 5.4,
+      "living": 1.5,
+      "garden": 0.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (61/100): Low overall cost (est. €361k–€421k incl. renovation); 4 rooms: meets the parents/boys/girls need; Little garden (est. ~0 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €361k–€421k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need"
+    ],
+    "rec_weaknesses": [
+      "Little garden (est. ~0 m²)",
+      "Cellar unknown",
+      "Rohbau: large completion cost and time"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 110000,
+    "reno_estimate_high": 170000,
+    "total_cost_low": 361213,
+    "total_cost_high": 421213,
+    "operating_monthly_est": 332,
+    "operating_note": "Est. ~€332/month: BK €150 (assumed, not in listing) + heating ~€182 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 0,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "Rohbau: interior completion at €1,100–1,700/m²"
   },
   {
     "id": "NEW23",
@@ -5350,7 +7409,47 @@ const PROPERTIES = [
     "archive": "archive/NEW23.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 57,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 15.8,
+      "pt": 14.2,
+      "drive": 4.0,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (57/100): Good public transport to the 8th district (58 min); 4 rooms: meets the parents/boys/girls need; Oil heating: replacement expected.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (58 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (204 m² living)",
+      "Large garden (est. ~1072 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 115000,
+    "reno_estimate_high": 230000,
+    "total_cost_low": 482495,
+    "total_cost_high": 597495,
+    "operating_monthly_est": 516,
+    "operating_note": "Est. ~€516/month: BK €150 (assumed, not in listing) + heating ~€366 (HWB 180 assumed, Oil + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1072,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "NEW22",
@@ -5423,7 +7522,46 @@ const PROPERTIES = [
     "archive": "archive/NEW22.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 66,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 0.0,
+      "drive": 1.4,
+      "living": 7.5,
+      "garden": 3.4,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (66/100): Low overall cost (est. €276k–€341k incl. renovation); 5 rooms: one spare for guests/office; Long public-transport commute to the 8th district (120 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €276k–€341k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Spacious (146 m² living)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (120 min)",
+      "Long drive to the 21st district (50 min)",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 35000,
+    "reno_estimate_high": 100000,
+    "total_cost_low": 276340,
+    "total_cost_high": 341340,
+    "operating_monthly_est": 413,
+    "operating_note": "Est. ~€413/month: BK €150 (assumed, not in listing) + heating ~€263 (HWB 180 assumed, Oil). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 272,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "NEW24",
@@ -5496,7 +7634,41 @@ const PROPERTIES = [
     "archive": "archive/NEW24.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 64,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 34.5,
+      "pt": 10.9,
+      "drive": 5.4,
+      "living": 3.5,
+      "garden": 1.2,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (64/100): Low overall cost (est. €420k–€465k incl. renovation); 5 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Low overall cost (est. €420k–€465k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 15000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 419793,
+    "total_cost_high": 464793,
+    "operating_monthly_est": 359,
+    "operating_note": "Est. ~€359/month: BK €150 (assumed, not in listing) + heating ~€209 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 160,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "OB14",
@@ -5569,7 +7741,43 @@ const PROPERTIES = [
     "archive": "archive/OB14.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 10,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 16.6,
+      "pt": 8.7,
+      "drive": 4.0,
+      "living": 4.0,
+      "garden": 0.0,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (10/100): Some storage (no cellar named); High overall cost (est. €558k–€568k incl. renovation).",
+    "rec_strengths": [
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €558k–€568k incl. renovation)",
+      "Only 3 rooms — fails the 4-room need",
+      "Little garden (est. ~0 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 558373,
+    "total_cost_high": 568373,
+    "operating_monthly_est": 276,
+    "operating_note": "Est. ~€276/month: BK €150 (assumed, not in listing) + heating ~€126 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 0,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "HM10",
@@ -5715,7 +7923,42 @@ const PROPERTIES = [
     "archive": "archive/OB12.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 58,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 18.6,
+      "pt": 13.6,
+      "drive": 6.6,
+      "living": 7.6,
+      "garden": 5.4,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (58/100): Good public transport to the 8th district (60 min); 7 rooms: one spare for guests/office.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (60 min)",
+      "7 rooms: one spare for guests/office",
+      "Spacious (147 m² living)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 75000,
+    "total_cost_low": 524620,
+    "total_cost_high": 579620,
+    "operating_monthly_est": 268,
+    "operating_note": "Est. ~€268/month: BK €114 (listing) + heating ~€154 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 372,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "HM12",
@@ -5788,7 +8031,42 @@ const PROPERTIES = [
     "archive": "archive/HM12.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 68,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 43.9,
+      "pt": 10.9,
+      "drive": 5.4,
+      "living": 1.3,
+      "garden": 1.9,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (68/100): Low overall cost (est. €356k–€406k incl. renovation); 4 rooms: meets the parents/boys/girls need.",
+    "rec_strengths": [
+      "Low overall cost (est. €356k–€406k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 50000,
+    "reno_estimate_high": 100000,
+    "total_cost_low": 356063,
+    "total_cost_high": 406063,
+    "operating_monthly_est": 384,
+    "operating_note": "Est. ~€384/month: BK €204 (listing) + heating ~€180 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 196,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "NEW26",
@@ -5861,7 +8139,43 @@ const PROPERTIES = [
     "archive": "archive/NEW26.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 62,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 37.4,
+      "pt": 6.5,
+      "drive": 4.3,
+      "living": 4.2,
+      "garden": 10.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (62/100): Low overall cost (est. €403k–€443k incl. renovation); 4 rooms: meets the parents/boys/girls need; Cellar unknown.",
+    "rec_strengths": [
+      "Low overall cost (est. €403k–€443k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~657 m²)"
+    ],
+    "rec_weaknesses": [
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 402853,
+    "total_cost_high": 442853,
+    "operating_monthly_est": 369,
+    "operating_note": "Est. ~€369/month: BK €150 (assumed, not in listing) + heating ~€219 (HWB 180 assumed, Gas). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 657,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "ST1",
@@ -5934,7 +8248,42 @@ const PROPERTIES = [
     "archive": "archive/ST1.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 48,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 20.0,
+      "pt": 12.0,
+      "drive": 6.9,
+      "living": 4.0,
+      "garden": 1.0,
+      "storage": 0,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (48/100): 5 rooms: one spare for guests/office; Garden size unknown.",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 10000,
+    "reno_estimate_high": 30000,
+    "total_cost_low": 524493,
+    "total_cost_high": 544493,
+    "operating_monthly_est": 343,
+    "operating_note": "Est. ~€343/month: BK €305 (listing) + heating ~€38 (HWB 54, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1990–2009 or HWB C: refresh €80–250/m²"
   },
   {
     "id": "ST2",
@@ -6007,7 +8356,43 @@ const PROPERTIES = [
     "archive": "archive/ST2.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 66,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 19.1,
+      "pt": 15.0,
+      "drive": 10.0,
+      "living": 8.0,
+      "garden": 4.7,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (66/100): Good public transport to the 8th district (54 min); Short drive to the 21st district (20 min).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (54 min)",
+      "Short drive to the 21st district (20 min)",
+      "6 rooms: one spare for guests/office",
+      "Spacious (170 m² living)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 75000,
+    "reno_estimate_high": 155000,
+    "total_cost_low": 501733,
+    "total_cost_high": 581733,
+    "operating_monthly_est": 330,
+    "operating_note": "Est. ~€330/month: BK €150 (assumed, not in listing) + heating ~€180 (HWB 182, Geothermal). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 334,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "ST3",
@@ -6080,7 +8465,43 @@ const PROPERTIES = [
     "archive": "archive/ST3.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 71,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 44.5,
+      "pt": 9.0,
+      "drive": 6.6,
+      "living": 4.9,
+      "garden": 0.0,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (71/100): Low overall cost (est. €384k–€394k incl. renovation); 5 rooms: one spare for guests/office; Little garden (est. ~98 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €384k–€394k incl. renovation)",
+      "5 rooms: one spare for guests/office",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Little garden (est. ~98 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 383950,
+    "total_cost_high": 393950,
+    "operating_monthly_est": 283,
+    "operating_note": "Est. ~€283/month: BK €150 (assumed, not in listing) + heating ~€133 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 98,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "ST4",
@@ -6153,7 +8574,43 @@ const PROPERTIES = [
     "archive": "archive/ST4.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 67,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 38.2,
+      "pt": 8.5,
+      "drive": 6.9,
+      "living": 3.7,
+      "garden": 10.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (67/100): Low overall cost (est. €436k–€446k incl. renovation); 4 rooms: meets the parents/boys/girls need; Cellar unknown.",
+    "rec_strengths": [
+      "Low overall cost (est. €436k–€446k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~704 m²)"
+    ],
+    "rec_weaknesses": [
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 436058,
+    "total_cost_high": 446058,
+    "operating_monthly_est": 179,
+    "operating_note": "Est. ~€179/month: BK €150 (assumed, not in listing) + heating ~€29 (HWB 42, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 704,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "ST5",
@@ -6226,7 +8683,45 @@ const PROPERTIES = [
     "archive": "archive/ST5.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 54,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 33.5,
+      "pt": 13.9,
+      "drive": 9.1,
+      "living": 4.7,
+      "garden": 1.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (54/100): Low overall cost (est. €461k–€476k incl. renovation); Good public transport to the 8th district (59 min); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €461k–€476k incl. renovation)",
+      "Good public transport to the 8th district (59 min)",
+      "Short drive to the 21st district (23 min)"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing",
+      "Garden size unknown",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 15000,
+    "total_cost_low": 460652,
+    "total_cost_high": 475652,
+    "operating_monthly_est": 194,
+    "operating_note": "Est. ~€194/month: BK €150 (assumed, not in listing) + heating ~€44 (HWB 35, Gas). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "recent/efficient: €0–15k"
   },
   {
     "id": "ST6",
@@ -6299,7 +8794,45 @@ const PROPERTIES = [
     "archive": "archive/ST6.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 56,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 23.6,
+      "pt": 15.0,
+      "drive": 10.0,
+      "living": 4.1,
+      "garden": 1.0,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (56/100): Good public transport to the 8th district (49 min); Short drive to the 21st district (10 min); Garden size unknown.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (49 min)",
+      "Short drive to the 21st district (10 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Private seller: no buyer commission",
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 55000,
+    "total_cost_low": 507450,
+    "total_cost_high": 532450,
+    "operating_monthly_est": 277,
+    "operating_note": "Est. ~€277/month: BK €150 (assumed, not in listing) + heating ~€127 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "ST7",
@@ -6372,7 +8905,46 @@ const PROPERTIES = [
     "archive": "archive/ST7.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 62,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 33.6,
+      "pt": 13.6,
+      "drive": 10.0,
+      "living": 0.0,
+      "garden": 0.1,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (62/100): Low overall cost (est. €466k–€481k incl. renovation); Good public transport to the 8th district (60 min); Small living area (90 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €466k–€481k incl. renovation)",
+      "Good public transport to the 8th district (60 min)",
+      "Short drive to the 21st district (20 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Small living area (90 m²)",
+      "Little garden (est. ~106 m²)"
+    ],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 5000,
+    "reno_estimate_high": 20000,
+    "total_cost_low": 465740,
+    "total_cost_high": 480740,
+    "operating_monthly_est": 150,
+    "operating_note": "Est. ~€150/month: BK €100 (listing) + heating ~€50 (HWB 56, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 106,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1990–2009 or HWB C: refresh €80–250/m²"
   },
   {
     "id": "ST8",
@@ -6518,7 +9090,44 @@ const PROPERTIES = [
     "archive": "archive/ST9.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 53,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 13.4,
+      "pt": 13.1,
+      "drive": 9.7,
+      "living": 2.7,
+      "garden": 9.2,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (53/100): Good public transport to the 8th district (62 min); Short drive to the 21st district (21 min).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (62 min)",
+      "Short drive to the 21st district (21 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~561 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 55000,
+    "reno_estimate_high": 110000,
+    "total_cost_low": 547553,
+    "total_cost_high": 602553,
+    "operating_monthly_est": 348,
+    "operating_note": "Est. ~€348/month: BK €150 (assumed, not in listing) + heating ~€198 (HWB 180 assumed, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 561,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "ST10",
@@ -6591,7 +9200,46 @@ const PROPERTIES = [
     "archive": "archive/ST10.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 43,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 3.2,
+      "pt": 11.7,
+      "drive": 9.1,
+      "living": 3.6,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (43/100): Short drive to the 21st district (23 min); 4 rooms: meets the parents/boys/girls need; High overall cost (est. €568k–€653k incl. renovation).",
+    "rec_strengths": [
+      "Short drive to the 21st district (23 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~792 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €568k–€653k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 80000,
+    "reno_estimate_high": 165000,
+    "total_cost_low": 568165,
+    "total_cost_high": 653165,
+    "operating_monthly_est": 581,
+    "operating_note": "Est. ~€581/month: BK €150 (assumed, not in listing) + heating ~€431 (HWB 368, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 792,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "ST11",
@@ -6664,7 +9312,44 @@ const PROPERTIES = [
     "archive": "archive/ST11.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 46,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 15.5,
+      "pt": 6.5,
+      "drive": 8.6,
+      "living": 5.7,
+      "garden": 7.2,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (46/100): Short drive to the 21st district (25 min); 4 rooms: meets the parents/boys/girls need; Rohbau: large completion cost and time.",
+    "rec_strengths": [
+      "Short drive to the 21st district (25 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~462 m²)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Rohbau: large completion cost and time"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 145000,
+    "reno_estimate_high": 225000,
+    "total_cost_low": 539920,
+    "total_cost_high": 619920,
+    "operating_monthly_est": 196,
+    "operating_note": "Est. ~€196/month: BK €150 (assumed, not in listing) + heating ~€46 (HWB 60, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 462,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "Rohbau: interior completion at €1,100–1,700/m²"
   },
   {
     "id": "ST12",
@@ -6737,7 +9422,43 @@ const PROPERTIES = [
     "archive": "archive/ST12.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 60,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 13.3,
+      "pt": 14.7,
+      "drive": 10.0,
+      "living": 4.0,
+      "garden": 8.8,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (60/100): Good public transport to the 8th district (56 min); Short drive to the 21st district (16 min).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (56 min)",
+      "Short drive to the 21st district (16 min)",
+      "5 rooms: one spare for guests/office",
+      "Large garden (est. ~538 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 85000,
+    "reno_estimate_high": 170000,
+    "total_cost_low": 522703,
+    "total_cost_high": 607703,
+    "operating_monthly_est": 435,
+    "operating_note": "Est. ~€435/month: BK €150 (assumed, not in listing) + heating ~€285 (HWB 237, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 538,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "ST13",
@@ -6810,7 +9531,43 @@ const PROPERTIES = [
     "archive": "archive/ST13.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 60,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 35.5,
+      "pt": 9.3,
+      "drive": 6.6,
+      "living": 3.6,
+      "garden": 1.0,
+      "storage": 0,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (60/100): Low overall cost (est. €427k–€467k incl. renovation); 5 rooms: one spare for guests/office; Garden size unknown.",
+    "rec_strengths": [
+      "Low overall cost (est. €427k–€467k incl. renovation)",
+      "5 rooms: one spare for guests/office"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 426576,
+    "total_cost_high": 466576,
+    "operating_monthly_est": 273,
+    "operating_note": "Est. ~€273/month: BK €150 (assumed, not in listing) + heating ~€123 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "ST14",
@@ -6883,7 +9640,47 @@ const PROPERTIES = [
     "archive": "archive/ST14.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 45,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 9.3,
+      "drive": 9.1,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (45/100): Short drive to the 21st district (23 min); 7 rooms: one spare for guests/office; High overall cost (est. €667k–€777k incl. renovation).",
+    "rec_strengths": [
+      "Short drive to the 21st district (23 min)",
+      "7 rooms: one spare for guests/office",
+      "Spacious (230 m² living)",
+      "Large garden (est. ~822 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €667k–€777k incl. renovation)",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 120000,
+    "reno_estimate_high": 230000,
+    "total_cost_low": 667403,
+    "total_cost_high": 777403,
+    "operating_monthly_est": 571,
+    "operating_note": "Est. ~€571/month: BK €150 (assumed, not in listing) + heating ~€421 (HWB 183, Oil + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 822,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "HM13",
@@ -6956,7 +9753,43 @@ const PROPERTIES = [
     "archive": "archive/HM13.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 69,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 9.3,
+      "drive": 6.6,
+      "living": 1.3,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Possible fit (69/100): Low overall cost (est. €264k–€309k incl. renovation); Large garden (est. ~1427 m²); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €264k–€309k incl. renovation)",
+      "Large garden (est. ~1427 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 45000,
+    "reno_estimate_high": 90000,
+    "total_cost_low": 264400,
+    "total_cost_high": 309400,
+    "operating_monthly_est": 438,
+    "operating_note": "Est. ~€438/month: BK €150 (assumed, not in listing) + heating ~€288 (HWB 288, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1427,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "SA6",
@@ -7029,7 +9862,46 @@ const PROPERTIES = [
     "archive": "archive/SA6.html",
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 32,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 9.3,
+      "drive": 4.3,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 3,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (32/100): Spacious (292 m² living); Large garden (est. ~644 m²); High overall cost (est. €706k–€911k incl. renovation).",
+    "rec_strengths": [
+      "Spacious (292 m² living)",
+      "Large garden (est. ~644 m²)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €706k–€911k incl. renovation)",
+      "Room count unknown — check before viewing"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 205000,
+    "reno_estimate_high": 410000,
+    "total_cost_low": 706329,
+    "total_cost_high": 911329,
+    "operating_monthly_est": 849,
+    "operating_note": "Est. ~€849/month: BK €110 (listing) + heating ~€739 (HWB 253, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 644,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "HM14",
@@ -7111,7 +9983,48 @@ const PROPERTIES = [
     "first_seen_at": "2026-09-25T06:19",
     "image": "img/HM14.jpg",
     "archive": "archive/HM14.html",
-    "archived_at": "2026-09-26"
+    "archived_at": "2026-09-26",
+    "fit_score": 58,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 1.1,
+      "drive": 0.0,
+      "living": 0.0,
+      "garden": 10.0,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (58/100): Low overall cost (est. €317k–€372k incl. renovation); 4 rooms: meets the parents/boys/girls need; Long public-transport commute to the 8th district (106 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €317k–€372k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~794 m²)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (106 min)",
+      "Long drive to the 21st district (61 min)",
+      "Small living area (80 m²)"
+    ],
+    "rec_opportunities": [
+      "Price already cut by €20k: seller may negotiate",
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 55000,
+    "reno_estimate_high": 110000,
+    "total_cost_low": 317183,
+    "total_cost_high": 372183,
+    "operating_monthly_est": 333,
+    "operating_note": "Est. ~€333/month: BK €150 (assumed, not in listing) + heating ~€183 (HWB 391, Air-source heat pump + Wood). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 794,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "OB15",
@@ -7184,7 +10097,45 @@ const PROPERTIES = [
     "image": "img/OB15.jpg",
     "archive": "archive/OB15.html",
     "archived_at": "2026-09-26",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 6,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 9.8,
+      "drive": 6.6,
+      "living": 0.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (6/100): Large garden (est. ~615 m²); Cellar mentioned; High overall cost (est. €660k–€720k incl. renovation).",
+    "rec_strengths": [
+      "Large garden (est. ~615 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €660k–€720k incl. renovation)",
+      "Only 3 rooms — fails the 4-room need",
+      "Small living area (84 m²)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 60000,
+    "reno_estimate_high": 120000,
+    "total_cost_low": 660059,
+    "total_cost_high": 720059,
+    "operating_monthly_est": 261,
+    "operating_note": "Est. ~€261/month: BK €110 (listing) + heating ~€151 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 615,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "OB16",
@@ -7257,7 +10208,46 @@ const PROPERTIES = [
     "image": "img/OB16.jpg",
     "archive": "archive/OB16.html",
     "archived_at": "2026-09-26",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 48,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 2.1,
+      "pt": 14.5,
+      "drive": 6.6,
+      "living": 8.0,
+      "garden": 7.4,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (48/100): Good public transport to the 8th district (57 min); 6 rooms: one spare for guests/office; High overall cost (est. €599k–€674k incl. renovation).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (57 min)",
+      "6 rooms: one spare for guests/office",
+      "Spacious (155 m² living)",
+      "Large garden (est. ~470 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €599k–€674k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Private seller: no buyer commission",
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 80000,
+    "reno_estimate_high": 155000,
+    "total_cost_low": 598829,
+    "total_cost_high": 673829,
+    "operating_monthly_est": 421,
+    "operating_note": "Est. ~€421/month: BK €150 (assumed, not in listing) + heating ~€271 (HWB 175, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 470,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "NEW28",
@@ -7330,7 +10320,45 @@ const PROPERTIES = [
     "archive": "archive/NEW28.html",
     "archived_at": "2026-09-27",
     "first_seen_at": "2026-09-27T06:31",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 68,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 12.5,
+      "drive": 4.9,
+      "living": 0.0,
+      "garden": 9.1,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Possible fit (68/100): Low overall cost (est. €289k–€349k incl. renovation); Good public transport to the 8th district (64 min); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €289k–€349k incl. renovation)",
+      "Good public transport to the 8th district (64 min)",
+      "Large garden (est. ~557 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing",
+      "Living area unknown"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 60000,
+    "reno_estimate_high": 120000,
+    "total_cost_low": 289273,
+    "total_cost_high": 349273,
+    "operating_monthly_est": 366,
+    "operating_note": "Est. ~€366/month: BK €150 (assumed, not in listing) + heating ~€216 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 557,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "NEW29",
@@ -7403,7 +10431,45 @@ const PROPERTIES = [
     "archive": "archive/NEW29.html",
     "archived_at": "2026-09-27",
     "first_seen_at": "2026-09-27T17:21",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 64,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 19.8,
+      "pt": 15.0,
+      "drive": 8.0,
+      "living": 8.0,
+      "garden": 6.9,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (64/100): Good public transport to the 8th district (52 min); Short drive to the 21st district (27 min); Rohbau: large completion cost and time.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (52 min)",
+      "Short drive to the 21st district (27 min)",
+      "5 rooms: one spare for guests/office",
+      "Spacious (177 m² living)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Rohbau: large completion cost and time"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 195000,
+    "reno_estimate_high": 300000,
+    "total_cost_low": 468153,
+    "total_cost_high": 573153,
+    "operating_monthly_est": 469,
+    "operating_note": "Est. ~€469/month: BK €150 (assumed, not in listing) + heating ~€319 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 443,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "Rohbau: interior completion at €1,100–1,700/m²"
   },
   {
     "id": "NEW30",
@@ -7549,7 +10615,45 @@ const PROPERTIES = [
     "archive": "archive/NEW31.html",
     "archived_at": "2026-09-28",
     "first_seen_at": "2026-09-28T17:47",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 32,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 31.8,
+      "pt": 4.1,
+      "drive": 0.3,
+      "living": 5.3,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (32/100): Low overall cost (est. €434k–€484k incl. renovation); Large garden (est. ~864 m²); Long public-transport commute to the 8th district (95 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €434k–€484k incl. renovation)",
+      "Large garden (est. ~864 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (95 min)",
+      "Long drive to the 21st district (54 min)",
+      "Only 3 rooms — fails the 4-room need"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 80000,
+    "total_cost_low": 433696,
+    "total_cost_high": 483696,
+    "operating_monthly_est": 361,
+    "operating_note": "Est. ~€361/month: BK €150 (assumed, not in listing) + heating ~€211 (HWB 163, Pellets). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 864,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²"
   },
   {
     "id": "NEW32",
@@ -7622,7 +10726,44 @@ const PROPERTIES = [
     "archive": "archive/NEW32.html",
     "archived_at": "2026-09-28",
     "first_seen_at": "2026-09-28T17:47",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 46,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 33.2,
+      "pt": 9.8,
+      "drive": 4.3,
+      "living": 0.0,
+      "garden": 7.1,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (46/100): Low overall cost (est. €458k–€473k incl. renovation); Large garden (est. ~454 m²); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €458k–€473k incl. renovation)",
+      "Large garden (est. ~454 m²)"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing",
+      "Small living area (80 m²)",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 35000,
+    "total_cost_low": 457703,
+    "total_cost_high": 472703,
+    "operating_monthly_est": 234,
+    "operating_note": "Est. ~€234/month: BK €150 (assumed, not in listing) + heating ~€84 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 454,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "OB17",
@@ -7695,7 +10836,42 @@ const PROPERTIES = [
     "archive": "archive/OB17.html",
     "archived_at": "2026-09-28",
     "first_seen_at": "2026-09-28T17:47",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 23,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 12.4,
+      "pt": 3.8,
+      "drive": 4.0,
+      "living": 4.0,
+      "garden": 6.6,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (23/100): High overall cost (est. €577k–€602k incl. renovation).",
+    "rec_strengths": [],
+    "rec_weaknesses": [
+      "High overall cost (est. €577k–€602k incl. renovation)",
+      "Long public-transport commute to the 8th district (96 min)",
+      "Room count unknown — check before viewing",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 55000,
+    "total_cost_low": 577403,
+    "total_cost_high": 602403,
+    "operating_monthly_est": 276,
+    "operating_note": "Est. ~€276/month: BK €150 (assumed, not in listing) + heating ~€126 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 430,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   },
   {
     "id": "SA7",
@@ -7768,7 +10944,48 @@ const PROPERTIES = [
     "archive": "archive/SA7.html",
     "archived_at": "2026-09-29",
     "first_seen_at": "2026-09-29T17:46",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 38,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 5.7,
+      "drive": 2.0,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 3,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (38/100): 10 rooms: one spare for guests/office; Spacious (264 m² living); High overall cost (est. €725k–€920k incl. renovation).",
+    "rec_strengths": [
+      "10 rooms: one spare for guests/office",
+      "Spacious (264 m² living)",
+      "Large garden (est. ~1287 m²)",
+      "Cellar mentioned",
+      "Sauna"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €725k–€920k incl. renovation)",
+      "Long drive to the 21st district (48 min)",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 200000,
+    "reno_estimate_high": 395000,
+    "total_cost_low": 725463,
+    "total_cost_high": 920463,
+    "operating_monthly_est": 828,
+    "operating_note": "Est. ~€828/month: BK €150 (assumed, not in listing) + heating ~€678 (HWB 257, Oil + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1287,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "OB18",
@@ -7841,7 +11058,46 @@ const PROPERTIES = [
     "archive": "archive/OB18.html",
     "archived_at": "2026-09-30",
     "first_seen_at": "2026-09-30T17:37",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 33,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 6.1,
+      "pt": 13.1,
+      "drive": 6.9,
+      "living": 0.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Weak fit (33/100): Good public transport to the 8th district (62 min); Large garden (est. ~1076 m²); High overall cost (est. €581k–€636k incl. renovation).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (62 min)",
+      "Large garden (est. ~1076 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €581k–€636k incl. renovation)",
+      "Room count unknown — check before viewing",
+      "Small living area (83 m²)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 60000,
+    "reno_estimate_high": 115000,
+    "total_cost_low": 581075,
+    "total_cost_high": 636075,
+    "operating_monthly_est": 443,
+    "operating_note": "Est. ~€443/month: BK €150 (assumed, not in listing) + heating ~€293 (HWB 353, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1076,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "OB19",
@@ -7914,7 +11170,48 @@ const PROPERTIES = [
     "archive": "archive/OB19.html",
     "archived_at": "2026-09-30",
     "first_seen_at": "2026-09-30T17:37",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 39,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 15.0,
+      "drive": 9.1,
+      "living": 0.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (39/100): Good public transport to the 8th district (55 min); Short drive to the 21st district (23 min); High overall cost (est. €647k–€692k incl. renovation).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (55 min)",
+      "Short drive to the 21st district (23 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Large garden (est. ~1481 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €647k–€692k incl. renovation)",
+      "Small living area (90 m²)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 45000,
+    "reno_estimate_high": 90000,
+    "total_cost_low": 647253,
+    "total_cost_high": 692253,
+    "operating_monthly_est": 312,
+    "operating_note": "Est. ~€312/month: BK €150 (assumed, not in listing) + heating ~€162 (HWB 180 assumed, Pellets). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 1481,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed: €500–1,000/m²"
   },
   {
     "id": "HM15",
@@ -7987,7 +11284,47 @@ const PROPERTIES = [
     "archive": "archive/HM15.html",
     "archived_at": "2026-10-01",
     "first_seen_at": "2026-10-01T06:28",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 44,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 9.9,
+      "pt": 5.2,
+      "drive": 1.7,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (44/100): 6 rooms: one spare for guests/office; Spacious (260 m² living); Long public-transport commute to the 8th district (91 min).",
+    "rec_strengths": [
+      "6 rooms: one spare for guests/office",
+      "Spacious (260 m² living)",
+      "Large garden (est. ~844 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (91 min)",
+      "Long drive to the 21st district (49 min)"
+    ],
+    "rec_opportunities": [
+      "Private seller: no buyer commission",
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 180000,
+    "reno_estimate_high": 365000,
+    "total_cost_low": 471775,
+    "total_cost_high": 656775,
+    "operating_monthly_est": 618,
+    "operating_note": "Est. ~€618/month: BK €150 (assumed, not in listing) + heating ~€468 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 844,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "HM16",
@@ -8060,7 +11397,47 @@ const PROPERTIES = [
     "archive": "archive/HM16.html",
     "archived_at": "2026-10-02",
     "first_seen_at": "2026-10-02T06:30",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 38,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 0.5,
+      "drive": 2.6,
+      "living": 0.0,
+      "garden": 10.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (38/100): Low overall cost (est. €349k–€384k incl. renovation); Large garden (est. ~792 m²); Long public-transport commute to the 8th district (108 min).",
+    "rec_strengths": [
+      "Low overall cost (est. €349k–€384k incl. renovation)",
+      "Large garden (est. ~792 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (108 min)",
+      "Long drive to the 21st district (46 min)",
+      "Only 3 rooms — fails the 4-room need",
+      "Small living area (72 m²)",
+      "Oil heating: replacement expected"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 25000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 348615,
+    "total_cost_high": 383615,
+    "operating_monthly_est": 329,
+    "operating_note": "Est. ~€329/month: BK €150 (assumed, not in listing) + heating ~€179 (HWB 248, Oil). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 792,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²; + €15–25k oil-heating replacement"
   },
   {
     "id": "HM17",
@@ -8133,7 +11510,43 @@ const PROPERTIES = [
     "archive": "archive/HM17.html",
     "archived_at": "2026-10-02",
     "first_seen_at": "2026-10-02T06:30",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 55,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 20.0,
+      "pt": 10.9,
+      "drive": 4.6,
+      "living": 6.7,
+      "garden": 8.2,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (55/100): 4 rooms: meets the parents/boys/girls need; Spacious (140 m² living).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (140 m² living)",
+      "Large garden (est. ~508 m²)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 65000,
+    "reno_estimate_high": 125000,
+    "total_cost_low": 502703,
+    "total_cost_high": 562703,
+    "operating_monthly_est": 359,
+    "operating_note": "Est. ~€359/month: BK €150 (assumed, not in listing) + heating ~€209 (HWB 149, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 508,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
   },
   {
     "id": "HM18",
@@ -8215,7 +11628,48 @@ const PROPERTIES = [
     "image": "img/HM18.jpg",
     "archive": "archive/HM18.html",
     "archived_at": "2026-10-02",
-    "first_seen_at": "2026-10-02T06:30"
+    "first_seen_at": "2026-10-02T06:30",
+    "fit_score": 48,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 0.0,
+      "pt": 15.0,
+      "drive": 8.9,
+      "living": 8.0,
+      "garden": 10.0,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (48/100): Good public transport to the 8th district (48 min); Short drive to the 21st district (24 min); High overall cost (est. €559k–€679k incl. renovation).",
+    "rec_strengths": [
+      "Good public transport to the 8th district (48 min)",
+      "Short drive to the 21st district (24 min)",
+      "6 rooms: one spare for guests/office",
+      "Spacious (170 m² living)",
+      "Large garden (est. ~729 m²)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €559k–€679k incl. renovation)"
+    ],
+    "rec_opportunities": [
+      "Price already cut by €19k: seller may negotiate",
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 120000,
+    "reno_estimate_high": 240000,
+    "total_cost_low": 558790,
+    "total_cost_high": 678790,
+    "operating_monthly_est": 799,
+    "operating_note": "Est. ~€799/month: BK €150 (assumed, not in listing) + heating ~€649 (HWB 382, Gas). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 729,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "OB20",
@@ -8288,7 +11742,43 @@ const PROPERTIES = [
     "archive": "archive/OB20.html",
     "archived_at": "2026-10-02",
     "first_seen_at": "2026-10-02T06:30",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 30,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 22.3,
+      "pt": 0.0,
+      "drive": 3.1,
+      "living": 3.0,
+      "garden": 0.0,
+      "storage": 2,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (30/100): 4 rooms: meets the parents/boys/girls need; Some storage (no cellar named); Long public-transport commute to the 8th district (110 min).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (110 min)",
+      "Little garden (est. ~63 m²)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 534239,
+    "total_cost_high": 544239,
+    "operating_monthly_est": 185,
+    "operating_note": "Est. ~€185/month: BK €150 (assumed, not in listing) + heating ~€35 (HWB 54, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 63,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "HM19",
@@ -8361,7 +11851,43 @@ const PROPERTIES = [
     "archive": "archive/HM19.html",
     "archived_at": "2026-10-02",
     "first_seen_at": "2026-10-02T17:35",
-    "price_history": null
+    "price_history": null,
+    "fit_score": 62,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 10.1,
+      "drive": 4.0,
+      "living": 1.3,
+      "garden": 10.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": null,
+    "rec_summary": "Possible fit (62/100): Low overall cost (est. €320k–€355k incl. renovation); Large garden (est. ~695 m²); Room count unknown — check before viewing.",
+    "rec_strengths": [
+      "Low overall cost (est. €320k–€355k incl. renovation)",
+      "Large garden (est. ~695 m²)"
+    ],
+    "rec_weaknesses": [
+      "Room count unknown — check before viewing",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 25000,
+    "reno_estimate_high": 60000,
+    "total_cost_low": 320093,
+    "total_cost_high": 355093,
+    "operating_monthly_est": 330,
+    "operating_note": "Est. ~€330/month: BK €150 (assumed, not in listing) + heating ~€180 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 695,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²"
   },
   {
     "id": "HM20",
@@ -8434,7 +11960,44 @@ const PROPERTIES = [
     "image": "img/HM20.jpg",
     "archive": "archive/HM20.html",
     "archived_at": "2026-10-04",
-    "first_seen_at": "2026-10-04T06:24"
+    "first_seen_at": "2026-10-04T06:24",
+    "fit_score": 28,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 26.2,
+      "pt": 9.0,
+      "drive": 2.6,
+      "living": 5.1,
+      "garden": 10.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (28/100): Large garden (est. ~1202 m²); Long drive to the 21st district (46 min).",
+    "rec_strengths": [
+      "Large garden (est. ~1202 m²)"
+    ],
+    "rec_weaknesses": [
+      "Long drive to the 21st district (46 min)",
+      "Only 3 rooms — fails the 4-room need",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Big plot: room for play area, garden shed or extension"
+    ],
+    "reno_estimate_low": 90000,
+    "reno_estimate_high": 180000,
+    "total_cost_low": 446525,
+    "total_cost_high": 536525,
+    "operating_monthly_est": 380,
+    "operating_note": "Est. ~€380/month: BK €150 (assumed, not in listing) + heating ~€230 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 1202,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "OB21",
@@ -8507,7 +12070,45 @@ const PROPERTIES = [
     "image": "img/OB21.jpg",
     "archive": "archive/OB21.html",
     "archived_at": "2026-10-04",
-    "first_seen_at": "2026-10-04T17:29"
+    "first_seen_at": "2026-10-04T17:29",
+    "fit_score": 48,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 20.3,
+      "pt": 4.4,
+      "drive": 2.3,
+      "living": 8.0,
+      "garden": 7.3,
+      "storage": 2,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (48/100): 5 rooms: one spare for guests/office; Spacious (152 m² living); Long public-transport commute to the 8th district (94 min).",
+    "rec_strengths": [
+      "5 rooms: one spare for guests/office",
+      "Spacious (152 m² living)",
+      "Large garden (est. ~463 m²)",
+      "Some storage (no cellar named)"
+    ],
+    "rec_weaknesses": [
+      "Long public-transport commute to the 8th district (94 min)",
+      "Long drive to the 21st district (47 min)"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 547403,
+    "total_cost_high": 557403,
+    "operating_monthly_est": 176,
+    "operating_note": "Est. ~€176/month: BK €150 (assumed, not in listing) + heating ~€26 (HWB 29, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": 463,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "HM21",
@@ -8580,7 +12181,42 @@ const PROPERTIES = [
     "image": "img/HM21.jpg",
     "archive": "archive/HM21.html",
     "archived_at": "2026-10-05",
-    "first_seen_at": "2026-10-05T06:27"
+    "first_seen_at": "2026-10-05T06:27",
+    "fit_score": 41,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 45.0,
+      "pt": 11.5,
+      "drive": 4.6,
+      "living": 3.7,
+      "garden": 1.5,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (41/100): Low overall cost (est. €398k–€408k incl. renovation); Only 3 rooms — fails the 4-room need.",
+    "rec_strengths": [
+      "Low overall cost (est. €398k–€408k incl. renovation)"
+    ],
+    "rec_weaknesses": [
+      "Only 3 rooms — fails the 4-room need",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Private seller: no buyer commission"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 397875,
+    "total_cost_high": 407875,
+    "operating_monthly_est": 125,
+    "operating_note": "Est. ~€125/month: BK €80 (listing) + heating ~€45 (HWB 65, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 173,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "OB22",
@@ -8653,7 +12289,43 @@ const PROPERTIES = [
     "image": "img/OB22.jpg",
     "archive": "archive/OB22.html",
     "archived_at": "2026-10-05",
-    "first_seen_at": "2026-10-05T17:35"
+    "first_seen_at": "2026-10-05T17:35",
+    "fit_score": 4,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 4.5,
+      "pt": 9.3,
+      "drive": 4.3,
+      "living": 5.3,
+      "garden": 1.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (4/100): Cellar mentioned; High overall cost (est. €604k–€649k incl. renovation).",
+    "rec_strengths": [
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "High overall cost (est. €604k–€649k incl. renovation)",
+      "Only 3 rooms — fails the 4-room need",
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Private seller: no buyer commission"
+    ],
+    "reno_estimate_low": 20000,
+    "reno_estimate_high": 65000,
+    "total_cost_low": 603550,
+    "total_cost_high": 648550,
+    "operating_monthly_est": 384,
+    "operating_note": "Est. ~€384/month: BK €150 (assumed, not in listing) + heating ~€234 (HWB 180 assumed, Gas + Wood). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "condition unknown: €150–500/m²"
   },
   {
     "id": "HM22",
@@ -8726,7 +12398,43 @@ const PROPERTIES = [
     "image": "img/HM22.jpg",
     "archive": "archive/HM22.html",
     "archived_at": "2026-10-06",
-    "first_seen_at": "2026-10-06T17:32"
+    "first_seen_at": "2026-10-06T17:32",
+    "fit_score": 42,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 19.5,
+      "pt": 10.4,
+      "drive": 4.6,
+      "living": 1.7,
+      "garden": 1.0,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (42/100): 4 rooms: meets the parents/boys/girls need; Cellar mentioned; Garden size unknown.",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 70000,
+    "reno_estimate_high": 145000,
+    "total_cost_low": 494539,
+    "total_cost_high": 569539,
+    "operating_monthly_est": 390,
+    "operating_note": "Est. ~€390/month: BK €205 (listing) + heating ~€185 (HWB 180 assumed, Pellets + Electric). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": null,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   },
   {
     "id": "OB23",
@@ -8799,7 +12507,43 @@ const PROPERTIES = [
     "image": "img/OB23.jpg",
     "archive": "archive/OB23.html",
     "archived_at": "2026-10-07",
-    "first_seen_at": "2026-10-07T06:29"
+    "first_seen_at": "2026-10-07T06:29",
+    "fit_score": 44,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 21.7,
+      "pt": 10.1,
+      "drive": 5.7,
+      "living": 0.1,
+      "garden": 0.9,
+      "storage": 5,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (44/100): 4 rooms: meets the parents/boys/girls need; Cellar mentioned; Small living area (91 m²).",
+    "rec_strengths": [
+      "4 rooms: meets the parents/boys/girls need",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Small living area (91 m²)",
+      "Little garden (est. ~145 m²)"
+    ],
+    "rec_opportunities": [
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 545209,
+    "total_cost_high": 555209,
+    "operating_monthly_est": 123,
+    "operating_note": "Est. ~€123/month: BK €99 (listing) + heating ~€24 (HWB 45, Air-source heat pump). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 145,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "turnkey: minor works only"
   },
   {
     "id": "HM23",
@@ -8872,7 +12616,43 @@ const PROPERTIES = [
     "image": "img/HM23.jpg",
     "archive": "archive/HM23.html",
     "archived_at": "2026-10-07",
-    "first_seen_at": "2026-10-07T17:32"
+    "first_seen_at": "2026-10-07T17:32",
+    "fit_score": 43,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 30.5,
+      "pt": 5.7,
+      "drive": 3.7,
+      "living": 3.1,
+      "garden": 0.0,
+      "storage": 0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (43/100): Low overall cost (est. €468k–€488k incl. renovation); 4 rooms: meets the parents/boys/girls need; Little garden (est. ~47 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €468k–€488k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need"
+    ],
+    "rec_weaknesses": [
+      "Little garden (est. ~47 m²)",
+      "Cellar unknown"
+    ],
+    "rec_opportunities": [
+      "Choose own floors/finishes"
+    ],
+    "reno_estimate_low": 30000,
+    "reno_estimate_high": 50000,
+    "total_cost_low": 467703,
+    "total_cost_high": 487703,
+    "operating_monthly_est": 269,
+    "operating_note": "Est. ~€269/month: BK €150 (assumed, not in listing) + heating ~€119 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "unknown",
+    "garden_est_m2": 47,
+    "fit_scored_at": "2026-10-07",
+    "reno_basis": "belagsfertig: floors, doors, painting, fittings at €250–450/m²"
   }
 ];
 const BUDGET = 450000;
@@ -9237,7 +13017,8 @@ function getFilters() {
     category: document.getElementById("categoryFilter").value,
     houseType: document.getElementById("typeFilter").value,
     finish: document.getElementById("finishFilter").value,
-    heating: document.getElementById("heatingFilter").value
+    heating: document.getElementById("heatingFilter").value,
+    fit: document.getElementById("fitFilter").value
   };
 }
 
@@ -9259,6 +13040,8 @@ function filterProps() {
     if (f.houseType !== "all" && p.type !== f.houseType) return false;
     if (!matchesFinishFilter(p, f.finish)) return false;
     if (!matchesHeatingFilter(p, f.heating)) return false;
+    if (f.fit === "atleast" && !(p.fit_label === "Highly recommended" || p.fit_label === "Worth a look")) return false;
+    if (f.fit !== "any" && f.fit !== "atleast" && p.fit_label !== f.fit) return false;
     if (f.town) {
       const hay = `${p.location_town || ""} ${p.plz || ""} ${p.district_or_region || ""} ${p.title || ""}`.toLowerCase();
       if (!hay.includes(f.town)) return false;
@@ -9291,6 +13074,41 @@ function sortProps(list) {
   });
 }
 
+function fitChip(p) {
+  if (p.fit_score == null) return '<span class="fit-chip fit-nr" title="Not scored (not active)">—</span>';
+  const cls = p.fit_label === "Highly recommended" ? "fit-hr" : (p.fit_label === "Worth a look" ? "fit-wl" : "fit-nr");
+  const short = p.fit_label === "Highly recommended" ? "Top" : (p.fit_label === "Worth a look" ? "Look" : "No");
+  return `<span class="fit-chip ${cls}" title="${escapeHtml(p.fit_label + " — " + (p.rec_summary || ""))}">${p.fit_score} · ${short}</span>`;
+}
+function fitCostRange(p) {
+  return p.total_cost_low != null ? `${fmtK(p.total_cost_low)}–${fmtK(p.total_cost_high)}` : "—";
+}
+function fitPopupLine(p) {
+  if (p.fit_score == null) return "";
+  return `<br/>${fitChip(p)} <strong>${escapeHtml(p.fit_label)}</strong> · est. total ${fitCostRange(p)} incl. renovation`;
+}
+const fitOpen = new Set();
+function toggleFitDetail(id, ev) {
+  if (ev) ev.stopPropagation();
+  id = String(id);
+  if (fitOpen.has(id)) fitOpen.delete(id); else fitOpen.add(id);
+  refresh();
+}
+function fitDetailHtml(p) {
+  const li = a => (a && a.length ? `<ul>${a.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>` : "<em>—</em>");
+  const c = p.fit_components || {};
+  const comp = ["cost","pt","drive","living","garden","storage","room5","sauna","penalty"].map(k => `${k} ${c[k] != null ? c[k] : "—"}`).join(" · ");
+  const roomsTxt = p.rooms_ok === true ? "Yes" : (p.rooms_ok === false ? "No (fewer than 4)" : "Unknown");
+  return `<div class="fit-detail-grid">
+    <div><h4>Summary</h4>${escapeHtml(p.rec_summary || "")}<br/><span class="fit-est">Components: ${comp}</span><br/>4 rooms: ${roomsTxt} · Cellar: ${escapeHtml(p.has_cellar || "unknown")} · Garden (est.): ${p.garden_est_m2 != null ? p.garden_est_m2 + " m²" : "Unknown"}</div>
+    <div><h4>Strengths</h4>${li(p.rec_strengths)}</div>
+    <div><h4>Weaknesses</h4>${li(p.rec_weaknesses)}</div>
+    <div><h4>Opportunities</h4>${li(p.rec_opportunities)}</div>
+    <div><h4>Costs <span class="fit-est">(estimates)</span></h4>All-in ${fmtPrice(p.all_in_price_eur)}<br/>Renovation est. ${fmtK(p.reno_estimate_low)}–${fmtK(p.reno_estimate_high)}<br/><span class="fit-est">${escapeHtml(p.reno_basis || "")}</span><br/><strong>Total est. ${fitCostRange(p)}</strong></div>
+    <div><h4>Operating costs <span class="fit-est">(estimate)</span></h4>${escapeHtml(p.operating_note || "—")}</div>
+  </div>`;
+}
+
 function popupHtml(p) {
   const link = p.url_primary
     ? `<a href="${p.url_primary}" target="_blank" rel="noopener">Open listing</a>`
@@ -9319,7 +13137,7 @@ function popupHtml(p) {
     ${p.has_sauna ? " · 🔥 Sauna" : ""}
     ${p.energy_hwb_class ? `<br/>HWB ${p.energy_hwb_class}${p.energy_hwb_value != null ? " (" + p.energy_hwb_value + ")" : ""}` : ""}
     <br/>Heating: <span title="${String(p.heating_tech_source || p.heating || "").replace(/"/g, "&quot;")}">${escapeHtml(p.heating_tech || "Unknown")}</span>
-    ${commute}<br/><span class="pp-links">${link}${archiveLink}</span></div></div>`;
+    ${commute}${fitPopupLine(p)}<br/><span class="pp-links">${link}${archiveLink}</span></div></div>`;
 }
 
 function popupOptions(p) {
@@ -9400,6 +13218,7 @@ function updateTable(list) {
       <td>${favStarButton(p.id)}</td>
       <td>${p.id}</td>
       <td>${scoreHtml(p)}</td>
+      <td class="fit-cell">${fitChip(p)}${p.fit_score != null ? `<button type="button" class="fit-toggle" title="Show family-fit analysis" onclick="toggleFitDetail('${String(p.id).replace(/'/g, "\\'")}', event)">${fitOpen.has(String(p.id)) ? "▾" : "▸"}</button>` : ""}</td>
       <td title="${(p.notes || "").replace(/"/g, "&quot;")}">${escapeHtml(p.title)}</td>
       <td>${escapeHtml(p.location_town || "")}</td>
       <td>${finishPill(p)}</td>
@@ -9423,6 +13242,12 @@ function updateTable(list) {
     tr.addEventListener("click", () => selectRow(p.id, true));
     bindRowHover(tr, p.id);
     tbody.appendChild(tr);
+    if (p.fit_score != null && fitOpen.has(String(p.id))) {
+      const dr = document.createElement("tr");
+      dr.className = "fit-detail";
+      dr.innerHTML = `<td colspan="${tr.children.length}">${fitDetailHtml(p)}</td>`;
+      tbody.appendChild(dr);
+    }
   });
 }
 
@@ -9632,7 +13457,7 @@ function refresh() {
 }
 
 document.getElementById("maxPrice").addEventListener("input", refresh);
-["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","priceDropped","townSearch","categoryFilter","typeFilter","finishFilter","heatingFilter"].forEach(id => {
+["minRooms","saunaFilter","shortlistOnly","hideSold","favOnly","soldOnly","underBudget","priceDropped","townSearch","categoryFilter","typeFilter","finishFilter","heatingFilter","fitFilter"].forEach(id => {
   document.getElementById(id).addEventListener("input", refresh);
   document.getElementById(id).addEventListener("change", refresh);
 });
@@ -9651,6 +13476,7 @@ document.getElementById("resetFilters").addEventListener("click", () => {
   document.getElementById("typeFilter").value = "all";
   document.getElementById("finishFilter").value = "any";
   document.getElementById("heatingFilter").value = "any";
+  document.getElementById("fitFilter").value = "any";
   selectedId = null;
   hoveredId = null;
   refresh();
