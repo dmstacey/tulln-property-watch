@@ -466,6 +466,14 @@
   .fin-detail h4 { margin: 0 0 .2rem; font-size: .78rem; }
   .mo-chip { display: inline-block; font-size: .72rem; font-weight: 650; padding: .05rem .4rem; border-radius: 999px; background: var(--chip-bg); color: var(--text); white-space: nowrap; }
   .mo-chip.bad { background: #fadbd8; color: #922b21; }
+  .zones-ctl { background: var(--card); color: var(--text); padding: .35rem .5rem; font-size: .76rem; max-width: 210px; }
+  .zones-lab { display: flex; flex-direction: column; gap: .2rem; font-weight: 650; }
+  .zones-ctl select { min-height: 32px; font-size: .78rem; padding: .2rem .3rem; }
+  .zones-legend { margin-top: .35rem; display: flex; flex-wrap: wrap; gap: .2rem .55rem; }
+  .zones-legend[hidden] { display: none; }
+  .zones-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .25rem; vertical-align: -2px; opacity: .8; }
+  .zones-src { flex-basis: 100%; color: var(--muted); font-size: .68rem; }
+  @media (max-width: 760px) { .zones-src { display: none; } .zones-ctl { max-width: 150px; font-size: .7rem; } .zones-ctl select { min-height: 36px; } }
 </style>
 </head>
 <body>
@@ -597,6 +605,15 @@
         <option value="combined">Combined only</option>
         <option value="Unknown">Unknown</option>
       </select>
+    </div>
+    <div class="filter-group">
+      <label for="zonesSelect">Commute zones (map overlay)</label>
+      <select id="zonesSelect">
+        <option value="off">Off</option>
+        <option value="pt">🚆 Public transport → 8th district</option>
+        <option value="car">🚗 Car → 21st district</option>
+      </select>
+      <div class="hint">Shaded ≤45/60/75/90 min (car ≤20/30/40/55). Estimate from a ~4 km grid.</div>
     </div>
     <button type="button" id="resetFilters" class="btn btn-block">Reset filters</button>
     <button type="button" id="drawerDone" class="btn btn-primary btn-block drawer-done">Show results</button>
@@ -14127,6 +14144,7 @@ function stateToHash() {
     if (v !== d.def) q.set(d.key, d.check ? (v ? "1" : "0") : v);
   });
   if (newOnly) q.set("new", "1");
+  if (typeof zonesMode !== "undefined" && zonesMode !== "off") q.set("zones", zonesMode);
   if (sortKey !== DEFAULT_SORT[0] || sortAsc !== DEFAULT_SORT[1]) { q.set("sort", sortKey); q.set("dir", sortAsc ? "asc" : "desc"); }
   return q.toString();
 }
@@ -14145,6 +14163,7 @@ function applyHash() {
   if ([...q.keys()].some(k => k !== "id")) {
     FILTER_DEFS.forEach(d => setCtrl(d, q.has(d.key) ? q.get(d.key) : d.def));
     newOnly = q.get("new") === "1";
+    if (typeof setZones === "function") setZones(q.get("zones") || "off");
     const sk = q.get("sort");
     const validSort = sk && (sk === "_seen" || PROPERTIES.some(p => sk in p) || sk === "score_rank" || sk === "monthly_est");
     if (validSort) { sortKey = sk; sortAsc = q.get("dir") !== "desc"; }
@@ -14337,6 +14356,65 @@ document.getElementById("finSheet").addEventListener("click", ev => { if (ev.tar
 document.getElementById("finBtn").addEventListener("click", openFinance);
 document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !document.getElementById("finSheet").hidden) closeFinance(); });
 function afterRefreshExtra() { renderFinNote(); }
+
+
+/* ===================== Commute zones overlay (precomputed static commute-zones.geojson) ===================== */
+const ZONE_CFG = {
+  pt: { prop: "pt_band", minProp: "pt", title: "🚆 Public transport → 8th district", unit: "min by public transport",
+        bands: [[45, "#1a9850"], [60, "#91cf60"], [75, "#fee08b"], [90, "#fc8d59"]] },
+  car: { prop: "car_band", minProp: "car", title: "🚗 Car → 21st district", unit: "min by car (free-flow)",
+        bands: [[20, "#1a9850"], [30, "#91cf60"], [40, "#fee08b"], [55, "#fc8d59"]] }
+};
+let zonesMode = "off", zonesData = null, zonesLayer = null, zonesLoading = false;
+map.createPane("zonesPane");
+map.getPane("zonesPane").style.zIndex = 350;
+const ZonesControl = L.Control.extend({
+  options: { position: "topright" },
+  onAdd() {
+    const d = L.DomUtil.create("div", "zones-ctl leaflet-bar");
+    d.innerHTML = `<label class="zones-lab">Commute zones
+      <select id="zonesMapSelect" aria-label="Commute zones overlay">
+        <option value="off">Off</option><option value="pt">🚆 PT → 8th district</option><option value="car">🚗 Car → 21st district</option>
+      </select></label><div class="zones-legend" id="zonesLegend" hidden></div>`;
+    L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    return d;
+  }
+});
+map.addControl(new ZonesControl());
+function zoneColor(mode, band) { const b = ZONE_CFG[mode].bands.find(x => x[0] === band); return b ? b[1] : null; }
+function renderZoneLegend() {
+  const lg = document.getElementById("zonesLegend");
+  if (zonesMode === "off") { lg.hidden = true; return; }
+  const cfg = ZONE_CFG[zonesMode];
+  lg.hidden = false;
+  lg.innerHTML = cfg.bands.map(([b, col]) => `<span><i style="background:${col}"></i>≤ ${b}</span>`).join("")
+    + `<div class="zones-src">${zonesMode === "pt" ? "VAO weekday 10:00, ~4 km grid" : "OSRM free-flow, ~4 km grid"} · estimate</div>`;
+}
+function drawZones() {
+  if (zonesLayer) { map.removeLayer(zonesLayer); zonesLayer = null; }
+  renderZoneLegend();
+  if (zonesMode === "off" || !zonesData) return;
+  const cfg = ZONE_CFG[zonesMode];
+  zonesLayer = L.geoJSON(zonesData, {
+    pane: "zonesPane",
+    filter: f => f.properties[cfg.prop] != null,
+    style: f => ({ fillColor: zoneColor(zonesMode, f.properties[cfg.prop]), fillOpacity: 0.45, stroke: false }),
+    onEachFeature: (f, layer) => layer.bindTooltip(`≈ ${f.properties[cfg.minProp]} ${cfg.unit}`, { sticky: true, direction: "top", opacity: 0.9 })
+  }).addTo(map);
+}
+function setZones(mode, fromUser) {
+  zonesMode = ZONE_CFG[mode] ? mode : "off";
+  ["zonesMapSelect", "zonesSelect"].forEach(id => { const el = document.getElementById(id); if (el) el.value = zonesMode; });
+  if (zonesMode !== "off" && !zonesData && !zonesLoading) {
+    zonesLoading = true;
+    fetch("commute-zones.geojson", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(j => { zonesData = j; zonesLoading = false; drawZones(); })
+      .catch(() => { zonesLoading = false; toast("Commute zones need the hosted site (couldn't load commute-zones.geojson)"); setZones("off"); });
+  } else drawZones();
+  if (fromUser) syncHash();
+}
+document.getElementById("zonesMapSelect").addEventListener("change", ev => setZones(ev.target.value, true));
+document.getElementById("zonesSelect").addEventListener("change", ev => setZones(ev.target.value, true));
 
 // apply URL state before the first render
 const _initialHashId = applyHash();
