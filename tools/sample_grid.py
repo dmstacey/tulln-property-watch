@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Usage: PT_DEST_LID=... CAR_DEST_LATLON=lat,lon python3 tools/sample_grid.py && python3 tools/build_geojson.py
-Sample a hex grid across the Tulln region: VAO HAFAS PT minutes to the 8th-district work
+Sample a hex grid across the watch regions (Tulln area, Stockerau/Korneuburg, Marchfeld,
+S2 Wolkersdorf/Mistelbach, Hollabrunn/Korneuburg-north, Vienna north-east): VAO HAFAS PT minutes to the 8th-district work
 destination (weekday 10:00, best of 5, same method as the watch) + OSRM car minutes to the
 21st-district destination. Results cached in grid_cache.json (resumable)."""
 import json, math, os, sys, time, urllib.request, concurrent.futures as cf
@@ -12,7 +13,16 @@ HAFAS_URL = "https://vao.demo.hafas.de/gate"
 DEST_LID = os.environ["PT_DEST_LID"]  # HAFAS location id of the 8th-district work destination (kept out of the repo)
 DRIVE = tuple(map(float, os.environ["CAR_DEST_LATLON"].split(",")))  # "lat,lon" of the 21st-district destination (kept out of the repo)
 PT_DATE, PT_TIME = os.environ.get("PT_DATE", "20261008"), "100000"
-LAT0, LAT1, LON0, LON1 = 48.12, 48.50, 15.62, 16.46
+# One lattice (origin LAT0/LON0, same spacing) clipped to the union of the region boxes below, so
+# extending the coverage never moves existing cells and grid_cache.json stays valid.
+LAT0, LAT1, LON0, LON1 = 48.12, 48.66, 15.62, 16.98
+BOXES = [  # (lat_min, lat_max, lon_min, lon_max)
+    (48.12, 48.50, 15.62, 16.46),  # Tulln area, Stockerau/Korneuburg, Vienna (original grid)
+    (48.12, 48.52, 16.46, 16.98),  # Marchfeld / Nordbahn, S2 south (Wolkersdorf, Gaweinstal)
+    (48.50, 48.66, 15.90, 16.66),  # Hollabrunn, Korneuburg-north, Mistelbach
+]
+def in_boxes(lat, lon):
+    return any(a - 1e-9 <= lat <= b + 1e-9 and c - 1e-9 <= lon <= d + 1e-9 for a, b, c, d in BOXES)
 R_KM = 2.2
 KM_LAT = 111.2; KM_LON = 111.32 * math.cos(math.radians(48.3))
 
@@ -22,7 +32,8 @@ def grid():
     while lat <= LAT1 + 1e-9:
         lon = LON0 + (dx / 2 if r % 2 else 0)
         while lon <= LON1 + 1e-9:
-            pts.append((round(lat, 5), round(lon, 5))); lon += dx
+            if in_boxes(lat, lon): pts.append((round(lat, 5), round(lon, 5)))
+            lon += dx
         lat += dy; r += 1
     return pts, dx, dy
 

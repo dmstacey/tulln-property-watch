@@ -28,7 +28,7 @@ for key, (pm, note) in c["pt"].items():
                   "geometry": {"type": "Polygon", "coordinates": [ring]}})
 gj = {"type": "FeatureCollection",
       "metadata": {"description": "Commute reachability hex grid (~3.8 km cells). pt = public transport minutes to the 8th district (VAO HAFAS, weekday 10:00, best of 5, door-to-door incl. walking from the cell centre); car = OSRM free-flow minutes to the 21st district.",
-                   "pt_date": c["meta"]["date"], "pt_time": c["meta"]["time"], "generated": "2026-10-07", "cells": len(feats),
+                   "pt_date": c["meta"]["date"], "pt_time": c["meta"]["time"], "generated": __import__("datetime").date.today().isoformat(), "cells": len(feats),
                    "pt_bands": [45, 60, 75, 90], "car_bands": [20, 30, 40, 55]},
       "features": feats}
 (Path(__file__).resolve().parent.parent / "commute-zones.geojson").write_text(json.dumps(gj, separators=(",", ":"), ensure_ascii=False))
