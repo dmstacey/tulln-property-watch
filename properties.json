@@ -19535,9 +19535,9 @@
     "first_seen": "2026-10-08",
     "last_seen": "2026-10-10",
     "disappeared_date": null,
-    "price_eur_previous": null,
-    "price_changed_at": null,
-    "price_change_eur": null,
+    "price_eur_previous": 488000,
+    "price_changed_at": "2026-10-10",
+    "price_change_eur": -3000,
     "change_flags": "url_refresh",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 17.568,00 EUR inkl. 20% USt.",
@@ -19565,6 +19565,16 @@
     "archived_at": "2026-10-08",
     "first_seen_at": "2026-10-08T10:36",
     "region": "Marchfeld",
+    "price_history": [
+      {
+        "price_eur": 488000,
+        "at": "2026-10-08"
+      },
+      {
+        "price_eur": 485000,
+        "at": "2026-10-10"
+      }
+    ],
     "fit_score": 53,
     "fit_label": "Not recommended",
     "fit_components": {
@@ -19588,7 +19598,7 @@
       "Garden size unknown"
     ],
     "rec_opportunities": [
-      "Negotiate on price; check BK and heating bills"
+      "Price already cut by €3k: seller may negotiate"
     ],
     "reno_estimate_low": 0,
     "reno_estimate_high": 15000,
@@ -38346,9 +38356,9 @@
     "first_seen": "2026-10-08",
     "last_seen": "2026-10-10",
     "disappeared_date": null,
-    "price_eur_previous": null,
-    "price_changed_at": null,
-    "price_change_eur": null,
+    "price_eur_previous": 399400,
+    "price_changed_at": "2026-10-10",
+    "price_change_eur": -99401,
     "change_flags": "price_drop",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3 % exkl. 20% MwSt. vom Gesamtkaufpreis",
@@ -38376,6 +38386,16 @@
     "archived_at": "2026-10-08",
     "first_seen_at": "2026-10-08T10:36",
     "region": "Hollabrunn/Korneuburg-north",
+    "price_history": [
+      {
+        "price_eur": 399400,
+        "at": "2026-10-08"
+      },
+      {
+        "price_eur": 299999,
+        "at": "2026-10-10"
+      }
+    ],
     "fit_score": 58,
     "fit_label": "Worth a look",
     "fit_components": {
@@ -38401,6 +38421,7 @@
       "Garden size unknown"
     ],
     "rec_opportunities": [
+      "Price already cut by €99k: seller may negotiate",
       "Choose own floors/finishes"
     ],
     "reno_estimate_low": 25000,
@@ -42779,6 +42800,19 @@
     "archive": "archive/NEW35.html",
     "archived_at": "2026-10-09",
     "first_seen_at": "2026-10-09T17:27",
+    "price_eur_previous": 199000,
+    "price_change_eur": 21000,
+    "price_changed_at": "2026-10-10",
+    "price_history": [
+      {
+        "price_eur": 199000,
+        "at": "2026-10-09"
+      },
+      {
+        "price_eur": 220000,
+        "at": "2026-10-10"
+      }
+    ],
     "fit_score": 73,
     "fit_label": "Worth a look",
     "fit_components": {
