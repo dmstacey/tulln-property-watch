@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Usage: PT_DEST_LID=... CAR_DEST_LATLON=lat,lon python3 tools/sample_grid.py && python3 tools/build_geojson.py
 Sample a hex grid across the watch regions (Tulln area, Stockerau/Korneuburg, Marchfeld,
-S2 Wolkersdorf/Mistelbach, Hollabrunn/Korneuburg-north, Vienna north-east): VAO HAFAS PT minutes to the 8th-district work
+S2 Wolkersdorf, Hollabrunn/Korneuburg-north, Vienna north-east): VAO HAFAS PT minutes to the 8th-district work
 destination (weekday 10:00, best of 5, same method as the watch) + OSRM car minutes to the
 21st-district destination. Results cached in grid_cache.json (resumable)."""
 import json, math, os, sys, time, urllib.request, concurrent.futures as cf

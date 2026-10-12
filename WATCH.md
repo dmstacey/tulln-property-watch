@@ -72,7 +72,7 @@ Use `whfetch.fetch(url)` for each request. Area ids are willhaben `areaId` value
 |---|---|---|---|---|
 | Tulln area | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/tulln?PRICE_TO=550000&rows=30&page={n}` + `&keyword=sauna` (page 1) + `&sort=1` and `&sfId=5` (page 1) | 321 | ~8 (226 ads) | everything in the Bezirk. **Plus** the western Bezirk Korneuburg PLZs in `TULLN_EDGE_PLZ` (3463 Stetteldorf am Wagram/Eggendorf/Starnwörth, 3464 Hausleiten incl. Zaina, Zissersdorf, Goldgeben, Perzendorf, Pettendorf, Schmida, Seitzersdorf-Wolfpassing, Gaisruck) from the Korneuburg search, added as `Tulln area` (Tulln ids) |
 | Marchfeld | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/gaenserndorf?PRICE_TO=550000&rows=90&page={n}` | 308 | 4 (325 ads) | PLZ in `MARCHFELD_PLZ` (Marchfeld + Nordbahn towns: Deutsch-Wagram, Strasshof, Gänserndorf, Groß-Enzersdorf incl. KGs, Raasdorf, Markgrafneusiedl, Siebenbrunn, Leopoldsdorf, Haringsee, Lassee, Engelhartstetten, Marchegg incl. Breitensee/Groißenbrunn, Weiden/Oberweiden/Zwerndorf, Orth, Eckartsau, Groß-Schweinbarth, Auersthal, Prottes, Weikendorf, Angern/Mannersdorf/Grub/Stillfried/Ollersdorf) |
-| S2 Wolkersdorf/Mistelbach | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/mistelbach?PRICE_TO=550000&rows=90&page={n}` | 316 | 3 (217 ads) | PLZ in `S2_PLZ` (Wolkersdorf incl. Obersdorf/Riedenthal/Münichsthal, Ulrichskirchen-Schleinbach, Hochleithen, Kreuttal, Kreuzstetten, Ladendorf, Mistelbach town + KGs, Gaweinstal incl. Schrick/Pellendorf, Pillichsdorf, Großengersdorf, Bockfließ) |
+| S2 Wolkersdorf | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/mistelbach?PRICE_TO=550000&rows=90&page={n}` | 316 | 3 (217 ads) | PLZ in `S2_PLZ` (Wolkersdorf incl. Obersdorf/Riedenthal/Münichsthal, Ulrichskirchen-Schleinbach, Hochleithen, Kreuttal, Kreuzstetten, Gaweinstal incl. Schrick/Pellendorf, Pillichsdorf, Großengersdorf, Bockfließ, Großebersdorf/Manhartsbrunn). **Not** Mistelbach town + KGs (2130) or Ladendorf/Herrnleis (2126): removed 2026-10-12 as too far (>~40 min car to the 21st district); they sit in `OUT_OF_SCOPE_PLZ`. Rule for this region: only towns whose typical car time to the 21st district is ≤ ~40 min |
 | Hollabrunn/Korneuburg-north (Hollabrunn part) | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/hollabrunn?PRICE_TO=550000&rows=90&page={n}` | 310 | 2 (163 ads) | coordinates ≤ 14 km from Hollabrunn centre (Hollabrunn + KGs like Puch, Breitenwaida, Mariathal, Weyerburg; Göllersdorf, Grabern/Schöngrabern, Wullersdorf, Guntersdorf, Nappersdorf, Ziersdorf edge) |
 | Hollabrunn/Korneuburg-north (Korneuburg part) + Stockerau/Korneuburg liveness | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/korneuburg?PRICE_TO=550000&rows=90&page={n}` | 312 | 3 (200 ads) | `TULLN_EDGE_PLZ` (3463, 3464) → `Tulln area` (added 2026-10-12 after Hausleiten 1647618800 was missed); PLZ in `KORNEUBURG_NORTH_PLZ` (Harmannsdorf/Mollmannsdorf/Rückersdorf/Würnitz/Tresdorf, Großrußbach/Wetzleinsdorf/Karnabrunn, Ernstbrunn, Großmugl, Leitzersdorf, Niederhollabrunn, Sierndorf, Rußbach). Stockerau/Korneuburg town belt (`STOCKERAU_KORNEUBURG_PLZ`): **match ST rows only, do not add new ones** (not an approved expansion) |
 | Vienna | none | – | – | not a watch region; VIE1 (one 21st-district own-land house) is kept alive by a liveness check only |
@@ -86,14 +86,14 @@ no region: `out_of_scope` (PLZ deliberately excluded in `OUT_OF_SCOPE_PLZ`, or b
 PLZ) or `coords_missing` (Hollabrunn search without coordinates). `match_and_liveness.py` collects every in-window
 (≤ €560k, non-junk, non-apartment) house with a gap into `match_report.json → plz_gaps` and prints them. Each run:
 read them (detail page if needed), add the ones that pass the filters (an ad without a PLZ that is plainly in a watched
-town, e.g. "Mistelbach", is in scope), extend `watch_regions.py` if a whole PLZ is missing, put the rest on the skip list,
+town, e.g. "Wolkersdorf", is in scope), extend `watch_regions.py` if a whole PLZ is missing, put the rest on the skip list,
 and list them in the changelog under **PLZ gaps** (even when nothing was added). 2026-10-12 additions to the lists:
 3463/3464 (Tulln area), 2280 Glinzendorf (Marchfeld), 2203 Großebersdorf/Manhartsbrunn and Bockfließ ads carrying 2231
-in the Mistelbach search (S2). Still deliberately out: Schönkirchen-Reyersdorf 2241, Matzen/Raggendorf, Ebenthal and the
+in the Mistelbach search (S2). Still deliberately out: Mistelbach 2130 and Ladendorf 2126 (too far), Schönkirchen-Reyersdorf 2241, Matzen/Raggendorf, Ebenthal and the
 northern Weinviertel PLZs listed in `OUT_OF_SCOPE_PLZ`.
 
 **Region field**: every row must carry `region` (one of `Tulln area`, `Stockerau/Korneuburg`, `Marchfeld`,
-`S2 Wolkersdorf/Mistelbach`, `Hollabrunn/Korneuburg-north`, `Vienna`). For search hits use
+`S2 Wolkersdorf`, `Hollabrunn/Korneuburg-north`, `Vienna`). For search hits use
 `watch_regions.region(search_key, plz, lat, lon)`; `None` means out of scope (ignore the ad). The dashboard's Region
 filter uses this field (missing → shown as Tulln area).
 
@@ -141,7 +141,7 @@ filter uses this field (missing → shown as Tulln area).
 | SL, HM, NEW, OB, SA, SIM, AU, WF, SO | Tulln area (existing; new Tulln rows continue `NEW`/`HM`/`OB`) |
 | ST | Stockerau/Korneuburg (and four Korneuburg-north towns added earlier: ST3, ST4, ST11, ST13) |
 | **MF** | Marchfeld / Nordbahn (Bezirk Gänserndorf) |
-| **S2W** | S2 Wolkersdorf / Mistelbach (Bezirk Mistelbach) |
+| **S2W** | S2 Wolkersdorf (southern Bezirk Mistelbach; Mistelbach town/Ladendorf removed 2026-10-12, removed rows archived outside the repo) |
 | **HL** | Hollabrunn town & surroundings + Korneuburg-north |
 | **VIE** | Vienna (VIE1 only; Vienna is not watched) |
 
