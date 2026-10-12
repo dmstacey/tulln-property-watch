@@ -8895,9 +8895,19 @@
     "first_seen": "2026-09-24",
     "last_seen": "2026-10-12",
     "disappeared_date": null,
-    "price_eur_previous": null,
-    "price_changed_at": null,
-    "price_change_eur": null,
+    "price_eur_previous": 399000,
+    "price_changed_at": "2026-10-12",
+    "price_change_eur": -65667,
+    "price_history": [
+      {
+        "price_eur": 399000,
+        "at": "2026-09-24"
+      },
+      {
+        "price_eur": 333333,
+        "at": "2026-10-12"
+      }
+    ],
     "change_flags": "price_drop",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; REMAX Wien Donaustadt; Provision:3% des Kaufpreises zzgl. 20% USt.",
@@ -8949,6 +8959,7 @@
     ],
     "rec_weaknesses": [],
     "rec_opportunities": [
+      "Price already cut by €66k: seller may negotiate",
       "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
     ],
     "reno_estimate_low": 85000,
@@ -21733,9 +21744,19 @@
     "first_seen": "2026-10-08",
     "last_seen": "2026-10-12",
     "disappeared_date": null,
-    "price_eur_previous": null,
-    "price_changed_at": null,
-    "price_change_eur": null,
+    "price_eur_previous": 459000,
+    "price_changed_at": "2026-10-12",
+    "price_change_eur": 1000,
+    "price_history": [
+      {
+        "price_eur": 459000,
+        "at": "2026-10-08"
+      },
+      {
+        "price_eur": 460000,
+        "at": "2026-10-12"
+      }
+    ],
     "change_flags": "reactivated|url_refresh|price_up",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3% des Kaufpreises zzgl. 20% USt.",
