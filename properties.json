@@ -17109,9 +17109,19 @@
     "first_seen": "2026-10-08",
     "last_seen": "2026-10-13",
     "disappeared_date": null,
-    "price_eur_previous": null,
-    "price_changed_at": null,
-    "price_change_eur": null,
+    "price_eur_previous": 473000,
+    "price_changed_at": "2026-10-13",
+    "price_change_eur": -24000,
+    "price_history": [
+      {
+        "price_eur": 473000,
+        "at": "2026-10-08"
+      },
+      {
+        "price_eur": 449000,
+        "at": "2026-10-13"
+      }
+    ],
     "change_flags": "price_drop",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3% des Kaufpreises zzgl. 20% USt.",
@@ -17161,6 +17171,7 @@
     ],
     "rec_weaknesses": [],
     "rec_opportunities": [
+      "Price already cut by €24k: seller may negotiate",
       "Big plot: room for play area, garden shed or extension"
     ],
     "reno_estimate_low": 0,
@@ -19808,9 +19819,19 @@
     "first_seen": "2026-10-08",
     "last_seen": "2026-10-13",
     "disappeared_date": null,
-    "price_eur_previous": null,
-    "price_changed_at": null,
-    "price_change_eur": null,
+    "price_eur_previous": 450000,
+    "price_changed_at": "2026-10-13",
+    "price_change_eur": -20000,
+    "price_history": [
+      {
+        "price_eur": 450000,
+        "at": "2026-10-08"
+      },
+      {
+        "price_eur": 430000,
+        "at": "2026-10-13"
+      }
+    ],
     "change_flags": "price_drop",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3% des Kaufpreises zzgl. 20% USt.",
@@ -19861,6 +19882,7 @@
     ],
     "rec_weaknesses": [],
     "rec_opportunities": [
+      "Price already cut by €20k: seller may negotiate",
       "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
       "Big plot: room for play area, garden shed or extension",
       "Cellar could take an office/hobby room"
@@ -29039,9 +29061,19 @@
     "first_seen": "2026-10-08",
     "last_seen": "2026-10-13",
     "disappeared_date": null,
-    "price_eur_previous": null,
-    "price_changed_at": null,
-    "price_change_eur": null,
+    "price_eur_previous": 242000,
+    "price_changed_at": "2026-10-13",
+    "price_change_eur": -12000,
+    "price_history": [
+      {
+        "price_eur": 242000,
+        "at": "2026-10-08"
+      },
+      {
+        "price_eur": 230000,
+        "at": "2026-10-13"
+      }
+    ],
     "change_flags": "price_drop",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3% des Kaufpreises zzgl. 20% USt.",
@@ -29095,6 +29127,7 @@
       "Long public-transport commute to the 8th district (107 min)"
     ],
     "rec_opportunities": [
+      "Price already cut by €12k: seller may negotiate",
       "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
       "Big plot: room for play area, garden shed or extension"
     ],
