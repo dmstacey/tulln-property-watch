@@ -1,4 +1,19 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "ignoreCommand": "git log -1 --pretty=%B | grep -qF '[skip deploy]' && exit 0; git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- index.html img icons manifest.json commute-zones.geojson properties.json vercel.json .vercelignore",
+  "rewrites": [
+    {
+      "source": "/archive",
+      "destination": "https://raw.githack.com/dmstacey/tulln-property-watch/main/archive/index.html"
+    },
+    {
+      "source": "/archive/:id",
+      "destination": "https://raw.githack.com/dmstacey/tulln-property-watch/main/archive/:id.html"
+    },
+    {
+      "source": "/archive/:id/:file",
+      "destination": "https://raw.githack.com/dmstacey/tulln-property-watch/main/archive/:id/:file"
+    }
+  ]
 }

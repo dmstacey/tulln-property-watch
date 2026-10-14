@@ -12,7 +12,7 @@ cp /workspace/property-research/dashboard.html /workspace/tulln-property-watch/i
 cp /workspace/property-research/properties.csv /workspace/property-research/properties.json /workspace/tulln-property-watch/
 cd /workspace/tulln-property-watch
 python3 archive_listings.py          # photos + archive for any listing that lacks them (see below)
-git add index.html properties.csv properties.json img archive
+git add -A index.html properties.csv properties.json img archive
 git commit -m "Update property watch data"
 git push origin main
 ```

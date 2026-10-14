@@ -174,7 +174,7 @@ git commit -m "Morning watch YYYY-MM-DD: …"     # hook runs here
 git push origin main
 ```
 
-- The **pre-commit hook** runs `archive_listings.py` (photo `img/<id>.jpg` + `archive/<id>.html`), then
+- The **pre-commit hook** runs `archive_listings.py` (photo `img/<id>.webp` + `archive/<id>.html`), then
   `stamp_first_seen.py` (first_seen_at, price_history, heating classification via `classify_heating.py`), then
   `score_listings.py` (family-fit score/label for every active row, written into index.html, dashboard.html and both
   json/csv copies) and stages the results. Do not run these by hand or undo their edits; check afterwards that every
@@ -187,6 +187,17 @@ git push origin main
   `{"props":{"pageProps":{"advertDetails":…}}}`; see `expand-2026-10-08/synth_cache.py`) and pre-run
   `archive_listings.py --no-live --max-photos 3 --ids <new ids>` so the hook finds the work done.
 - Never deploy with Vercel MCP uploads. Vercel builds `main` automatically.
+- **One commit (= at most one deployment) per watch run.** Make all edits first, then commit once and push once. Do not
+  push follow-up commits for small fixes; fold them into the next run unless something on the live page is broken.
+  (Every deploy is ~20 MB of Vercel storage; the free tier is 10 GB.)
+- **`[skip deploy]` marker:** if a run changed nothing visible (no new/removed rows, no price/status changes, only
+  `last_seen`/date stamps), still commit + push, but append ` [skip deploy]` to the commit message. `vercel.json`
+  `ignoreCommand` then skips the build; the next normal commit deploys everything (it diffs against the last deployed
+  commit). Commits touching only non-deployed files (archive/, tools/, *.py, *.md, csv, first-seen-times.json) are
+  skipped automatically.
+- `archive/` is **not** deployed (`.vercelignore`); `vercel.json` rewrites `/archive…` to the copy in the public GitHub
+  repo (raw.githack proxy), so "Archived copy" links keep their same-site URLs (new copies live a few minutes after the
+  push). Main photos are `img/<id>.webp` (≤800 px, WebP q≈75) and stay deployed so map popups work after a listing is gone.
 - If Auto-review blocks `git commit`/`git push`, retry the **same command unchanged** with
   `request_smart_mode_approval: true` and `smart_mode_block_reason` = the exact block text. If that is denied, stop and
   report.

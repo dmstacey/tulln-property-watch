@@ -17,8 +17,8 @@ Run it in the twice-daily watch AFTER the new data has been copied into index.ht
 What it does, per listing (active listings first, then sold/disappeared):
   * image   – if the listing has no `image` (or the file is missing) it fetches the listing
               page (url_primary / url_alt; willhaben preferred via __NEXT_DATA__), takes the
-              main photo, saves img/<id>.jpg (640 px wide JPEG, ~60–120 KB) and sets
-              `image = "img/<id>.jpg"`.
+              main photo, saves img/<id>.webp (≤800 px wide WebP, q≈75) and sets
+              `image = "img/<id>.webp"`.
   * archive – if the listing has no `archive` it writes archive/<id>.html (self-contained
               static page, no original JS/trackers) with facts, description, attribute
               tables, source URL, archive date and up to 8 photos in archive/<id>/NN.jpg
@@ -33,8 +33,9 @@ What it does, per listing (active listings first, then sold/disappeared):
   * Rebuilds archive/index.html.
   * Sites that block bots (immowelt/DataDome, remax/Turnstile) are skipped – never bypassed.
 
-Links inside archive pages are root-relative (/archive/<id>, /img/<id>.jpg) because Vercel
-cleanUrls serves /archive/<id>.html as /archive/<id> and /archive/ as /archive.
+Links inside archive pages are root-relative (/archive/<id>, /img/<id>.webp). archive/ is NOT uploaded to Vercel
+(.vercelignore); vercel.json rewrites /archive, /archive/<id> and /archive/<id>/<file> to the copy in the public GitHub
+repo (raw.githack.com proxy), so the URLs stay the same. Main photos are img/<id>.webp (≤800 px, q≈75).
 
 Requires: Python 3.9+, Pillow, beautifulsoup4  (pip install Pillow beautifulsoup4)
 """
@@ -143,7 +144,7 @@ def fmt_num(v, unit=""):
         return str(v)
 
 # ------------------------------------------------------------------ images
-def to_jpeg(data, width, max_kb, start_q=82, min_q=45):
+def to_jpeg(data, width, max_kb, start_q=82, min_q=45, fmt="JPEG"):
     im = Image.open(io.BytesIO(data))
     im = ImageOps.exif_transpose(im)
     if im.mode not in ("RGB", "L"):
@@ -163,13 +164,16 @@ def to_jpeg(data, width, max_kb, start_q=82, min_q=45):
     q = start_q
     while True:
         buf = io.BytesIO()
-        im.save(buf, "JPEG", quality=q, optimize=True, progressive=True)
+        if fmt == "WEBP":
+            im.save(buf, "WEBP", quality=q, method=6)
+        else:
+            im.save(buf, "JPEG", quality=q, optimize=True, progressive=True)
         if buf.tell() <= max_kb * 1024 or q <= min_q:
             return buf.getvalue()
         q -= 6
 
 BAD_IMG_HOSTS = set()
-def fetch_image(url, referer, width, max_kb, start_q):
+def fetch_image(url, referer, width, max_kb, start_q, fmt="JPEG"):
     host = urllib.parse.urlparse(url).netloc
     if host in BAD_IMG_HOSTS:
         raise ValueError(f"{host} unreachable earlier – skipped")
@@ -182,7 +186,7 @@ def fetch_image(url, referer, width, max_kb, start_q):
         raise
     if st != 200 or len(data) < 2000:
         raise ValueError(f"HTTP {st} / {len(data)} bytes")
-    return to_jpeg(data, width, max_kb, start_q)
+    return to_jpeg(data, width, max_kb, start_q, fmt=fmt)
 
 # ------------------------------------------------------------------ parsers
 def listing_template():
@@ -758,7 +762,7 @@ def main():
         import shutil
         for p in props:
             if p["id"] in a.ids.split(","):
-                for f in (os.path.join(img_dir, f"{p['id']}.jpg"), os.path.join(arc_dir, f"{p['id']}.html")):
+                for f in (os.path.join(img_dir, f"{p['id']}.webp"), os.path.join(img_dir, f"{p['id']}.jpg"), os.path.join(arc_dir, f"{p['id']}.html")):
                     if os.path.exists(f):
                         os.remove(f)
                 shutil.rmtree(os.path.join(arc_dir, p["id"]), ignore_errors=True)
@@ -768,8 +772,8 @@ def main():
     # adopt files that already exist on disk (idempotent / repair missing fields)
     for p in props:
         u = {}
-        if not p.get("image") and os.path.exists(os.path.join(img_dir, f"{p['id']}.jpg")):
-            u["image"] = f"img/{p['id']}.jpg"
+        if not p.get("image") and os.path.exists(os.path.join(img_dir, f"{p['id']}.webp")):
+            u["image"] = f"img/{p['id']}.webp"
         if not p.get("archive") and os.path.exists(os.path.join(arc_dir, f"{p['id']}.html")):
             u["archive"] = f"archive/{p['id']}.html"
             u["archived_at"] = p.get("archived_at") or datetime.fromtimestamp(
@@ -813,10 +817,10 @@ def main():
             ok = False
             for iu in images[:4]:
                 try:
-                    jpg = fetch_image(iu, referer, 640, 120, 82)
+                    jpg = fetch_image(iu, referer, 800, 90, 75, fmt="WEBP")
                     os.makedirs(img_dir, exist_ok=True)
-                    open(os.path.join(img_dir, f"{pid}.jpg"), "wb").write(jpg)
-                    u["image"] = f"img/{pid}.jpg"; ok = True
+                    open(os.path.join(img_dir, f"{pid}.webp"), "wb").write(jpg)
+                    u["image"] = f"img/{pid}.webp"; ok = True
                     log(f"  {pid}: image saved ({len(jpg)//1024} KB)")
                     break
                 except Exception as e:

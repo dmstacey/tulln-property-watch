@@ -1,0 +1,9 @@
+# Only the static site is deployed. Saved listing copies (archive/) are served from GitHub via raw.githack.
+archive/
+tools/
+__pycache__/
+*.py
+*.md
+first-seen-times.json
+properties.csv
+.git/
