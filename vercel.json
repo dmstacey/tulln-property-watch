@@ -1,7 +1,7 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "ignoreCommand": "case \"$VERCEL_GIT_COMMIT_MESSAGE\" in *'[skip deploy]'*) exit 0;; esac; git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- index.html img icons manifest.json commute-zones.geojson properties.json vercel.json .vercelignore 2>/dev/null && exit 0 || exit 1",
+  "ignoreCommand": "case \"$VERCEL_GIT_COMMIT_MESSAGE\" in *'[skip deploy]'*) exit 0;; esac; git diff --quiet ${VERCEL_GIT_PREVIOUS_SHA:-HEAD^} HEAD -- index.html img icons manifest.json commute-zones.geojson properties.json vercel.json && exit 0 || exit 1",
   "rewrites": [
     {
       "source": "/archive",
