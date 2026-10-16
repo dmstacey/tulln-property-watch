@@ -121,7 +121,10 @@ filter uses this field (missing → shown as Tulln area).
 - Check every listing pin against its town: on 2026-10-08 one Groß-Schweinbarth ad (MF50) was pinned in Vienna; if the
   pin is > 6 km from the town centroid use the centroid (`location_precision: town_centroid_nominatim`).
 - **Rooms**: 4+ rooms is the requirement for recommendations. Still track 3-room homes (the scorer subtracts 25);
-  skip 1–2 rooms and < 60 m². Unknown rooms: track, check the description.
+  skip 1–2 rooms and < 60 m². Unknown rooms: track, check the description. On willhaben, `rooms=0` (or missing)
+  means **room count unknown**, not zero rooms — `match_and_liveness.py` must keep those ads as candidates (same as
+  missing); the scorer already applies an unknown-rooms penalty. Do not treat 0 as "too few rooms" (missed MF3
+  republish 2026-10-16 evening until caught by hand).
 - **Tenanted houses** (Anlegerobjekt, "unbefristet vermietet") are excluded: not available to live in. A small let
   part (e.g. a granny flat let for €450) is fine; note it.
 - **Two-unit houses** (Zweifamilienhaus / 2 Wohneinheiten in one building) are tracked with a note; Mehrfamilienhaus
