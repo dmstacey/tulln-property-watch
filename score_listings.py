@@ -6,17 +6,21 @@ after stamp_first_seen.py. The whole set is rescored on every commit so the
 All renovation and operating numbers are ESTIMATES from rules of thumb
 (Austria 2026), not quotes. Unknown rooms/garden/cellar score conservatively.
 
-Weights (max points, sum 100):
-  cost 45     effective cost = all-in price + renovation midpoint + 10 years of
-              operating costs (BK + heating). <= EUR 420k -> 45, >= EUR 700k -> 0, linear.
-  commute 25  PT to the 8th district 15 (<=55 min full, >=110 min zero)
-              car to the 21st district 10 (<=20 min full, >=55 min zero)
-  space 18    living m2 8 (<=90 zero, >=150 full); estimated garden 10
+Weights (max points, sum 100; 2026-10-17: move-in readiness added, others scaled ~x0.86):
+  cost 39     effective cost = all-in price + renovation midpoint + 10 years of
+              operating costs (BK + heating). <= EUR 420k -> 39, >= EUR 700k -> 0, linear.
+  commute 21  PT to the 8th district 13 (<=55 min full, >=110 min zero)
+              car to the 21st district 8 (<=20 min full, >=55 min zero)
+  ready 14    move-in readiness (see readiness()): ready/new/renovated 100%, minor updates 75%,
+              belagsfertig 50%, renovation needed 20%, full gut (Kernsanierung, Abriss, Rohbau,
+              Bastlerhit, 'stark/komplett sanierungsbeduerftig') 0% plus a -8 penalty;
+              a Generalsanierung already done counts as renovated
+  space 15    living m2 7 (<=90 zero, >=150 full); estimated garden 8
               (plot - footprint; footprint ~ 60% of living m2; <=100 zero, >=600 full)
-  storage 5   cellar named 5; other storage only (Dachboden, Abstellraum, Schuppen, Garage) 2
+  storage 4   cellar named 4; other storage only (Dachboden, Abstellraum, Schuppen, Garage) 2
   5th room 4  rooms >= 5
   sauna 3
-Penalties: rooms < 4 -> -25; rooms unknown -> -8; not a family-home type -> -15.
+Penalties: rooms < 4 -> -25; rooms unknown -> -8; not a family-home type -> -15; full gut -8.
 
 Renovation rule of thumb (EUR per m2 living area, estimate):
   schluesselfertig / turnkey                0 - 10k flat (minor works); 250 - 450 /m2 if the
@@ -39,7 +43,7 @@ Operating costs (estimate): BK from the listing if given, else EUR 150/month ass
   (HWB from class midpoint if only the letter is known, 180 if unknown) after
   renovation-free state; EUR 0.12/kWh for gas/oil/pellets/district/unknown,
   EUR 0.07/kWh for heat pumps (electricity / COP ~3.5).
-Labels: Highly recommended = rooms >= 4, family home, total-cost midpoint <= EUR 510k,
+Labels: Highly recommended = rooms >= 4, family home, not a full gut, total-cost midpoint <= EUR 510k,
   PT <= 80 min or car <= 40 min, ranked by score, score >= 50, at most 8.
   If fewer than 3 qualify, the total-cost cap is relaxed in 20k steps up to 550k.
   Worth a look = score >= 55 (not HR). Not recommended = rest.
@@ -56,8 +60,9 @@ HWB_MID = {"A++": 15, "A+": 20, "A": 35, "B": 65, "C": 85, "D": 130, "E": 180, "
 FIELDS = ["fit_score", "fit_label", "fit_components", "rooms_ok", "rec_summary", "rec_strengths",
           "rec_weaknesses", "rec_opportunities", "reno_estimate_low", "reno_estimate_high",
           "total_cost_low", "total_cost_high", "operating_monthly_est", "operating_note",
-          "has_cellar", "garden_est_m2", "fit_scored_at"]
-MAX = {"cost": 45, "pt": 15, "drive": 10, "living": 8, "garden": 10, "storage": 5, "room5": 4, "sauna": 3}
+          "has_cellar", "garden_est_m2", "move_in_readiness", "move_in_note", "fit_scored_at"]
+MAX = {"cost": 39, "pt": 13, "drive": 8, "ready": 14, "living": 7, "garden": 8, "storage": 4, "room5": 4, "sauna": 3}
+GUT_PENALTY = -8
 
 def lin(v, lo, hi, pts, invert=False):
     if v is None:
@@ -138,6 +143,75 @@ def renovation(p, text):
     r = lambda x: int(round(x / 5000.0) * 5000)
     return r(lo), r(hi), why
 
+GUT_RE = re.compile(r"kernsanierung|generalsanierung|totalsanierung|komplettsanierung|abriss|abbruch|abreißen|abzureißen|"
+                    r"bastler(hit|objekt|haus|traum)|handwerker(hit|objekt)|"
+                    r"(komplett|vollständig|stark|total|grundlegend) (sanierungs|renovierungs)bed|"
+                    r"(kern|general)sanierungsbed|desolat|baufällig|unbewohnbar")
+# a Generalsanierung etc. that was already DONE is a plus, not a gut job
+DONE_RE = re.compile(r"durchgeführt|wurde|wurden|erfolgte|erfolgt|nach (der |einer )?|abgeschlossen|fertiggestellt|"
+                     r"\b(19|20)\d\d\b|im jahr|bereits|frisch")
+
+def gut_match(cn, t):
+    if re.search(r"\brohbau", cn):
+        return "Rohbau (listing notes)"
+    for m in GUT_RE.finditer(t):
+        g = m.group()
+        if re.match(r"(kern|general|total|komplett)sanierung$", g):
+            ctx = t[max(0, m.start() - 70):m.end() + 70]
+            if DONE_RE.search(ctx) and not re.search(r"potenzial|notwendig|erforderlich|nötig|empfohlen|bed(ü|ue)rftig", ctx):
+                continue
+        if g in ("abbruch", "abriss") and not re.search(r"abbruch(objekt|reif|haus)|abriss(objekt|reif|haus)|abriss (und|oder|/) ?neubau|"
+                                                         r"abbruch (und|oder|/) ?neubau|zum abriss|zum abbruch", t[max(0, m.start() - 30):m.end() + 30]):
+            continue
+        return g
+    return None
+
+RENO_RE = re.compile(r"sanierungsbed|renovierungsbed|sanierungsfall|modernisierungsbed|renovierungsfall|zum renovieren|"
+                     r"zum sanieren|sanierungsobjekt|renovierungsobjekt")
+MINOR_RE = re.compile(r"neuer anstrich|ausmalen|kosmetisch|leichte(n)? renovierung|kleinere(n)? (arbeiten|renovierung)|"
+                      r"bad (und|&) küche (erneuern|modernisieren)|küche (erneuern|modernisieren)|bad (erneuern|modernisieren)|"
+                      r"gepflegt|guter zustand|gutem zustand|sehr gut")
+READY_RE = re.compile(r"neuwertig|erstbezug|schlüsselfertig|schluesselfertig|bezugsfertig|sofort beziehbar|"
+                      r"bezugsbereit|einzugsbereit|neubau|saniert|renoviert|modernisiert|top[- ]zustand|neu errichtet")
+
+def readiness(p, text, reno_lo, reno_hi):
+    """Move-in readiness level -> (level, fraction of MAX['ready'], short reason).
+    Listing condition fields first, then description keywords, then year/HWB-based renovation estimate."""
+    fs = str(p.get("finish_status") or "unknown").lower().replace("ü", "ue")
+    cn = " ".join(str(p.get(x) or "") for x in ("condition_note", "finish_status_note", "title")).lower()
+    t = (cn + " " + text.lower())
+    m2 = p.get("living_m2") or 120
+    mid_m2 = (reno_lo + reno_hi) / 2 / m2
+    yb = num(p.get("year_built"))
+    cls = hwb_letter(p)
+    if fs == "rohbaufertig":
+        return "gut", 0.0, "Rohbau"
+    g = gut_match(cn, t)
+    if g:
+        return "gut", 0.0, g
+    if fs.startswith("sanierungsbed"):
+        return "renovation", 0.2, "listing: renovation needed"
+    if fs in ("schluesselfertig", "bezugsfertig"):
+        if re.search(r"\broh\b|fertigstellen|nicht fertig", cn):
+            return "belagsfertig", 0.5, "turnkey in part, parts unfinished"
+        return "ready", 1.0, fs.replace("ue", "ü")
+    if fs == "belagsfertig":
+        return "belagsfertig", 0.5, "belagsfertig"
+    rm = RENO_RE.search(t)
+    if rm:
+        return "renovation", 0.2, rm.group()
+    rd = READY_RE.search(cn) or READY_RE.search(t)
+    if yb and yb >= 2010 or cls in ("A++", "A+", "A", "B"):
+        return "ready", 1.0, f"built {yb}" if yb and yb >= 2010 else f"HWB {cls}"
+    if rd and mid_m2 < 450:
+        return "ready", 1.0, rd.group()
+    mm = MINOR_RE.search(t)
+    if mid_m2 <= 200 or (mm and mid_m2 < 450):
+        return "minor", 0.75, (mm.group() if mm else "renovation est. ≤ €200/m²")
+    if mid_m2 <= 500:
+        return "partial", 0.45, f"est. renovation ~€{round(mid_m2)}/m² (year/energy based)"
+    return "renovation", 0.2, f"est. renovation ~€{round(mid_m2)}/m² (old/poor energy)"
+
 def operating(p):
     m2 = p.get("living_m2") or 120
     cls = hwb_letter(p)
@@ -183,7 +257,9 @@ def score_one(p):
         garden = max(0, int(plot - (lm or 120) * 0.6))
     comp["garden"] = lin(garden, 100, 600, MAX["garden"]) if garden is not None else 1.0
     c = cellar(text)
-    comp["storage"] = {"yes": 5, "storage": 2}.get(c, 0)
+    comp["storage"] = {"yes": MAX["storage"], "storage": 2}.get(c, 0)
+    rlev, rfrac, rwhy = readiness(p, text, lo, hi)
+    comp["ready"] = round(MAX["ready"] * rfrac, 1)
     comp["room5"] = MAX["room5"] if rooms and rooms >= 5 else 0
     comp["sauna"] = MAX["sauna"] if p.get("has_sauna") else 0
     pen = 0
@@ -193,6 +269,8 @@ def score_one(p):
         pen -= 25
     if not family:
         pen -= 15
+    if rlev == "gut":
+        pen += GUT_PENALTY
     comp["penalty"] = pen
     score = max(0, min(100, round(sum(comp.values()))))
     rooms_ok = None if rooms is None else rooms >= 4
@@ -220,7 +298,11 @@ def score_one(p):
     else: W.append("Cellar unknown")
     if p.get("has_sauna"): S.append("Sauna")
     if not family: W.append(f"Type {typ or 'unknown'} is not a plain family home")
-    if p.get("finish_status") == "rohbaufertig": W.append("Rohbau: large completion cost and time")
+    if rlev == "ready": S.append(f"Move-in ready ({rwhy})")
+    elif rlev == "minor": S.append(f"Close to move-in ready: minor updates only ({rwhy})")
+    elif rlev == "renovation": W.append(f"Renovation needed before moving in ({rwhy})")
+    elif rlev == "gut": W.append(f"Full gut / complete renovation ({rwhy}): long and costly before moving in")
+    elif rlev == "belagsfertig": W.append("Belagsfertig: floors, doors and fittings still to do")
     if "Oil" in str(p.get("heating_tech") or ""): W.append("Oil heating: replacement expected")
     if p.get("seller_type") == "private": O.append("Private seller: no buyer commission")
     if p.get("price_change_eur") is not None and p["price_change_eur"] < 0:
@@ -239,6 +321,7 @@ def score_one(p):
         "total_cost_low": tlo, "total_cost_high": thi,
         "operating_monthly_est": op, "operating_note": opnote,
         "has_cellar": c, "garden_est_m2": garden,
+        "move_in_readiness": rlev, "move_in_note": rwhy,
         "_eff": eff, "_family": family, "_pt": pt, "_dr": dr,
     }
 
@@ -250,7 +333,8 @@ def label_all(arr):
     def eligible(r, cap):
         mid = (r["total_cost_low"] + r["total_cost_high"]) / 2
         com = (r["_pt"] is not None and r["_pt"] <= 80) or (r["_dr"] is not None and r["_dr"] <= 40)
-        return r["rooms_ok"] is True and r["_family"] and mid <= cap and com and r["fit_score"] >= 50
+        return (r["rooms_ok"] is True and r["_family"] and mid <= cap and com and r["fit_score"] >= 50
+                and r["move_in_readiness"] != "gut")
     cap = 510000
     while True:
         hr = sorted([i for i, r in res.items() if eligible(r, cap)], key=lambda i: -res[i]["fit_score"])[:8]

@@ -182,8 +182,10 @@ git push origin main
   `score_listings.py` (family-fit score/label for every active row, written into index.html, dashboard.html and both
   json/csv copies) and stages the results. Do not run these by hand or undo their edits; check afterwards that every
   new row has `fit_score` and `image`. "Highly recommended" = top 8 eligible rows across **all** regions (4+ rooms,
-  family type, total-cost midpoint ≤ €510k, PT ≤ 80 min or car ≤ 40 min, score ≥ 50); mention in the digest when the set
-  changes.
+  family type, not a full gut (`move_in_readiness != "gut"`), total-cost midpoint ≤ €510k, PT ≤ 80 min or car ≤ 40 min, score ≥ 50); mention in the digest when the set
+  changes. Since 2026-10-17 the score includes **move-in readiness (14 pts)**; when adding rows, put condition words from
+  the listing (saniert, neuwertig, Erstbezug, sanierungsbedürftig, Kernsanierung, Abriss, Rohbau…) into `condition_note`
+  so the scorer can see them.
 - `archive_listings.py` fetches live pages at 2 s spacing, which is faster than the willhaben rule. Normal runs add only a
   few rows, which is fine. For a batch of new rows, first write their detail pages from the fetched JSON into
   `/workspace/property-research/scrape-YYYY-MM-DD-*/details/detail_<adid>.html` (canonical link + `__NEXT_DATA__`
