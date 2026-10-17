@@ -80,6 +80,14 @@ Use `whfetch.fetch(url)` for each request. Area ids are willhaben `areaId` value
 Stop paginating when a page returns fewer ads than `rows`. Per run that is ~23 search requests plus a handful of
 liveness/detail requests.
 
+**Every candidate gets a decision in the run that sees it** (added, mapped to an existing row via `url_alt`, or put on
+`skip_adids.json` with a reason). Never leave candidates "longstanding untracked" across runs: if a run lacks time,
+list them under **Undecided** in the changelog and decide them in the next run. (2026-10-17 backlog review: 34 such ads
+had piled up since the first runs.) Willhaben search results carry **no plot size**: `FREE_AREA_AREA_TOTAL` is the
+outdoor area (terrace/garden), so the parser stores it as `free_area_m2`; the plot (`PLOT/AREA`) comes only from the
+detail page. The duplicate check therefore ignores plot when either side lacks it. Rows first added from other portals
+(SL*, OB*, SIM*, AU*, HM1) have no willhaben adid: when their willhaben ad turns up, set `url_alt` to it.
+
 **Never drop an ad silently.** `watch_regions.scope(search_key, plz, lat, lon)` says why an ad from a searched Bezirk has
 no region: `out_of_scope` (PLZ deliberately excluded in `OUT_OF_SCOPE_PLZ`, or beyond the Hollabrunn radius), `st_belt`
 (Stockerau/Korneuburg town belt, match only), or a **gap**: `plz_unlisted` (PLZ in no list), `plz_missing` (ad has no
