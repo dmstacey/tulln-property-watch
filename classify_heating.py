@@ -35,7 +35,7 @@ PATTERNS = [
     ("hp", re.compile(r"Wärmepumpe", re.I), "primary"),
     ("gas", re.compile(
         r"Gas[-\s]?Zentralheizung|Gaszentralheizung|Gastherme|Gas[-\s]Therme|"
-        r"Gasetagenheizung|Gasheizung|Gaskessel|Gas\s*ZH|Basis von Gas|"
+        r"Gasetagenheizung|Gasheizung|Gaskessel|Gas[-\s]?Brennwert(?:therme|kessel|gerät)|Gas\s*ZH|Basis von Gas|"
         r"Gas\s*/\s*Fest|Vaillant[-\s]?Therme|Zentralheizung mit Gas|Heizung mit Gas",
         re.I), "primary"),
     ("oil", re.compile(
@@ -45,7 +45,7 @@ PATTERNS = [
     ("pellets", re.compile(r"Pelletheizung|Pelletofen|Pellets(?:heizung|kessel|ofen)?", re.I), "primary"),
     ("wood", re.compile(
         r"Festbrennstoff(?:anlage|e|en)?|Stückholz|Hackgut|Holzvergaser|"
-        r"Kachelofen|Schwedenofen|Holzofen|Kaminofen|Holzbrenner|Allesbrenner|"
+        r"Kachelofen|Schwedenofen|Holzofen|Kaminofen|Holzbrenner|Holzkessel|Allesbrenner|"
         r"Heizungsart:\s*HOLZ|Einzelofenheizung|Ofen für feste Brennstoffe|"
         r"feste[nmr]? Brennstoffe(?:n|anlage)?",
         re.I), "primary"),
@@ -95,6 +95,27 @@ def _skip(tech, text, start, end, phrase):
         if re.search(r"umstellung\s+(?:der\s+\w+\s+){0,4}auf\s+(?:eine[n]?\s+)?$", before, re.I):
             return True
     if tech == "gas" and re.search(r"möglichkeit\s+(?:auf|zur)\s*$", before, re.I):
+        return True
+    # A planned replacement ("Holzkessel wird durch eine moderne Pelletheizung oder Wärmepumpe ersetzt",
+    # "Austausch gegen Pelletheizung oder Wärmepumpe geplant") names the future system, not the installed one.
+    # Added 2026-10-19 evening for MF166.
+    if tech in ("air", "geo", "hp", "gas", "pellets", "district", "electric") and re.search(
+            r"(?:wird\s+durch|ersetzt\s+durch|Austausch\s+gegen|Umstieg\s+auf|Tausch\s+gegen|replaced\s+by)\s+"
+            r"(?:eine[nrs]?\s+)?(?:moderne[nrs]?\s+|neue[nrs]?\s+)?(?:[\w-]+\s+oder\s+(?:eine[nrs]?\s+)?)?$",
+            before, re.I):
+        return True
+    # Suggested future systems ("würde sich idealerweise z.B. eine Pellets-Heizung anbieten. Oder natürlich auch
+    # eine Luft-Wasser-Wärmepumpe") are not the installed one (HL67, 2026-10-19 evening).
+    if tech in ("air", "geo", "hp", "gas", "pellets", "district", "electric"):
+        if re.search(r"(?:idealerweise|z\.\s?B\.|würde sich)[^.]{0,60}$", before, re.I):
+            return True
+        if re.search(r"oder\s+(?:natürlich\s+)?auch\s+(?:eine[nrs]?\s+)?$", before, re.I) and \
+                re.search(r"idealerweise|z\.\s?B\.|würde sich", text[max(0, start - 220):start], re.I):
+            return True
+    # A prepared chimney for a stove you could add later is not a stove ("vorbereiteter Rauchfang ... jederzeit
+    # einen eigenen Kamin- oder Schwedenofen anzuschließen", OB36).
+    if tech == "wood" and (re.search(r"anzuschlie(?:ß|ss)en|nachzurüsten|nachrüstbar", after[:40], re.I)
+                           or re.search(r"vorbereitete[rn]?\s+Rauchfang[^.]{0,80}$", text[max(0, start - 120):start], re.I)):
         return True
     if tech in ("wood", "pellets", "oil", "gas", "air", "electric"):
         near = text[max(0, start - 55):start]
