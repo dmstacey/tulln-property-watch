@@ -85,8 +85,20 @@ liveness/detail requests.
 list them under **Undecided** in the changelog and decide them in the next run. (2026-10-17 backlog review: 34 such ads
 had piled up since the first runs.) Willhaben search results carry **no plot size**: `FREE_AREA_AREA_TOTAL` is the
 outdoor area (terrace/garden), so the parser stores it as `free_area_m2`; the plot (`PLOT/AREA`) comes only from the
-detail page. The duplicate check therefore ignores plot when either side lacks it. Rows first added from other portals
-(SL*, OB*, SIM*, AU*, HM1) have no willhaben adid: when their willhaben ad turns up, set `url_alt` to it.
+detail page. Rows first added from other portals (SL*, OB*, SIM*, AU*, HM1) have no willhaben adid: when their
+willhaben ad turns up, set `url_alt` to it.
+
+**Near-duplicate check** (`match_and_liveness.py`, fixed 2026-10-19 evening): exact adid/URL matches stay as before.
+An unmatched scrape ad is a near-duplicate of an active row only when **location + living m² + price** all agree:
+- **Living**: within ~10% (or both missing).
+- **Price**: within ~15%, **or** a documented price-change path (ad price in the row's `price_history` /
+  `price_eur_previous`, or willhaben `OLD_PRICE` aligning with the row).
+- **Location**: listing coords within ~150 m count as strong evidence only on a non-centroid pin that is not shared
+  by multiple tracked rows. **Town-centroid / approx / crowded town-centre pins are weak** — coordinate proximity
+  alone must not pair distinct houses (that bug hid 13 distinct houses for weeks until 2026-10-19 evening). On a
+  weak/crowded pin, living must be within ~5% (to pick the right unit) with price still within ~15%; town-name-only
+  matches need ~5% living and ~2% price (or a documented price change with ~10% living). Rooms must agree when both
+  sides know them. Plot is not required at match time (search results have none).
 
 **Never drop an ad silently.** `watch_regions.scope(search_key, plz, lat, lon)` says why an ad from a searched Bezirk has
 no region: `out_of_scope` (PLZ deliberately excluded in `OUT_OF_SCOPE_PLZ`, or beyond the Hollabrunn radius), `st_belt`
@@ -138,11 +150,13 @@ filter uses this field (missing → shown as Tulln area).
 - **Two-unit houses** (Zweifamilienhaus / 2 Wohneinheiten in one building) are tracked with a note; Mehrfamilienhaus
   (3+ units) is not. **Wohnungseigentum** row/semi-detached houses with their own garden are tracked (like SL7/SL8)
   with a note that there is no separate plot.
-- **Same house, several agents**: before adding, compare town/coordinates + living m² + plot m² (+ HWB) with every
-  active row; keep the cheaper ad and note the other adid (2026-10-08: MF96/1239096803, S2W35/1829585642,
-  HL12/1541671847).
+- **Same house, several agents / republishes**: use the near-duplicate rule above (location + living ~10% +
+  price ~15% or documented price-change path; town-centroid pins weak). Keep the cheaper ad and note the other adid
+  (2026-10-08: MF96/1239096803, S2W35/1829585642, HL12/1541671847). Never treat "same town-centre map pin" alone as
+  a duplicate (2026-10-19 evening backlog: HL67–69, MF167–170, NEW59, OB33–36, S2W64 had been hidden that way).
 - **New-build projects** with many identical units: one row per project (cheapest unit that fits), other unit adids
-  in `notes`; add the other adids to the skip list so they do not come back as "new".
+  in `notes`; add the other adids to the skip list so they do not come back as "new". Near-dup will also catch
+  same-pin / same-m² / same-price siblings (e.g. MF169 vs MF128).
 - When an excluded ad is seen, add it to `skip_adids.json` with the reason so later runs stay quiet about it.
 
 ## IDs and categories
