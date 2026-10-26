@@ -36,7 +36,7 @@ PATTERNS = [
     ("gas", re.compile(
         r"Gas[-\s]?Zentralheizung|Gaszentralheizung|Gastherme|Gas[-\s]Therme|"
         r"Gasetagenheizung|Gasheizung|Gaskessel|Gas[-\s]?Brennwert(?:therme|kessel|gerät)|Gas\s*ZH|Basis von Gas|"
-        r"Gas\s*/\s*Fest|Vaillant[-\s]?Therme|Zentralheizung mit Gas|Heizung mit Gas",
+        r"Gas\s*/\s*Fest|Vaillant[-\s]?Therme|Zentralheizung mit Gas|Heizung mit Gas|Gaskonvektor(?:en)?",
         re.I), "primary"),
     ("oil", re.compile(
         r"Öl[-\s]?Warmwasser[-\s]?Zentralheizung|Ölheizung|Heizöl|Ölkessel|"
