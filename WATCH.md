@@ -20,7 +20,7 @@ the env vars `PT_DEST_LID` (HAFAS location id, 8th-district destination) and `CA
 | What | Where |
 |------|-------|
 | Tracker (master) | `/workspace/property-research/properties.json` + `properties.csv` + `dashboard.html` (box mirror, not git) |
-| Production | `/workspace/tulln-property-watch/` (this repo, branch `main`) → `index.html`, `properties.json`, `properties.csv` |
+| Production | `/workspace/tulln-property-watch/` (repo `dmstacey/tulln-property-watch`, branch `main`) → `index.html`, `properties.json`, `properties.csv` |
 | Live page | https://tulln-property-watch.vercel.app (Vercel auto-deploys `main`) |
 | Run folder | `/workspace/property-research/scrape-YYYY-MM-DD-{morning,evening}/` (copy the previous run's scripts and edit `OUT`/`TODAY`) |
 | Changelog | `/workspace/property-research/changelogs/YYYY-MM-DD-{morning,evening}.md` + `run_summary.json` in the run folder |
@@ -51,9 +51,11 @@ the env vars `PT_DEST_LID` (HAFAS location id, 8th-district destination) and `CA
 4. **Decide** (filters below). Write `apply_updates.py` for this run: append new rows with every field (copy the
    shape of the last added row), set `listing_status: disappeared` + `disappeared_date` + `change_flags: disappeared`
    for gone rows, new `price_eur` for price changes (the hook keeps `price_history` / `price_eur_previous` /
-   `price_change_eur` / `price_changed_at` in step), bump `last_seen` for every active row, demote last run's `new`
+   `price_change_eur` / `price_changed_at` in step; for a row with no prior `price_history`, also set
+   `price_eur_previous`, `price_change_eur` and `price_changed_at` yourself or the hook will not start one), bump `last_seen` for every active row, demote last run's `new`
    flags to `seen`. Write json + csv + `dashboard.html` PROPERTIES; the script asserts the privacy rule and that
    `const BUDGET = 450000;` is still present right after the PROPERTIES block.
+4b. **McMakler** (`scrape_mcmakler.py <run folder>`, see "McMakler" below): decide its candidates like willhaben ones.
 5. **Deploy** (below), then write the changelog + `run_summary.json`, then the digest.
 
 **New regions (Marchfeld, S2, Hollabrunn/Korneuburg-north)** follow the same steps with the Bezirk searches below:
@@ -70,12 +72,33 @@ Use `whfetch.fetch(url)` for each request. Area ids are willhaben `areaId` value
 
 | Region (dashboard label) | URL (page n) | areaId | Pages today | Keep |
 |---|---|---|---|---|
-| Tulln area | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/tulln?PRICE_TO=550000&rows=30&page={n}` + `&keyword=sauna` (page 1) + `&sort=1` and `&sfId=5` (page 1) | 321 | ~8 (226 ads) | everything in the Bezirk. **Plus** the western Bezirk Korneuburg PLZs in `TULLN_EDGE_PLZ` (3463 Stetteldorf am Wagram/Eggendorf/Starnwörth, 3464 Hausleiten incl. Zaina, Zissersdorf, Goldgeben, Perzendorf, Pettendorf, Schmida, Seitzersdorf-Wolfpassing, Gaisruck) from the Korneuburg search, added as `Tulln area` (Tulln ids) |
+| Tulln area | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/tulln?PRICE_TO=550000&rows=30&page={n}` + `&keyword=sauna` (page 1) + `&sort=1` and `&sfId=5` (page 1) | 321 | ~8 (226 ads) | everything in the Bezirk. **Plus** the western Bezirk Korneuburg PLZs in `TULLN_EDGE_PLZ` (3463 Stetteldorf am Wagram/Eggendorf/Starnwörth, 3464 Hausleiten incl. Zaina, Goldgeben, Perzendorf, Pettendorf, Schmida, Seitzersdorf-Wolfpassing, Gaisruck) from the Korneuburg search, added as `Tulln area` (Tulln ids) |
 | Marchfeld | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/gaenserndorf?PRICE_TO=550000&rows=90&page={n}` | 308 | 4 (325 ads) | PLZ in `MARCHFELD_PLZ` (Marchfeld + Nordbahn towns: Deutsch-Wagram, Strasshof, Gänserndorf, Groß-Enzersdorf incl. KGs, Raasdorf, Markgrafneusiedl, Siebenbrunn, Leopoldsdorf, Haringsee, Lassee, Engelhartstetten, Marchegg incl. Breitensee/Groißenbrunn, Weiden/Oberweiden/Zwerndorf, Orth, Eckartsau, Groß-Schweinbarth, Auersthal, Prottes, Weikendorf, Angern/Mannersdorf/Grub/Stillfried/Ollersdorf) |
 | S2 Wolkersdorf | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/mistelbach?PRICE_TO=550000&rows=90&page={n}` | 316 | 3 (217 ads) | PLZ in `S2_PLZ` (Wolkersdorf incl. Obersdorf/Riedenthal/Münichsthal, Ulrichskirchen-Schleinbach, Hochleithen, Kreuttal, Kreuzstetten, Gaweinstal incl. Schrick/Pellendorf, Pillichsdorf, Großengersdorf, Bockfließ, Großebersdorf/Manhartsbrunn). **Not** Mistelbach town + KGs (2130) or Ladendorf/Herrnleis (2126): removed 2026-10-12 as too far (>~40 min car to the 21st district); they sit in `OUT_OF_SCOPE_PLZ`. Rule for this region: only towns whose typical car time to the 21st district is ≤ ~40 min |
 | Hollabrunn/Korneuburg-north (Hollabrunn part) | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/hollabrunn?PRICE_TO=550000&rows=90&page={n}` | 310 | 2 (163 ads) | coordinates ≤ 14 km from Hollabrunn centre (Hollabrunn + KGs like Puch, Breitenwaida, Mariathal, Weyerburg; Göllersdorf, Grabern/Schöngrabern, Wullersdorf, Guntersdorf, Nappersdorf, Ziersdorf edge) |
 | Hollabrunn/Korneuburg-north (Korneuburg part) + Stockerau/Korneuburg liveness | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/korneuburg?PRICE_TO=550000&rows=90&page={n}` | 312 | 3 (200 ads) | `TULLN_EDGE_PLZ` (3463, 3464) → `Tulln area` (added 2026-10-12 after Hausleiten 1647618800 was missed); PLZ in `KORNEUBURG_NORTH_PLZ` (Harmannsdorf/Mollmannsdorf/Rückersdorf/Würnitz/Tresdorf, Großrußbach/Wetzleinsdorf/Karnabrunn, Ernstbrunn, Großmugl, Leitzersdorf, Niederhollabrunn, Sierndorf, Rußbach). Stockerau/Korneuburg town belt (`STOCKERAU_KORNEUBURG_PLZ`): **match ST rows only, do not add new ones** (not an approved expansion) |
+| Tulln area (Zissersdorf) | any search | – | – | **Zissersdorf is a KG of Stockerau with PLZ 2000** (not 3464). Since 2026-10-30 `watch_regions.TULLN_EDGE_TOWNS` maps ads whose town is Zissersdorf to `Tulln area` regardless of PLZ (`region(..., town=...)`; `scrape_willhaben.py`/`match_and_liveness.py` pass the ad's town). Before that its ads fell into the match-only ST belt |
 | Vienna | none | – | – | not a watch region; VIE1 (one 21st-district own-land house) is kept alive by a liveness check only |
+
+### McMakler (added 2026-10-30)
+
+McMakler (mcmakler.at) lists some houses **only on its own site**, not on willhaben. The Zissersdorf EFH (expose
+1073463, now NEW67) was missed for that reason, and also because Zissersdorf's PLZ 2000 sat in the match-only ST belt.
+Every run: `python3 /workspace/property-research/scrape_mcmakler.py <run folder>` (≈50 requests at 1.5 s spacing, ~2 min).
+- It reads only server-rendered public pages: `/immobilien/niederoesterreich`, `/immobilien/wien` and a few town pages
+  (Zissersdorf, Stockerau, Tulln, Korneuburg, Hausleiten), then every expose page found. **Do not use
+  `/immobilien/api/…`**: robots.txt disallows it.
+- Each expose is classified with `watch_regions.region('mcmakler', plz, lat, lon, town)` (Bezirk Tulln PLZs, the
+  Bezirk-search PLZ lists, the Hollabrunn radius and `TULLN_EDGE_TOWNS`; Vienna → None). A **candidate** is an
+  untracked house in a watch region priced €50k–€500k. A near-duplicate check (living/price within 5% and plot or PLZ
+  match) maps ads to rows already tracked from willhaben; then set that row's `url_alt` to the expose URL (2026-10-30:
+  OB38 ↔ 1073307).
+- Rows whose `url_primary`/`url_alt` is a McMakler expose are always re-read. A non-200 or a redirect away from
+  `/expose/` means gone (liveness).
+- Known limitation: McMakler's own region pages did **not** list 1073463 (blurred pin ~15 km away, region index lag).
+  Pass any expose ids you hear about as extra args (`scrape_mcmakler.py <run> 1073463`). Expose pins are blurred
+  (`approx_mcmakler_area`), so compute commutes from the Nominatim town/hamlet centroid and say so in the notes.
+- Fees: McMakler charges 3.6% incl. USt (standard Makler fee row). New rows use the normal prefix for their region.
 
 Stop paginating when a page returns fewer ads than `rows`. Per run that is ~23 search requests plus a handful of
 liveness/detail requests.
@@ -88,7 +111,7 @@ outdoor area (terrace/garden), so the parser stores it as `free_area_m2`; the pl
 detail page. Rows first added from other portals (SL*, OB*, SIM*, AU*, HM1) have no willhaben adid: when their
 willhaben ad turns up, set `url_alt` to it.
 
-**Near-duplicate check** (`match_and_liveness.py`, fixed 2026-10-19 evening): exact adid/URL matches stay as before.
+**Near-duplicate check** (`match_and_liveness.py`, fixed 2026-10-19 evening, extended 2026-10-28 evening): exact adid/URL matches stay as before.
 An unmatched scrape ad is a near-duplicate of an active row only when **location + living m² + price** all agree:
 - **Living**: within ~10% (or both missing).
 - **Price**: within ~15%, **or** a documented price-change path (ad price in the row's `price_history` /
@@ -99,6 +122,15 @@ An unmatched scrape ad is a near-duplicate of an active row only when **location
   weak/crowded pin, living must be within ~5% (to pick the right unit) with price still within ~15%; town-name-only
   matches need ~5% living and ~2% price (or a documented price change with ~10% living). Rooms must agree when both
   sides know them. Plot is not required at match time (search results have none).
+- **Two more guards (added 2026-10-28 evening, after Gänserndorf-Süd bungalow MF181 was hidden as a "duplicate" of the
+  MF53 Lagerhaus DHH project via the town-name rule):** (a) when the row has a precise (non-centroid) pin and the ad's
+  pin is more than **1 km** from it, they are never a near-duplicate, whatever the town/m²/price; (b) a row that was already
+  matched by its own adid in this run cannot absorb another ad (a second agent's ad for the same house is then a
+  candidate and must be decided by hand, e.g. MF99 Angern 2026-10-29 evening: cheaper second-agent ad became
+  `url_primary`, the other went to `url_alt`).
+- **Closest match wins (added 2026-10-30 morning):** when an ad qualifies as a near-duplicate of several rows, it is paired with the
+  row whose pin is closest (then smallest living-m² gap), not the first row in file order. (961270874 sat on MF133's exact pin with
+  MF133's title but was paired with MF94 ~300 m away; MF133 was the expired ad being republished.)
 
 **Never drop an ad silently.** `watch_regions.scope(search_key, plz, lat, lon)` says why an ad from a searched Bezirk has
 no region: `out_of_scope` (PLZ deliberately excluded in `OUT_OF_SCOPE_PLZ`, or beyond the Hollabrunn radius), `st_belt`
@@ -166,7 +198,7 @@ filter uses this field (missing → shown as Tulln area).
 | SL, HM, NEW, OB, SA, SIM, AU, WF, SO | Tulln area (existing; new Tulln rows continue `NEW`/`HM`/`OB`) |
 | ST | Stockerau/Korneuburg (and four Korneuburg-north towns added earlier: ST3, ST4, ST11, ST13) |
 | **MF** | Marchfeld / Nordbahn (Bezirk Gänserndorf) |
-| **S2W** | S2 Wolkersdorf (southern Bezirk Mistelbach; Mistelbach town/Ladendorf removed 2026-10-12, removed rows archived outside the repo) |
+| **S2W** | S2 Wolkersdorf (southern Bezirk Mistelbach; Mistelbach town/Ladendorf removed 2026-10-12, rows kept in `removed_rows_2026-10-12-s2north.json` on the box only) |
 | **HL** | Hollabrunn town & surroundings + Korneuburg-north |
 | **VIE** | Vienna (VIE1 only; Vienna is not watched) |
 
@@ -255,4 +287,4 @@ Digest for the owner (chat message from the watch run):
 - **If nothing material changed, stay quiet** (no digest, or a single line if the run is expected to report).
   last_seen bumps, skip-list noise and unchanged liveness are not news.
 - Mention a willhaben 429 / unfetched pages only when it means something may have been missed.
-- Never name the owner or show addresses; never suggest contacting anyone on the owner's behalf.
+- Never name the owner or show addresses; never suggest contacting anyone on his behalf.
