@@ -56,6 +56,9 @@ the env vars `PT_DEST_LID` (HAFAS location id, 8th-district destination) and `CA
    flags to `seen`. Write json + csv + `dashboard.html` PROPERTIES; the script asserts the privacy rule and that
    `const BUDGET = 450000;` is still present right after the PROPERTIES block.
 4b. **McMakler** (`scrape_mcmakler.py <run folder>`, see "McMakler" below): decide its candidates like willhaben ones.
+4c. **Other portals** (`python3 /workspace/property-research/scrape_sources.py <run folder>`, see "Other portals" below,
+   after step 1 so `willhaben_parsed.json` exists): links portal ads to rows (`source_links`) and lists portal-only
+   **candidates**; decide each one (add, link, or put its URL in `source_skip.json` with a reason).
 5. **Deploy** (below), then write the changelog + `run_summary.json`, then the digest.
 
 **New regions (Marchfeld, S2, Hollabrunn/Korneuburg-north)** follow the same steps with the Bezirk searches below:
@@ -78,7 +81,7 @@ Use `whfetch.fetch(url)` for each request. Area ids are willhaben `areaId` value
 | Hollabrunn/Korneuburg-north (Hollabrunn part) | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/hollabrunn?PRICE_TO=550000&rows=90&page={n}` | 310 | 2 (163 ads) | coordinates ≤ 14 km from Hollabrunn centre (Hollabrunn + KGs like Puch, Breitenwaida, Mariathal, Weyerburg; Göllersdorf, Grabern/Schöngrabern, Wullersdorf, Guntersdorf, Nappersdorf, Ziersdorf edge) |
 | Hollabrunn/Korneuburg-north (Korneuburg part) + Stockerau/Korneuburg liveness | `https://www.willhaben.at/iad/immobilien/haus-kaufen/niederoesterreich/korneuburg?PRICE_TO=550000&rows=90&page={n}` | 312 | 3 (200 ads) | `TULLN_EDGE_PLZ` (3463, 3464) → `Tulln area` (added 2026-10-12 after Hausleiten 1647618800 was missed); PLZ in `KORNEUBURG_NORTH_PLZ` (Harmannsdorf/Mollmannsdorf/Rückersdorf/Würnitz/Tresdorf, Großrußbach/Wetzleinsdorf/Karnabrunn, Ernstbrunn, Großmugl, Leitzersdorf, Niederhollabrunn, Sierndorf, Rußbach). Stockerau/Korneuburg town belt (`STOCKERAU_KORNEUBURG_PLZ`): **match ST rows only, do not add new ones** (not an approved expansion) |
 | Tulln area (Zissersdorf) | any search | – | – | **Zissersdorf is a KG of Stockerau with PLZ 2000** (not 3464). Since 2026-10-30 `watch_regions.TULLN_EDGE_TOWNS` maps ads whose town is Zissersdorf to `Tulln area` regardless of PLZ (`region(..., town=...)`; `scrape_willhaben.py`/`match_and_liveness.py` pass the ad's town). Before that its ads fell into the match-only ST belt |
-| Vienna | none | – | – | not a watch region; VIE1 (one 21st-district own-land house) is kept alive by a liveness check only |
+| Vienna (watched since 2026-10-30) | `https://www.willhaben.at/iad/immobilien/haus-kaufen/wien?PRICE_TO=500000&rows=90&page={n}` | 900 | 2 (143 ads) | **houses only** (EFH/DHH/RH/bungalow; never apartments, never a unit inside a Gründerzeit/Zinshaus building), price ≤ **€500k** (cap applied in `match_and_liveness.py`), ≥ 3 rooms, every district (21st/22nd/23rd are the focus). Same filters, scoring and commute rules as everywhere (car → 21st district, PT → 8th district). Watch for Kleingarten/Pacht/Baurecht/Superädifikat ads (very common in Vienna) and builder ads whose price excludes land. A PLZ starting with 1 → `Vienna` in `watch_regions.region()`; check the town: Groß-Enzersdorf ads are sometimes posted under 1220 (MF186) |
 
 ### McMakler (added 2026-10-30)
 
@@ -99,6 +102,33 @@ Every run: `python3 /workspace/property-research/scrape_mcmakler.py <run folder>
   Pass any expose ids you hear about as extra args (`scrape_mcmakler.py <run> 1073463`). Expose pins are blurred
   (`approx_mcmakler_area`), so compute commutes from the Nominatim town/hamlet centroid and say so in the notes.
 - Fees: McMakler charges 3.6% incl. USt (standard Makler fee row). New rows use the normal prefix for their region.
+
+### Other portals (added 2026-10-30)
+
+`scrape_sources.py <run folder>` reads public, server-rendered search pages only (robots.txt checked 2026-10-30),
+≈1.5–2 s between requests, ~60 requests / ~3 min. Output: `sources_parsed.json` (all cards) and `sources_report.json`
+(`links`, `candidates`, `skipped`). `--rematch [rows.json]` re-runs matching on the saved parse without fetching.
+
+| Source | Pages read | Notes |
+|---|---|---|
+| ImmoScout24.at | `/regional/wien/wien/haus-kaufen[/seite-N]?primaryPriceTo=500000` and `/regional/niederoesterreich/<bezirk>/haus-kaufen…` for Tulln, Korneuburg, Gänserndorf, Mistelbach, Hollabrunn (`__INITIAL_STATE__` hits, 15 per page) | robots allows. Court auctions appear here (skip) |
+| derStandard Immobilien | `/suche/{wien,bezirk-tulln,bezirk-korneuburg,bezirk-gaenserndorf,bezirk-mistelbach,bezirk-hollabrunn}/kaufen-haus?priceTo=…&page=N` | robots allows; footer says content is for private use: read for this private watch only, never republish text/photos (only link out). Cards sometimes show the plot as the area |
+| Raiffeisen Immobilien | `/de/immobilien?state[0]=Wien` / `Niederösterreich` `&page=N` (no type filter; houses picked from the cards) | robots allows |
+| s-REAL (Erste) | `/de/immobilien-suche?f[buyingType]=buy&f[objectType][]=house&f[price][max]=560000&f[search]=1&p=N` (all of Austria, filtered by PLZ) | robots allows |
+| **Skipped** immowelt | – | HTTP 403 (bot protection) for scripted requests |
+| **Skipped** immonet | – | robots.txt disallows `/search` and `?page=` |
+| **Skipped** RE/MAX (remax.at) | – | Cloudflare Turnstile challenge |
+| **Skipped** Bazar.at | – | house results rendered client-side only; real estate is pushed to dibeo.at |
+
+Matching (dedupe), in order: exact URL already in a row's `url_primary`/`url_alt`/`source_links` → link; an active row with
+the same PLZ or town, price within **5%** and the card's area within 5% of living **or** plot (or no area) → link (closest
+price wins); the same house in this run's `willhaben_parsed.json` (PLZ + price within 2%) whose adid is in a row's URLs →
+link (also sold rows: NEW70-style relists of SL5). Everything else in a watch region that passes the filters (house,
+≤ €500k Vienna / ≤ €560k Lower Austria, ≥ 3 rooms, ≥ 60 m², not in the ST belt) is a **candidate**; read it with
+`portal_detail.py` (`portal_detail.get(url)` → plz, price, m², plot, rooms, year, HWB, auction/Baurecht flags, text).
+Links are stored per row as `source_links: [{source, url}]` (the dashboard shows them in the detail Links row).
+Disappeared rows that turn up identically (price, living, plot) on a portal are **reactivated** with the portal URL as
+`url_primary` and the old ad in `url_alt` (2026-10-30: HM20, SL6, S2W30 via derStandard).
 
 Stop paginating when a page returns fewer ads than `rows`. Per run that is ~23 search requests plus a handful of
 liveness/detail requests.
@@ -156,7 +186,8 @@ filter uses this field (missing → shown as Tulln area).
   with whatever was fetched, list exactly what was not fetched in the changelog and digest, and do not retry from
   another tool or IP. On 2026-10-07 willhaben returned 429 to the box from ~23:13 to at least 23:42.
 - Never run a second willhaben job while another one (e.g. the other watch run) is active.
-- immowelt (DataDome) and remax.at (Turnstile) block scripted requests: use `url_alt`/cached pages, do not fight it.
+- immowelt (DataDome/403) and remax.at (Turnstile) block scripted requests, immonet disallows search pages in robots.txt,
+  Bazar.at renders houses client-side: skip them, do not fight it.
 
 ## Filters / exclusions (all regions, same as the Tulln watch)
 
@@ -200,7 +231,7 @@ filter uses this field (missing → shown as Tulln area).
 | **MF** | Marchfeld / Nordbahn (Bezirk Gänserndorf) |
 | **S2W** | S2 Wolkersdorf (southern Bezirk Mistelbach; Mistelbach town/Ladendorf removed 2026-10-12, rows kept in `removed_rows_2026-10-12-s2north.json` on the box only) |
 | **HL** | Hollabrunn town & surroundings + Korneuburg-north |
-| **VIE** | Vienna (VIE1 only; Vienna is not watched) |
+| **VIE** | Vienna (watched since 2026-10-30; VIE2–VIE44 added that day from willhaben, VIE45/VIE46 from derStandard) |
 
 Next free numbers: take max existing number + 1 per prefix (after the 2026-10-08 expansion: MF156, S2W56, HL63, VIE2). Categories (same set as before): `shortlist`
 (≤ €450k, ≥ 4 rooms, family home, strong fit), `honourable` (other in-budget), `over_budget` (> €450k), `sauna`
