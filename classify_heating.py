@@ -112,6 +112,10 @@ def _skip(tech, text, start, end, phrase):
         if re.search(r"oder\s+(?:natürlich\s+)?auch\s+(?:eine[nrs]?\s+)?$", before, re.I) and \
                 re.search(r"idealerweise|z\.\s?B\.|würde sich", text[max(0, start - 220):start], re.I):
             return True
+    # A heat-pump hot-water boiler ("Warmwasseraufbereitung mittels Luft-Wärmepumpenboiler") heats water only,
+    # not the house (VIE50, 2026-11-01 evening).
+    if tech in ("air", "hp") and re.match(r"n?[-\s]?(?:boiler|speicher)", after, re.I):
+        return True
     # A prepared connection ("Anschluss für Luftwärmepumpe vorhanden", "vorbereitet für Wärmepumpe") is not an
     # installed system (MF172, 2026-10-22 evening).
     if tech in ("air", "geo", "hp", "pellets", "gas", "district") and re.search(
