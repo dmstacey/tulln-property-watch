@@ -11546,6 +11546,10 @@
       {
         "source": "derStandard",
         "url": "https://immobilien.derstandard.at/detail/15076841"
+      },
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6af475ab428a4602f07a9d3b"
       }
     ],
     "fit_score": 40,
@@ -17513,9 +17517,9 @@
     "lat": 48.415043,
     "lon": 16.634658,
     "location_precision": "town_centroid_nominatim",
-    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/bungalow-3-zimmer-in-2221-gross-schweinbarth-2042179703/",
-    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/bungalow-3-zimmer-in-2221-gross-schweinbarth-1148609787/",
-    "notes": "Region expansion 2026-10-08 (Marchfeld). Groß-Schweinbarth Bungalow €259.000 / 80 m² / 3 rooms / plot 435 m² / BJ 1987 / HWB F 218.0 / Zentralheizung; REMAX Trend Jakob Immobilienberatungs GmbH. ~34 min drive (21st district) / ~81 min PT (8th district). Listing pin pointed to Vienna: town centroid used. adid 1966333636, first published 2026-10-04. Republished 2026-10-23 evening under willhaben adid 1148609787 (was 1966333636; same house). Same title, 80 m², 3 rooms, €259k. 2026-10-25 morning: price cut €259,000 → €239,000 on willhaben 1148609787. 2026-11-08 evening: willhaben 1148609787 expired; republished as 2042179703 (same title, €239,000, 80 m² / 3 rooms, Groß-Schweinbarth). 2026-11-09 morning: price reduced €239,000 -> €225,000 on the same willhaben ad.",
+    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/bungalow-3-zimmer-in-2221-gross-schweinbarth-1498760246/",
+    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/bungalow-3-zimmer-in-2221-gross-schweinbarth-1148609787/ ; https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/bungalow-3-zimmer-in-2221-gross-schweinbarth-2042179703/",
+    "notes": "Region expansion 2026-10-08 (Marchfeld). Groß-Schweinbarth Bungalow €259.000 / 80 m² / 3 rooms / plot 435 m² / BJ 1987 / HWB F 218.0 / Zentralheizung; REMAX Trend Jakob Immobilienberatungs GmbH. ~34 min drive (21st district) / ~81 min PT (8th district). Listing pin pointed to Vienna: town centroid used. adid 1966333636, first published 2026-10-04. Republished 2026-10-23 evening under willhaben adid 1148609787 (was 1966333636; same house). Same title, 80 m², 3 rooms, €259k. 2026-10-25 morning: price cut €259,000 → €239,000 on willhaben 1148609787. 2026-11-08 evening: willhaben 1148609787 expired; republished as 2042179703 (same title, €239,000, 80 m² / 3 rooms, Groß-Schweinbarth). 2026-11-09 morning: price reduced €239,000 -> €225,000 on the same willhaben ad. 2026-11-14 evening: same house republished as willhaben 1498760246 (EUR 225,000, 80 m2); url_primary refreshed, earlier ad 2042179703 expired.",
     "research_date": "2026-10-08",
     "listing_status": "active",
     "first_seen": "2026-10-08",
@@ -17538,7 +17542,7 @@
         "at": "2026-11-09"
       }
     ],
-    "change_flags": "price_drop",
+    "change_flags": "republished",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 9.324,00 EUR inkl. 20% USt.",
     "makler_name": "REMAX Trend Jakob Immobilienberatungs GmbH",
@@ -27655,6 +27659,10 @@
       {
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6ae360e66638eafe1af069c5"
+      },
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6af87905451a761e9fad4056"
       }
     ],
     "fit_score": 39,
@@ -29657,9 +29665,9 @@
     "lat": 48.48728,
     "lon": 16.549433,
     "location_precision": "listing_coords",
-    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/mistelbach/-traumhaftes-landhaus-mit-riesigem-grundstueck-1600286894/",
-    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/mistelbach/privat-verkauf-landhaus-966451474/",
-    "notes": "Region expansion 2026-10-08 (S2 Wolkersdorf/Mistelbach). Pellendorf EFH €242.000 / 130 m² / 5 rooms / plot 2290 m² / BJ 1935 / HWB G 408.0 / Zentralheizung; REMAX Donau-City-Immobilien. ~30 min drive (21st district) / ~107 min PT (8th district). adid 1600286894, first published 2026-09-23. 2026-10-13 evening: price €242,000 → €230,000. 2026-10-16 evening: price €230,000 → €239,000 (willhaben Mistelbach search; price up after the 2026-10-13 drop to €230k). 2026-10-22 evening: the same house (same pin ±150 m, 130 m², ~2,300 m² plot, HWB G) is now also offered privately on willhaben 966451474 at €242,000 with no commission (\"Privat - Verkauf Landhaus\", 6 rooms, 2,356 m² plot of which 1,873 m² Bauland; barn ~50 m², garage with tool room, vaulted earth cellar, old fruit trees; gas central heating + wood stove). Private all-in ≈ €256.8k vs REMAX €239k all-in ≈ €262.2k. Kept the REMAX ad as primary (cheaper asking).",
+    "url_primary": "https://immobilien.derstandard.at/detail/15259694",
+    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/mistelbach/privat-verkauf-landhaus-966451474/ ; https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/mistelbach/-traumhaftes-landhaus-mit-riesigem-grundstueck-1600286894/",
+    "notes": "Region expansion 2026-10-08 (S2 Wolkersdorf/Mistelbach). Pellendorf EFH €242.000 / 130 m² / 5 rooms / plot 2290 m² / BJ 1935 / HWB G 408.0 / Zentralheizung; REMAX Donau-City-Immobilien. ~30 min drive (21st district) / ~107 min PT (8th district). adid 1600286894, first published 2026-09-23. 2026-10-13 evening: price €242,000 → €230,000. 2026-10-16 evening: price €230,000 → €239,000 (willhaben Mistelbach search; price up after the 2026-10-13 drop to €230k). 2026-10-22 evening: the same house (same pin ±150 m, 130 m², ~2,300 m² plot, HWB G) is now also offered privately on willhaben 966451474 at €242,000 with no commission (\"Privat - Verkauf Landhaus\", 6 rooms, 2,356 m² plot of which 1,873 m² Bauland; barn ~50 m², garage with tool room, vaulted earth cellar, old fruit trees; gas central heating + wood stove). Private all-in ≈ €256.8k vs REMAX €239k all-in ≈ €262.2k. Kept the REMAX ad as primary (cheaper asking). 2026-11-14 evening: willhaben ads 1600286894 and 966451474 expired, but derStandard 15259694 is still live with identical data (EUR 239,000 / 130 m2 / 5 rooms / plot 2290 m2 / Makler 3%); url_primary moved to derStandard. ImmoScout24 copy is gone (410).",
     "research_date": "2026-10-08",
     "listing_status": "active",
     "first_seen": "2026-10-08",
@@ -29710,10 +29718,6 @@
     "first_seen_at": "2026-10-08T10:36",
     "region": "S2 Wolkersdorf",
     "source_links": [
-      {
-        "source": "derStandard",
-        "url": "https://immobilien.derstandard.at/detail/15259694"
-      },
       {
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6ab14dcbb1208e468bd12932"
@@ -56480,7 +56484,7 @@
     "archived_at": "2026-10-31",
     "first_seen_at": "2026-10-31T10:06",
     "fit_score": 75,
-    "fit_label": "Highly recommended",
+    "fit_label": "Worth a look",
     "fit_components": {
       "cost": 39.0,
       "pt": 2.8,
@@ -56494,7 +56498,7 @@
       "penalty": 0
     },
     "rooms_ok": true,
-    "rec_summary": "Top family fit (75/100): Low overall cost (est. €233k–€288k incl. renovation); 6 rooms: one spare for guests/office; Long public-transport commute to the 8th district (98 min).",
+    "rec_summary": "Possible fit (75/100): Low overall cost (est. €233k–€288k incl. renovation); 6 rooms: one spare for guests/office; Long public-transport commute to the 8th district (98 min).",
     "rec_strengths": [
       "Low overall cost (est. €233k–€288k incl. renovation)",
       "6 rooms: one spare for guests/office",
@@ -61652,6 +61656,10 @@
       {
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6aed8445c9369bb8e16afc39"
+      },
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6af6fe309bb877f18474a11a"
       }
     ],
     "fee_grunderwerbsteuer_eur": 12215,
@@ -64401,6 +64409,10 @@
       {
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6af59bd7d47390206bd545a8"
+      },
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6af7e52e451a761e9face6c7"
       }
     ],
     "fit_score": 34,
@@ -65117,11 +65129,16 @@
     "listing_status": "active",
     "first_seen": "2026-11-14",
     "last_seen": "2026-11-14",
-    "change_flags": "new",
+    "change_flags": "seen",
     "price_per_m2": 2679.43,
     "has_pool": false,
     "has_sauna": false,
-    "source_links": [],
+    "source_links": [
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6af74f0a9bb877f184752279"
+      }
+    ],
     "rooms": "5",
     "drive_anton_boeck_min": 35,
     "drive_anton_boeck_note": "osrm_free_flow (listing pin)",
@@ -65202,6 +65219,114 @@
     "operating_note": "Est. ~€302/month: BK €150 (assumed, not in listing) + heating ~€152 (HWB 180 assumed, Air-source heat pump). Estimate.",
     "has_cellar": "storage",
     "garden_est_m2": 83,
+    "move_in_readiness": "ready",
+    "move_in_note": "schlüsselfertig",
+    "fit_scored_at": "2026-11-14",
+    "reno_basis": "turnkey: minor works only"
+  },
+  {
+    "id": "HL84",
+    "shortlist_rank": null,
+    "disappeared_date": null,
+    "price_eur": 298000,
+    "living_m2": 153.0,
+    "plot_m2": 210.0,
+    "plz": "2020",
+    "region": "Hollabrunn/Korneuburg-north",
+    "lat": 48.55145,
+    "lon": 16.08431,
+    "location_precision": "listing_coords",
+    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/hollabrunn/gepflegtes-reihenhaus-solide-substanz-mit-tollem-optimierungspotenzial-1620762178/",
+    "url_alt": null,
+    "research_date": "2026-11-14",
+    "listing_status": "active",
+    "first_seen": "2026-11-14",
+    "last_seen": "2026-11-14",
+    "change_flags": "new",
+    "price_per_m2": 1947.71,
+    "has_pool": false,
+    "has_sauna": false,
+    "source_links": [],
+    "rooms": "8",
+    "drive_anton_boeck_min": 38,
+    "drive_anton_boeck_note": "osrm_free_flow (listing pin)",
+    "pt_lange_gasse_min": 75,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "title": "Gepflegtes Reihenhaus, 8 Zimmer, 153 m², Garten, Keller, Garage — Privatverkauf (Hollabrunn)",
+    "category": "shortlist",
+    "type": "RH",
+    "location_town": "Hollabrunn",
+    "district_or_region": "Bezirk Hollabrunn / Hollabrunn",
+    "price_note": "in budget; private sale, provisionsfrei (no Makler fee)",
+    "year_built": null,
+    "energy_hwb_class": "E",
+    "energy_hwb_value": 174.0,
+    "heating": "Gasheizung",
+    "heating_tech": "Gas",
+    "heating_tech_source": "Gasheizung",
+    "has_garden": true,
+    "has_parking": true,
+    "has_garage": true,
+    "parking_note": "Garage",
+    "condition_note": "Gepflegt, bereits modernisiert (Eigentümer: wichtige Modernisierungen durchgeführt), Echtholzparkett/Fliesen, erneuertes Badezimmer, bezugsfertig ab sofort; 3 Etagen: EG Wohnzimmer + Küche, OG 4 Zimmer + Bad + Loggia, UG 2 Wohnräume + Waschküche + Kellerraum mit Werkstatt; Garten ~107 m2, Terrasse ~18 m2, Loggia ~20 m2, Gartenhäuschen. HWB E 174, Gasheizung.",
+    "notes": "Added 2026-11-14 evening from willhaben 1620762178 (private owner, provisionsfrei). Hollabrunn Reihenhaus EUR 298,000 / 153 m2 / 8 rooms (listing count; 4 upstairs + 2 basement living rooms) / plot 210 m2 / HWB E 174 / gas heating / Keller + Garage. ~38 min drive (21st district) / ~75 min PT (8th district). Small plot (garden ~107 m2); no build year stated.",
+    "seller_type": "private",
+    "seller_type_note": "ISPRIVATE=1; Direkt vom Eigentümer, provisionsfreier Privatverkauf",
+    "makler_name": null,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "gepflegt, modernisiert, bezugsfertig ab sofort",
+    "finish_status_source": "willhaben detail page",
+    "fee_grunderwerbsteuer_eur": 10430,
+    "fee_grundbuch_eur": 3278,
+    "fee_notar_eur": 4470,
+    "fee_makler_eur": 0,
+    "fees_statutory_pct": 6.1,
+    "fees_makler_pct": 0.0,
+    "fees_total_eur": 18178,
+    "all_in_price_eur": 316178,
+    "image": "img/HL84.webp",
+    "archive": "archive/HL84.html",
+    "archived_at": "2026-11-14",
+    "first_seen_at": "2026-11-14T17:33",
+    "fit_score": 80,
+    "fit_label": "Highly recommended",
+    "fit_components": {
+      "cost": 39.0,
+      "pt": 8.3,
+      "drive": 3.9,
+      "living": 7.0,
+      "garden": 0.3,
+      "storage": 4,
+      "ready": 14.0,
+      "room5": 4,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Top family fit (80/100): Low overall cost (est. €316k–€326k incl. renovation); 8 rooms: one spare for guests/office; Little garden (est. ~118 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €316k–€326k incl. renovation)",
+      "8 rooms: one spare for guests/office",
+      "Spacious (153 m² living)",
+      "Cellar mentioned",
+      "Move-in ready (schlüsselfertig)"
+    ],
+    "rec_weaknesses": [
+      "Little garden (est. ~118 m²)"
+    ],
+    "rec_opportunities": [
+      "Private seller: no buyer commission"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 316178,
+    "total_cost_high": 326178,
+    "operating_monthly_est": 416,
+    "operating_note": "Est. ~€416/month: BK €150 (assumed, not in listing) + heating ~€266 (HWB 174, Gas). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 118,
     "move_in_readiness": "ready",
     "move_in_note": "schlüsselfertig",
     "fit_scored_at": "2026-11-14",
