@@ -6459,6 +6459,10 @@
       {
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6a2ffc796b8e464c2094a315"
+      },
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6afecdc1566d3570a5e284a9"
       }
     ],
     "fit_score": 50,
@@ -8983,7 +8987,12 @@
     "archived_at": "2026-09-26",
     "first_seen_at": "2026-09-24",
     "region": "Stockerau/Korneuburg",
-    "source_links": null,
+    "source_links": [
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6afecdbe566d3570a5e28471"
+      }
+    ],
     "fit_score": 47,
     "fit_label": "Not recommended",
     "fit_components": {
@@ -13186,9 +13195,9 @@
     "lat": 48.30311,
     "lon": 16.829731,
     "location_precision": "listing_coords",
-    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/machen-sie-es-zu-ihrem-projekt-viel-platz-fuer-ihre-ideen-1161614130/",
-    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/machen-sie-es-zu-ihrem-projekt-viel-platz-fuer-ihre-ideen-1182624914/",
-    "notes": "Region expansion 2026-10-08 (Marchfeld). Oberweiden EFH €279.000 / 100 m² / 4 rooms / plot 1111 m² / BJ 1930 / HWB G 379.0 / Gasheizung; RIMMO Prime Vermittlungs GmbH. ~50 min drive (21st district) / ~81 min PT (8th district). adid 1182624914, first published 2026-09-21. 2026-10-26 evening: ad 1182624914 expired; same house relisted as willhaben adid 1075179210 at the same price. 2026-11-02 evening: ad 1075179210 expired; RIMMO Prime (same agent, same title, 100 m² / 1,111 m²) relisted as willhaben 1161614130 at the same €279,000 → url_primary.",
+    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/machen-sie-es-zu-ihrem-projekt-viel-platz-fuer-ihre-ideen-1695498529/",
+    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/machen-sie-es-zu-ihrem-projekt-viel-platz-fuer-ihre-ideen-1161614130/ ; https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/machen-sie-es-zu-ihrem-projekt-viel-platz-fuer-ihre-ideen-1182624914/",
+    "notes": "Region expansion 2026-10-08 (Marchfeld). Oberweiden EFH €279.000 / 100 m² / 4 rooms / plot 1111 m² / BJ 1930 / HWB G 379.0 / Gasheizung; RIMMO Prime Vermittlungs GmbH. ~50 min drive (21st district) / ~81 min PT (8th district). adid 1182624914, first published 2026-09-21. 2026-10-26 evening: ad 1182624914 expired; same house relisted as willhaben adid 1075179210 at the same price. 2026-11-02 evening: ad 1075179210 expired; RIMMO Prime (same agent, same title, 100 m² / 1,111 m²) relisted as willhaben 1161614130 at the same €279,000 → url_primary. 2026-11-19 evening: republished as willhaben 1695498529 (same €279k).",
     "research_date": "2026-10-08",
     "listing_status": "active",
     "first_seen": "2026-10-08",
@@ -14367,9 +14376,9 @@
     "lat": 48.34127,
     "lon": 16.83591,
     "location_precision": "listing_coords",
-    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/seeparadies-urlaub-zu-hause-in-zwerndorf-2017433071/",
-    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/seeparadies-urlaub-zu-hause-in-zwerndorf-1463343119/",
-    "notes": "Region expansion 2026-10-08 (Marchfeld). Zwerndorf EFH €379.000 / 120 m² / 5 rooms / plot 723 m² / BJ 1981 / HWB E 150.6 / Sonstige; REMAX Aktiv. ~48 min drive (21st district) / ~94 min PT (8th district). adid 1705450176, first published 2026-03-11. Republished 2026-10-09 under willhaben adid 1463343119. Republished 2026-10-18 evening under willhaben adid 959560622 (was 1463343119; same house). Republished 2026-10-30 morning under willhaben adid 2017433071 (was 959560622, which expired; same house). Same title \"SEEPARADIES - URLAUB ZU HAUSE IN ZWERNDORF\", same pin, 120 m², €379k.",
+    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/seeparadies-urlaub-zu-hause-in-zwerndorf-2008625575/",
+    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/seeparadies-urlaub-zu-hause-in-zwerndorf-2017433071/ ; https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/seeparadies-urlaub-zu-hause-in-zwerndorf-1463343119/",
+    "notes": "Region expansion 2026-10-08 (Marchfeld). Zwerndorf EFH €379.000 / 120 m² / 5 rooms / plot 723 m² / BJ 1981 / HWB E 150.6 / Sonstige; REMAX Aktiv. ~48 min drive (21st district) / ~94 min PT (8th district). adid 1705450176, first published 2026-03-11. Republished 2026-10-09 under willhaben adid 1463343119. Republished 2026-10-18 evening under willhaben adid 959560622 (was 1463343119; same house). Republished 2026-10-30 morning under willhaben adid 2017433071 (was 959560622, which expired; same house). Same title \"SEEPARADIES - URLAUB ZU HAUSE IN ZWERNDORF\", same pin, 120 m², €379k. 2026-11-19 evening: republished as willhaben 2008625575 (same €379k).",
     "research_date": "2026-10-08",
     "listing_status": "active",
     "first_seen": "2026-10-08",
@@ -14378,7 +14387,7 @@
     "price_eur_previous": null,
     "price_changed_at": null,
     "price_change_eur": null,
-    "change_flags": "url_refresh",
+    "change_flags": "url_refresh|republished",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3% des Kaufpreises zzgl. 20% USt.",
     "makler_name": "REMAX Aktiv",
@@ -16326,16 +16335,16 @@
     "location_precision": "listing_coords",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/gepflegtes-einfamilienhaus-in-marchegg-grundstueck-mit-1-222m-873245122/",
     "url_alt": null,
-    "notes": "Region expansion 2026-10-08 (Marchfeld). Marchegg EFH €349.000 / 104 m² / 4 rooms / plot 1222 m² / BJ 1971 / HWB G 401.0 / Zentralheizung; RIWOG Real Estate Management GmbH. ~57 min drive (21st district) / ~71 min PT (8th district). room count read from the description. adid 873245122, first published 2026-06-01.",
+    "notes": "Region expansion 2026-10-08 (Marchfeld). Marchegg EFH €349.000 / 104 m² / 4 rooms / plot 1222 m² / BJ 1971 / HWB G 401.0 / Zentralheizung; RIWOG Real Estate Management GmbH. ~57 min drive (21st district) / ~71 min PT (8th district). room count read from the description. adid 873245122, first published 2026-06-01. 2026-11-19 evening: willhaben ad expired (fromExpiredAdId redirect); not seen on other portals either.",
     "research_date": "2026-10-08",
-    "listing_status": "active",
+    "listing_status": "disappeared",
     "first_seen": "2026-10-08",
     "last_seen": "2026-11-19",
-    "disappeared_date": null,
+    "disappeared_date": "2026-11-19",
     "price_eur_previous": null,
     "price_changed_at": null,
     "price_change_eur": null,
-    "change_flags": "seen",
+    "change_flags": "disappeared",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3% des Kaufpreises zzgl. 20% USt.",
     "makler_name": "RIWOG Real Estate Management GmbH",
@@ -16371,48 +16380,7 @@
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6a1d86120aebc4a9d6e8461f"
       }
-    ],
-    "fit_score": 50,
-    "fit_label": "Not recommended",
-    "fit_components": {
-      "cost": 24.9,
-      "pt": 9.2,
-      "drive": 0.0,
-      "living": 1.6,
-      "garden": 8.0,
-      "storage": 4,
-      "ready": 2.8,
-      "room5": 0,
-      "sauna": 0,
-      "penalty": 0
-    },
-    "rooms_ok": true,
-    "rec_summary": "Weak fit (50/100): 4 rooms: meets the parents/boys/girls need; Large garden (est. ~1159 m²); Long drive to the 21st district (57 min).",
-    "rec_strengths": [
-      "4 rooms: meets the parents/boys/girls need",
-      "Large garden (est. ~1159 m²)",
-      "Cellar mentioned"
-    ],
-    "rec_weaknesses": [
-      "Long drive to the 21st district (57 min)",
-      "Renovation needed before moving in (est. renovation ~€673/m² (old/poor energy))"
-    ],
-    "rec_opportunities": [
-      "Big plot: room for play area, garden shed or extension",
-      "Cellar could take an office/hobby room"
-    ],
-    "reno_estimate_low": 45000,
-    "reno_estimate_high": 95000,
-    "total_cost_low": 427853,
-    "total_cost_high": 477853,
-    "operating_monthly_est": 567,
-    "operating_note": "Est. ~€567/month: BK €150 (assumed, not in listing) + heating ~€417 (HWB 401, Unknown). Estimate.",
-    "has_cellar": "yes",
-    "garden_est_m2": 1159,
-    "move_in_readiness": "renovation",
-    "move_in_note": "est. renovation ~€673/m² (old/poor energy)",
-    "fit_scored_at": "2026-11-19",
-    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
+    ]
   },
   {
     "id": "MF41",
@@ -17148,12 +17116,12 @@
     "location_precision": "listing_coords",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/komfortabel-ausgestatteter-bungalow-mit-parkaehnlichem-garten-15-min-bis-wien-1001249039/",
     "url_alt": null,
-    "notes": "Region expansion 2026-10-08 (Marchfeld). Strasshof an der Nordbahn EFH €473.000 / 100 m² / 5 rooms / plot 1035 m² / BJ 1993 / HWB E 152.7 / Etagenheizung; REMAX Donau-City-Immobilien. ~35 min drive (21st district) / ~77 min PT (8th district). adid 1001249039, first published 2026-09-23. 2026-10-13 evening: price €473,000 → €449,000. New ad title \"Komfortabel ausgestatteter Bungalow mit parkähnlichem Garten - 15 Min. bis Wien\"; now under the €450k budget. 2026-10-27 evening: price cut €449,000 → €439,000 (ad 1001249039).",
+    "notes": "Region expansion 2026-10-08 (Marchfeld). Strasshof an der Nordbahn EFH €473.000 / 100 m² / 5 rooms / plot 1035 m² / BJ 1993 / HWB E 152.7 / Etagenheizung; REMAX Donau-City-Immobilien. ~35 min drive (21st district) / ~77 min PT (8th district). adid 1001249039, first published 2026-09-23. 2026-10-13 evening: price €473,000 → €449,000. New ad title \"Komfortabel ausgestatteter Bungalow mit parkähnlichem Garten - 15 Min. bis Wien\"; now under the €450k budget. 2026-10-27 evening: price cut €449,000 → €439,000 (ad 1001249039). 2026-11-19 evening: willhaben ad expired (fromExpiredAdId redirect); not seen on other portals either.",
     "research_date": "2026-10-08",
-    "listing_status": "active",
+    "listing_status": "disappeared",
     "first_seen": "2026-10-08",
     "last_seen": "2026-11-19",
-    "disappeared_date": null,
+    "disappeared_date": "2026-11-19",
     "price_eur_previous": 449000,
     "price_changed_at": "2026-10-27",
     "price_change_eur": -10000,
@@ -17171,7 +17139,7 @@
         "at": "2026-10-27"
       }
     ],
-    "change_flags": "price_drop",
+    "change_flags": "disappeared",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 3% des Kaufpreises zzgl. 20% USt.",
     "makler_name": "REMAX Donau-City-Immobilien",
@@ -17207,46 +17175,7 @@
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6ab14e01327d5d9ac9da97f3"
       }
-    ],
-    "fit_score": 66,
-    "fit_label": "Worth a look",
-    "fit_components": {
-      "cost": 24.7,
-      "pt": 7.8,
-      "drive": 4.6,
-      "living": 1.2,
-      "garden": 8.0,
-      "storage": 2,
-      "ready": 14.0,
-      "room5": 4,
-      "sauna": 0,
-      "penalty": 0
-    },
-    "rooms_ok": true,
-    "rec_summary": "Possible fit (66/100): 5 rooms: one spare for guests/office; Large garden (est. ~975 m²).",
-    "rec_strengths": [
-      "5 rooms: one spare for guests/office",
-      "Large garden (est. ~975 m²)",
-      "Some storage (no cellar named)",
-      "Move-in ready (schlüsselfertig)"
-    ],
-    "rec_weaknesses": [],
-    "rec_opportunities": [
-      "Price already cut by €10k: seller may negotiate",
-      "Big plot: room for play area, garden shed or extension"
-    ],
-    "reno_estimate_low": 0,
-    "reno_estimate_high": 10000,
-    "total_cost_low": 481583,
-    "total_cost_high": 491583,
-    "operating_monthly_est": 303,
-    "operating_note": "Est. ~€303/month: BK €150 (assumed, not in listing) + heating ~€153 (HWB 153, Gas). Estimate.",
-    "has_cellar": "storage",
-    "garden_est_m2": 975,
-    "move_in_readiness": "ready",
-    "move_in_note": "schlüsselfertig",
-    "fit_scored_at": "2026-11-19",
-    "reno_basis": "turnkey: minor works only"
+    ]
   },
   {
     "id": "MF49",
@@ -18333,6 +18262,10 @@
       {
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6a153ee09a16a4f1517a8860"
+      },
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6aff12586424062140756697"
       }
     ],
     "fit_score": 55,
@@ -19076,7 +19009,12 @@
     "archived_at": "2026-10-08",
     "first_seen_at": "2026-10-08T10:36",
     "region": "Marchfeld",
-    "source_links": null,
+    "source_links": [
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6afead38566d3570a5e2098e"
+      }
+    ],
     "fit_score": 51,
     "fit_label": "Not recommended",
     "fit_components": {
@@ -19452,7 +19390,7 @@
     "location_town": "Strasshof an der Nordbahn",
     "plz": "2231",
     "district_or_region": "Bezirk Gänserndorf / Strasshof an der Nordbahn",
-    "price_eur": 455000,
+    "price_eur": 450000,
     "price_note": "over budget",
     "living_m2": 125.0,
     "plot_m2": null,
@@ -19478,16 +19416,16 @@
     "lon": 16.631025,
     "location_precision": "listing_coords",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/aktionspreis-eckreihenhaus-in-ausgezeichneter-lage-fuer-455-000-eur-nur-12-km-von-wien-1959529195/",
-    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/ihr-neuer-wohn-t-raum-direkt-in-strasshof-937660433/",
-    "notes": "Region expansion 2026-10-08 (Marchfeld). Strasshof an der Nordbahn RH €488.000 / 125 m² / 5 rooms / plot not stated / BJ 2018 / HWB B 42.9 / Fußbodenheizung; MAST Immo GmbH. ~31 min drive (21st district) / ~71 min PT (8th district). adid 1903542392, first published 2026-09-28. Republished 2026-10-10 under willhaben adid 1705870384 (same house/coords; price now €485000). Republished 2026-10-13 under willhaben adid 1092485947 (was 1705870384; same MAST Immo RH, same 125 m² / 5 rooms / BJ 2018 / HWB B 42.9); price €485,000 → €469,000. Commute re-checked: ~31 min drive / ~71 min PT. 2026-10-23 morning: a third ad 1477205392 with the identical title, 125 m² and €469k is live (same house); noted, not a new row. 2026-11-06 morning: price €469,000 → €455,000 (willhaben near-dup republish Aktionspreis 1959529195 / 937660433 (still over budget)). 2026-11-06 morning: willhaben 1092485947/1705870384 expired; same Strasshof RH republished as 1959529195 (Aktionspreis) + 937660433 at €455,000 / 125 m² — now url_primary/url_alt; price €469,000 → €455,000. ImmoScout24 6aecd407… links reassigned from MF58 (wrong near_dup).",
+    "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/ihr-neuer-wohn-t-raum-direkt-in-strasshof-937660433/ ; https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/neuer-preis-eckreihenhaus-in-ausgezeichneter-lage-fuer-450-000-eur-nur-12-km-von-wien-1806513478/",
+    "notes": "Region expansion 2026-10-08 (Marchfeld). Strasshof an der Nordbahn RH €488.000 / 125 m² / 5 rooms / plot not stated / BJ 2018 / HWB B 42.9 / Fußbodenheizung; MAST Immo GmbH. ~31 min drive (21st district) / ~71 min PT (8th district). adid 1903542392, first published 2026-09-28. Republished 2026-10-10 under willhaben adid 1705870384 (same house/coords; price now €485000). Republished 2026-10-13 under willhaben adid 1092485947 (was 1705870384; same MAST Immo RH, same 125 m² / 5 rooms / BJ 2018 / HWB B 42.9); price €485,000 → €469,000. Commute re-checked: ~31 min drive / ~71 min PT. 2026-10-23 morning: a third ad 1477205392 with the identical title, 125 m² and €469k is live (same house); noted, not a new row. 2026-11-06 morning: price €469,000 → €455,000 (willhaben near-dup republish Aktionspreis 1959529195 / 937660433 (still over budget)). 2026-11-06 morning: willhaben 1092485947/1705870384 expired; same Strasshof RH republished as 1959529195 (Aktionspreis) + 937660433 at €455,000 / 125 m² — now url_primary/url_alt; price €469,000 → €455,000. ImmoScout24 6aecd407… links reassigned from MF58 (wrong near_dup). 2026-11-19 evening: price now €450k (was €455k); also listed as willhaben 1806513478 (MAST Immo, \"NEUER PREIS\", same 125 m² / 5 rooms).",
     "research_date": "2026-10-08",
     "listing_status": "active",
     "first_seen": "2026-10-08",
     "last_seen": "2026-11-19",
     "disappeared_date": null,
-    "price_eur_previous": 469000,
-    "price_changed_at": "2026-11-06",
-    "price_change_eur": -14000,
+    "price_eur_previous": 455000,
+    "price_changed_at": "2026-11-19",
+    "price_change_eur": -5000,
     "price_history": [
       {
         "price_eur": 488000,
@@ -19504,6 +19442,10 @@
       {
         "price_eur": 455000,
         "at": "2026-11-06"
+      },
+      {
+        "price_eur": 450000,
+        "at": "2026-11-19"
       }
     ],
     "change_flags": "price_drop|url_refresh|republished",
@@ -19588,7 +19530,7 @@
       "Garden size unknown"
     ],
     "rec_opportunities": [
-      "Price already cut by €14k: seller may negotiate"
+      "Price already cut by €5k: seller may negotiate"
     ],
     "reno_estimate_low": 0,
     "reno_estimate_high": 15000,
@@ -30227,16 +30169,16 @@
     "location_precision": "listing_coords",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/mistelbach/gepflegtes-wohnhaus-in-schrick-ruhige-lage-mit-guter-anbindung-nach-wien-1622055927/",
     "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/mistelbach/einfamilienhaus-in-2191-schrick-naehe-mistelbach-1619555500/",
-    "notes": "Region expansion 2026-10-08 (S2 Wolkersdorf/Mistelbach). Schrick EFH €248.000 / 120 m² / 4 rooms / plot not stated / BJ 1950 / HWB f 248.3 / Zentralheizung; Raiffeisen Immobilien Vermittlung Ges.m.b.H.. ~31 min drive (21st district) / ~84 min PT (8th district). adid 1619555500, first published 2026-08-17. Plot from the description. 2026-10-19 evening: willhaben 1619555500 expired (fromExpiredAdId → Mistelbach search); no Schrick republish. The Gaweinstal ad 1830314181 that shared its map pin is a different house (180 m² Landhaus, added as S2W64). 2026-10-20 morning: back online as a private sale under willhaben adid 1622055927 (same €248,000 / 120 m² / plot ~486 m² per text (490 m² attribute), Schrick; seller now private, so no commission). The new ad lists living room, bedroom, a further room and a separate dining room (4 rooms counted as before); its pin is in Schrick itself (old ad shared a Gaweinstal pin). Betriebskosten €198 from the earlier ad.",
+    "notes": "Region expansion 2026-10-08 (S2 Wolkersdorf/Mistelbach). Schrick EFH €248.000 / 120 m² / 4 rooms / plot not stated / BJ 1950 / HWB f 248.3 / Zentralheizung; Raiffeisen Immobilien Vermittlung Ges.m.b.H.. ~31 min drive (21st district) / ~84 min PT (8th district). adid 1619555500, first published 2026-08-17. Plot from the description. 2026-10-19 evening: willhaben 1619555500 expired (fromExpiredAdId → Mistelbach search); no Schrick republish. The Gaweinstal ad 1830314181 that shared its map pin is a different house (180 m² Landhaus, added as S2W64). 2026-10-20 morning: back online as a private sale under willhaben adid 1622055927 (same €248,000 / 120 m² / plot ~486 m² per text (490 m² attribute), Schrick; seller now private, so no commission). The new ad lists living room, bedroom, a further room and a separate dining room (4 rooms counted as before); its pin is in Schrick itself (old ad shared a Gaweinstal pin). Betriebskosten €198 from the earlier ad. 2026-11-19 evening: willhaben ad expired (fromExpiredAdId redirect); not seen on other portals either.",
     "research_date": "2026-10-08",
-    "listing_status": "active",
+    "listing_status": "disappeared",
     "first_seen": "2026-10-08",
     "last_seen": "2026-11-19",
-    "disappeared_date": null,
+    "disappeared_date": "2026-11-19",
     "price_eur_previous": null,
     "price_changed_at": null,
     "price_change_eur": null,
-    "change_flags": "reactivated|url_refresh",
+    "change_flags": "disappeared",
     "seller_type": "private",
     "seller_type_note": "ISPRIVATE=1; private sale (\"Privatverkauf – bitte keine Makleranfragen\"), no commission. Earlier ad 1619555500 was Raiffeisen Immobilien (3% + USt).",
     "makler_name": null,
@@ -30263,47 +30205,7 @@
     "archived_at": "2026-10-08",
     "first_seen_at": "2026-10-08T10:36",
     "region": "S2 Wolkersdorf",
-    "source_links": null,
-    "fit_score": 64,
-    "fit_label": "Worth a look",
-    "fit_components": {
-      "cost": 39.0,
-      "pt": 6.1,
-      "drive": 5.5,
-      "living": 3.5,
-      "garden": 5.0,
-      "storage": 2,
-      "ready": 2.8,
-      "room5": 0,
-      "sauna": 0,
-      "penalty": 0
-    },
-    "rooms_ok": true,
-    "rec_summary": "Possible fit (64/100): Low overall cost (est. €318k–€373k incl. renovation); 4 rooms: meets the parents/boys/girls need; Renovation needed before moving in (est. renovation ~€688/m² (old/poor energy)).",
-    "rec_strengths": [
-      "Low overall cost (est. €318k–€373k incl. renovation)",
-      "4 rooms: meets the parents/boys/girls need",
-      "Some storage (no cellar named)"
-    ],
-    "rec_weaknesses": [
-      "Renovation needed before moving in (est. renovation ~€688/m² (old/poor energy))"
-    ],
-    "rec_opportunities": [
-      "Private seller: no buyer commission",
-      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
-    ],
-    "reno_estimate_low": 55000,
-    "reno_estimate_high": 110000,
-    "total_cost_low": 318128,
-    "total_cost_high": 373128,
-    "operating_monthly_est": 496,
-    "operating_note": "Est. ~€496/month: BK €198 (listing) + heating ~€298 (HWB 248, Gas). Estimate.",
-    "has_cellar": "storage",
-    "garden_est_m2": 414,
-    "move_in_readiness": "renovation",
-    "move_in_note": "est. renovation ~€688/m² (old/poor energy)",
-    "fit_scored_at": "2026-11-19",
-    "reno_basis": "pre-1970 or HWB F/G: substantial renovation €450–900/m²"
+    "source_links": null
   },
   {
     "id": "S2W12",
@@ -30851,16 +30753,16 @@
     "location_precision": "listing_coords",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/mistelbach/ein-haus-mit-wellness-pur-speckguertel-von-wien-1064022652/",
     "url_alt": null,
-    "notes": "Region expansion 2026-10-08 (S2 Wolkersdorf/Mistelbach). Riedenthal DHH €499.000 / 175 m² / 7 rooms / plot 1670 m² / BJ 1970 / HWB C 80.5 / Zentralheizung; IMMOcontract Immobilien Vermittlung GmbH. ~23 min drive (21st district) / ~71 min PT (8th district). adid 1064022652, first published 2026-05-13.",
+    "notes": "Region expansion 2026-10-08 (S2 Wolkersdorf/Mistelbach). Riedenthal DHH €499.000 / 175 m² / 7 rooms / plot 1670 m² / BJ 1970 / HWB C 80.5 / Zentralheizung; IMMOcontract Immobilien Vermittlung GmbH. ~23 min drive (21st district) / ~71 min PT (8th district). adid 1064022652, first published 2026-05-13. 2026-11-19 evening: willhaben ad expired (fromExpiredAdId redirect); not seen on other portals either.",
     "research_date": "2026-10-08",
-    "listing_status": "active",
+    "listing_status": "disappeared",
     "first_seen": "2026-10-08",
     "last_seen": "2026-11-19",
-    "disappeared_date": null,
+    "disappeared_date": "2026-11-19",
     "price_eur_previous": null,
     "price_changed_at": null,
     "price_change_eur": null,
-    "change_flags": "seen",
+    "change_flags": "disappeared",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Provision: 17.964,00 EUR inkl. 20% USt.",
     "makler_name": "IMMOcontract Immobilien Vermittlung GmbH",
@@ -30896,49 +30798,7 @@
         "source": "derStandard",
         "url": "https://immobilien.derstandard.at/detail/15035141"
       }
-    ],
-    "fit_score": 61,
-    "fit_label": "Worth a look",
-    "fit_components": {
-      "cost": 7.3,
-      "pt": 9.2,
-      "drive": 7.3,
-      "living": 7.0,
-      "garden": 8.0,
-      "storage": 4,
-      "ready": 14.0,
-      "room5": 4,
-      "sauna": 0,
-      "penalty": 0
-    },
-    "rooms_ok": true,
-    "rec_summary": "Possible fit (61/100): Short drive to the 21st district (23 min); 7 rooms: one spare for guests/office; High overall cost (est. €592k–€652k incl. renovation).",
-    "rec_strengths": [
-      "Short drive to the 21st district (23 min)",
-      "7 rooms: one spare for guests/office",
-      "Spacious (175 m² living)",
-      "Large garden (est. ~1565 m²)",
-      "Cellar mentioned",
-      "Move-in ready (renoviert)"
-    ],
-    "rec_weaknesses": [
-      "High overall cost (est. €592k–€652k incl. renovation)"
-    ],
-    "rec_opportunities": [
-      "Big plot: room for play area, garden shed or extension"
-    ],
-    "reno_estimate_low": 45000,
-    "reno_estimate_high": 105000,
-    "total_cost_low": 592403,
-    "total_cost_high": 652403,
-    "operating_monthly_est": 207,
-    "operating_note": "Est. ~€207/month: BK €66 (listing) + heating ~€141 (HWB 80, Gas + Wood). Estimate.",
-    "has_cellar": "yes",
-    "garden_est_m2": 1565,
-    "move_in_readiness": "ready",
-    "move_in_note": "renoviert",
-    "fit_scored_at": "2026-11-19",
-    "reno_basis": "1970–89 or HWB D/E: partial renovation €250–600/m²"
+    ]
   },
   {
     "id": "S2W27",
@@ -32222,7 +32082,7 @@
     "location_town": "Neubau",
     "plz": "2125",
     "district_or_region": "Bezirk Mistelbach / Ladendorf",
-    "price_eur": 275000,
+    "price_eur": 249700,
     "price_note": "under budget; Makler 3% + USt",
     "living_m2": 85.0,
     "plot_m2": 894.0,
@@ -32255,9 +32115,9 @@
     "first_seen": "2026-10-08",
     "last_seen": "2026-11-19",
     "disappeared_date": null,
-    "price_eur_previous": 290000,
-    "price_changed_at": "2026-10-28",
-    "price_change_eur": -15000,
+    "price_eur_previous": 275000,
+    "price_changed_at": "2026-11-19",
+    "price_change_eur": -25300,
     "price_history": [
       {
         "price_eur": 290000,
@@ -32266,6 +32126,10 @@
       {
         "price_eur": 275000,
         "at": "2026-10-28"
+      },
+      {
+        "price_eur": 249700,
+        "at": "2026-11-19"
       }
     ],
     "change_flags": "price_drop",
@@ -32328,7 +32192,7 @@
       "Renovation needed before moving in (listing: renovation needed)"
     ],
     "rec_opportunities": [
-      "Price already cut by €15k: seller may negotiate",
+      "Price already cut by €25k: seller may negotiate",
       "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
       "Big plot: room for play area, garden shed or extension"
     ],
@@ -42599,11 +42463,11 @@
     "price_history": null,
     "url_alt": null,
     "research_date": "2026-10-15",
-    "listing_status": "active",
+    "listing_status": "disappeared",
     "first_seen": "2026-10-15",
     "last_seen": "2026-11-19",
-    "change_flags": "seen",
-    "disappeared_date": null,
+    "change_flags": "disappeared",
+    "disappeared_date": "2026-11-19",
     "betriebskosten_monat_eur": null,
     "betriebskosten_note": "nicht angegeben (willhaben detail)",
     "id": "OB29",
@@ -42637,7 +42501,7 @@
     "lon": 16.094221,
     "location_precision": "listing_coords",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/tulln/einfamilienhaus-in-absoluter-gruenlage-suedlicher-weitblick-nahe-wien-804961032/",
-    "notes": "2026-10-15 evening NEW. Riederberg EFH €499k / 150 m² / 6 rooms / plot 767 m² / BJ 1999 / HWB C 64.5, Keller ~71 m², Wintergarten, 2 Stellplätze; SIRA Real Estate (Doppelmakler, 3%+USt; agent states a family/economic relationship with the seller). Heating type not stated. ~43 min car to the 21st district / ~63 min PT to the 8th district. Distinct from OB22 (private Architektenhaus €550k) and SA6. Adid 804961032.",
+    "notes": "2026-10-15 evening NEW. Riederberg EFH €499k / 150 m² / 6 rooms / plot 767 m² / BJ 1999 / HWB C 64.5, Keller ~71 m², Wintergarten, 2 Stellplätze; SIRA Real Estate (Doppelmakler, 3%+USt; agent states a family/economic relationship with the seller). Heating type not stated. ~43 min car to the 21st district / ~63 min PT to the 8th district. Distinct from OB22 (private Architektenhaus €550k) and SA6. Adid 804961032. 2026-11-19 evening: willhaben ad expired (fromExpiredAdId redirect); not seen on other portals either.",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; ADDITIONAL_COST/FEE 3% des Kaufpreises zzgl. 20% USt.",
     "makler_name": "SIRA Real Estate GmbH",
@@ -42669,49 +42533,7 @@
         "source": "derStandard",
         "url": "https://immobilien.derstandard.at/detail/15284841"
       }
-    ],
-    "fit_score": 64,
-    "fit_label": "Worth a look",
-    "fit_components": {
-      "cost": 13.6,
-      "pt": 11.1,
-      "drive": 2.7,
-      "living": 7.0,
-      "garden": 8.0,
-      "storage": 4,
-      "ready": 14.0,
-      "room5": 4,
-      "sauna": 0,
-      "penalty": 0
-    },
-    "rooms_ok": true,
-    "rec_summary": "Possible fit (64/100): Good public transport to the 8th district (63 min); 6 rooms: one spare for guests/office; High overall cost (est. €557k–€587k incl. renovation).",
-    "rec_strengths": [
-      "Good public transport to the 8th district (63 min)",
-      "6 rooms: one spare for guests/office",
-      "Spacious (150 m² living)",
-      "Large garden (est. ~677 m²)",
-      "Cellar mentioned",
-      "Move-in ready (bezugsfertig)"
-    ],
-    "rec_weaknesses": [
-      "High overall cost (est. €557k–€587k incl. renovation)"
-    ],
-    "rec_opportunities": [
-      "Big plot: room for play area, garden shed or extension"
-    ],
-    "reno_estimate_low": 10000,
-    "reno_estimate_high": 40000,
-    "total_cost_low": 557403,
-    "total_cost_high": 587403,
-    "operating_monthly_est": 247,
-    "operating_note": "Est. ~€247/month: BK €150 (assumed, not in listing) + heating ~€97 (HWB 64, Unknown). Estimate.",
-    "has_cellar": "yes",
-    "garden_est_m2": 677,
-    "move_in_readiness": "ready",
-    "move_in_note": "bezugsfertig",
-    "fit_scored_at": "2026-11-19",
-    "reno_basis": "1990–2009 or HWB C: refresh €80–250/m²"
+    ]
   },
   {
     "town": null,
@@ -48607,7 +48429,7 @@
     "plz": "3451",
     "district_or_region": "Bezirk Tulln / Sieghartskirchen",
     "region": "Tulln area",
-    "price_eur": 390000,
+    "price_eur": 349000,
     "price_note": "under budget; Makler 3% + USt",
     "living_m2": 143.0,
     "plot_m2": 8580.0,
@@ -48668,8 +48490,8 @@
         "url": "https://www.immobilienscout24.at/expose/6adb424055ad6791e12ac940"
       }
     ],
-    "price_eur_previous": 410000,
-    "price_change_eur": -20000,
+    "price_eur_previous": 390000,
+    "price_change_eur": -41000,
     "price_history": [
       {
         "price_eur": 410000,
@@ -48678,9 +48500,13 @@
       {
         "price_eur": 390000,
         "at": "2026-11-05"
+      },
+      {
+        "price_eur": 349000,
+        "at": "2026-11-19"
       }
     ],
-    "price_changed_at": "2026-11-05",
+    "price_changed_at": "2026-11-19",
     "fit_score": 39,
     "fit_label": "Not recommended",
     "fit_components": {
@@ -48707,7 +48533,7 @@
       "Renovation needed before moving in (listing: renovation needed)"
     ],
     "rec_opportunities": [
-      "Price already cut by €20k: seller may negotiate",
+      "Price already cut by €41k: seller may negotiate",
       "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
       "Big plot: room for play area, garden shed or extension"
     ],
@@ -57411,6 +57237,10 @@
       {
         "source": "ImmoScout24",
         "url": "https://www.immobilienscout24.at/expose/6afda902c5e0202b0aff5eb3"
+      },
+      {
+        "source": "ImmoScout24",
+        "url": "https://www.immobilienscout24.at/expose/6afec353566d3570a5e253cb"
       }
     ],
     "fee_grunderwerbsteuer_eur": 8628,
@@ -65496,13 +65326,13 @@
     "location_precision": "listing_coords",
     "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/ruhiges-wohnen-nur-ein-paar-gehminuten-vom-nationalpark-donau-auen-1597081392/",
     "url_alt": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/ruhiges-wohnen-nur-ein-paar-gehminuten-vom-nationalpark-donau-auen-2048742066/",
-    "notes": "Morning watch 2026-11-17. Groß-Enzersdorf EFH €420,000 / 71 m² / plot 270 m² / rooms not stated (~3) / gas CH + Kaminofen / gepflegt. Fortuna Real (3%+USt). Small for the price (~€5.9k/m²). ~36 min car (21st district) / ~69 min PT (8th district). adid 2048742066. 2026-11-17 evening: republished as willhaben 1597081392 (Fortuna Real, same €420k, 71 m²); old ad 2048742066 expired.",
+    "notes": "Morning watch 2026-11-17. Groß-Enzersdorf EFH €420,000 / 71 m² / plot 270 m² / rooms not stated (~3) / gas CH + Kaminofen / gepflegt. Fortuna Real (3%+USt). Small for the price (~€5.9k/m²). ~36 min car (21st district) / ~69 min PT (8th district). adid 2048742066. 2026-11-17 evening: republished as willhaben 1597081392 (Fortuna Real, same €420k, 71 m²); old ad 2048742066 expired. 2026-11-19 evening: willhaben ad expired (fromExpiredAdId redirect); not seen on other portals either.",
     "research_date": "2026-11-17",
-    "listing_status": "active",
+    "listing_status": "disappeared",
     "first_seen": "2026-11-17",
     "last_seen": "2026-11-19",
-    "change_flags": "seen",
-    "disappeared_date": null,
+    "change_flags": "disappeared",
+    "disappeared_date": "2026-11-19",
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; Fortuna Real GmbH & Co KG; 3% + 20% USt",
     "makler_name": "Fortuna Real GmbH & Co KG",
@@ -65533,47 +65363,7 @@
     "image": "img/MF222.webp",
     "archive": "archive/MF222.html",
     "archived_at": "2026-11-17",
-    "first_seen_at": "2026-11-17T06:51",
-    "fit_score": 34,
-    "fit_label": "Not recommended",
-    "fit_components": {
-      "cost": 25.5,
-      "pt": 9.7,
-      "drive": 4.3,
-      "living": 0.0,
-      "garden": 2.0,
-      "storage": 4,
-      "ready": 14.0,
-      "room5": 0,
-      "sauna": 0,
-      "penalty": -25
-    },
-    "rooms_ok": false,
-    "rec_summary": "Weak fit (34/100): Low overall cost (est. €471k–€496k incl. renovation); Cellar mentioned; Only 3 rooms — fails the 4-room need.",
-    "rec_strengths": [
-      "Low overall cost (est. €471k–€496k incl. renovation)",
-      "Cellar mentioned",
-      "Move-in ready (schlüsselfertig)"
-    ],
-    "rec_weaknesses": [
-      "Only 3 rooms — fails the 4-room need",
-      "Small living area (71 m²)"
-    ],
-    "rec_opportunities": [
-      "Negotiate on price; check BK and heating bills"
-    ],
-    "reno_estimate_low": 10000,
-    "reno_estimate_high": 35000,
-    "total_cost_low": 470740,
-    "total_cost_high": 495740,
-    "operating_monthly_est": 278,
-    "operating_note": "Est. ~€278/month: BK €150 (assumed, not in listing) + heating ~€128 (HWB 180 assumed, Gas + Wood). Estimate.",
-    "has_cellar": "yes",
-    "garden_est_m2": 227,
-    "move_in_readiness": "ready",
-    "move_in_note": "schlüsselfertig",
-    "fit_scored_at": "2026-11-19",
-    "reno_basis": "condition unknown: €150–500/m²"
+    "first_seen_at": "2026-11-17T06:51"
   },
   {
     "id": "HL87",
@@ -66348,7 +66138,7 @@
     "listing_status": "active",
     "first_seen": "2026-11-19",
     "last_seen": "2026-11-19",
-    "change_flags": "new",
+    "change_flags": "seen",
     "disappeared_date": null,
     "seller_type": "makler",
     "seller_type_note": "ISPRIVATE=0; EiseleReal (Eisele Real KG); commission not stated in the ad, standard 3% + 20% VAT assumed",
@@ -66417,5 +66207,327 @@
     "move_in_note": "schlüsselfertig",
     "fit_scored_at": "2026-11-19",
     "reno_basis": "turnkey: minor works only"
+  },
+  {
+    "id": "MF227",
+    "title": "Reiheneckhaus mit Garten und Terrasse, BJ 2013, Luftwärmepumpe (Gänserndorf Süd, wird gerade saniert)",
+    "category": "shortlist",
+    "shortlist_rank": null,
+    "type": "RH",
+    "location_town": "Gänserndorf",
+    "plz": "2230",
+    "district_or_region": "Bezirk Gänserndorf / Gänserndorf Süd",
+    "region": "Marchfeld",
+    "price_eur": 319000,
+    "price_note": "in budget; Valerto GmbH, commission 3% + 20% USt (€11,484 incl. USt)",
+    "living_m2": 88.57,
+    "plot_m2": null,
+    "rooms": "4",
+    "year_built": 2013,
+    "energy_hwb_class": null,
+    "energy_hwb_value": null,
+    "heating": "Luftwärmepumpe",
+    "heating_tech": "Air-source heat pump",
+    "heating_tech_source": "Luftwärmepumpe",
+    "has_garden": true,
+    "has_parking": true,
+    "has_garage": false,
+    "has_pool": false,
+    "has_sauna": false,
+    "parking_note": "eigener Stellplatz",
+    "condition_note": "Gepflegt, BJ 2013; laut Inserat wird die Immobilie gerade saniert (Fotos KI-bearbeitet); Garten ~30 m² + Terrasse 18 m², Gäste-WC, 4 Zimmer; kein Keller genannt; Grundstücksgröße nicht angegeben",
+    "lat": 48.300045,
+    "lon": 16.68928,
+    "location_precision": "listing_coords",
+    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/reihenhaus-mit-garten-und-terrasse-in-gaenserndorf-sued-1802497990/",
+    "url_alt": null,
+    "notes": "Evening watch 2026-11-19. Gänserndorf Süd corner RH €319,000 / 88.57 m² / 4 rooms / BJ 2013 / air heat pump / small garden (~30 m²) + terrace / parking space / Valerto GmbH; being refurbished now, photos AI-edited. ~36 min car (21st district) / ~90 min PT (8th district). adid 1802497990.",
+    "research_date": "2026-11-19",
+    "listing_status": "active",
+    "first_seen": "2026-11-19",
+    "last_seen": "2026-11-19",
+    "change_flags": "new",
+    "disappeared_date": null,
+    "seller_type": "makler",
+    "seller_type_note": "ISPRIVATE=0; Valerto GmbH; commission 3% + 20% USt",
+    "makler_name": "Valerto GmbH",
+    "price_per_m2": 3601.67,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 36,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 90,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "schluesselfertig",
+    "finish_status_note": "gepflegt, BUILDING_CONDITION sehr gut/gut; Sanierung laufend (Umfang unklar)",
+    "finish_status_source": "willhaben detail",
+    "source_links": null,
+    "fee_grunderwerbsteuer_eur": 11165,
+    "fee_grundbuch_eur": 3509,
+    "fee_notar_eur": 4785,
+    "fee_makler_eur": 11484,
+    "fees_statutory_pct": 6.1,
+    "fees_makler_pct": 3.6,
+    "fees_total_eur": 30943,
+    "all_in_price_eur": 349943,
+    "image": "img/MF227.webp",
+    "archive": "archive/MF227.html",
+    "archived_at": "2026-11-19",
+    "first_seen_at": "2026-11-19T17:36",
+    "fit_score": 65,
+    "fit_label": "Worth a look",
+    "fit_components": {
+      "cost": 39.0,
+      "pt": 4.7,
+      "drive": 4.3,
+      "living": 0.0,
+      "garden": 1.0,
+      "storage": 2,
+      "ready": 14.0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": 0
+    },
+    "rooms_ok": true,
+    "rec_summary": "Possible fit (65/100): Low overall cost (est. €350k–€360k incl. renovation); 4 rooms: meets the parents/boys/girls need; Small living area (89 m²).",
+    "rec_strengths": [
+      "Low overall cost (est. €350k–€360k incl. renovation)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Some storage (no cellar named)",
+      "Move-in ready (schlüsselfertig)"
+    ],
+    "rec_weaknesses": [
+      "Small living area (89 m²)",
+      "Garden size unknown"
+    ],
+    "rec_opportunities": [
+      "Negotiate on price; check BK and heating bills"
+    ],
+    "reno_estimate_low": 0,
+    "reno_estimate_high": 10000,
+    "total_cost_low": 349943,
+    "total_cost_high": 359943,
+    "operating_monthly_est": 243,
+    "operating_note": "Est. ~€243/month: BK €150 (assumed, not in listing) + heating ~€93 (HWB 180 assumed, Air-source heat pump). Estimate.",
+    "has_cellar": "storage",
+    "garden_est_m2": null,
+    "move_in_readiness": "ready",
+    "move_in_note": "schlüsselfertig",
+    "fit_scored_at": "2026-11-19",
+    "reno_basis": "turnkey: minor works only"
+  },
+  {
+    "id": "MF228",
+    "title": "Einfamilienhaus auf Eigengrund, renovierungsbedürftig, Teilkeller (Strasshof an der Nordbahn)",
+    "category": "shortlist",
+    "shortlist_rank": null,
+    "type": "EFH",
+    "location_town": "Strasshof an der Nordbahn",
+    "plz": "2231",
+    "district_or_region": "Bezirk Gänserndorf / Strasshof",
+    "region": "Marchfeld",
+    "price_eur": 349000,
+    "price_note": "in budget; IMMOMETER, commission 3% + 20% USt",
+    "living_m2": 150.0,
+    "plot_m2": null,
+    "rooms": "4",
+    "year_built": null,
+    "energy_hwb_class": null,
+    "energy_hwb_value": null,
+    "heating": "nicht angegeben",
+    "heating_tech": "Unknown",
+    "heating_tech_source": "no heating system named in the listing text",
+    "has_garden": true,
+    "has_parking": null,
+    "has_garage": false,
+    "has_pool": false,
+    "has_sauna": false,
+    "parking_note": null,
+    "condition_note": "Renovierungsbedürftig (Sanierungsbedürftig laut Inserat); EG Vorraum, 3 Zimmer, Küche, Bad; Dachgeschoss im Rohbauzustand; Teilkeller; Garten; Grundstücksgröße nicht angegeben (rooms: 3 + DG, listed as 0)",
+    "lat": 48.314484,
+    "lon": 16.634998,
+    "location_precision": "listing_coords",
+    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/gaenserndorf/top-preis-einfamilienhaus-auf-eigengrund-mit-entwicklungspotenzial-s-bahn-anbindung-nach-wien-1326575155/",
+    "url_alt": null,
+    "notes": "Evening watch 2026-11-19. Strasshof EFH €349,000 / 150 m² / 3 rooms EG + unfinished attic (Rohbau) / partial cellar / needs renovation / IMMOMETER. ~31 min car (21st district) / ~65 min PT (8th district). adid 1326575155.",
+    "research_date": "2026-11-19",
+    "listing_status": "active",
+    "first_seen": "2026-11-19",
+    "last_seen": "2026-11-19",
+    "change_flags": "new",
+    "disappeared_date": null,
+    "seller_type": "makler",
+    "seller_type_note": "ISPRIVATE=0; IMMOMETER Immobilieninvest GmbH; commission 3% + 20% USt",
+    "makler_name": "IMMOMETER Immobilieninvest GmbH",
+    "price_per_m2": 2326.67,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 31,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 65,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "sanierungsbedürftig, DG Rohbau",
+    "finish_status_source": "willhaben detail",
+    "source_links": null,
+    "fee_grunderwerbsteuer_eur": 12215,
+    "fee_grundbuch_eur": 3839,
+    "fee_notar_eur": 5235,
+    "fee_makler_eur": 12564,
+    "fees_statutory_pct": 6.1,
+    "fees_makler_pct": 3.6,
+    "fees_total_eur": 33853,
+    "all_in_price_eur": 382853,
+    "image": "img/MF228.webp",
+    "archive": "archive/MF228.html",
+    "archived_at": "2026-11-19",
+    "first_seen_at": "2026-11-19T17:36",
+    "fit_score": 42,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 21.5,
+      "pt": 10.6,
+      "drive": 5.5,
+      "living": 7.0,
+      "garden": 1.0,
+      "storage": 4,
+      "ready": 0.0,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -8
+    },
+    "rooms_ok": true,
+    "rec_summary": "Weak fit (42/100): Good public transport to the 8th district (65 min); 4 rooms: meets the parents/boys/girls need; Garden size unknown.",
+    "rec_strengths": [
+      "Good public transport to the 8th district (65 min)",
+      "4 rooms: meets the parents/boys/girls need",
+      "Spacious (150 m² living)",
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Garden size unknown",
+      "Full gut / complete renovation (Rohbau (listing notes)): long and costly before moving in"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost",
+      "Cellar could take an office/hobby room"
+    ],
+    "reno_estimate_low": 75000,
+    "reno_estimate_high": 150000,
+    "total_cost_low": 457853,
+    "total_cost_high": 532853,
+    "operating_monthly_est": 420,
+    "operating_note": "Est. ~€420/month: BK €150 (assumed, not in listing) + heating ~€270 (HWB 180 assumed, Unknown). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": null,
+    "move_in_readiness": "gut",
+    "move_in_note": "Rohbau (listing notes)",
+    "fit_scored_at": "2026-11-19",
+    "reno_basis": "renovation needed: €500–1,000/m²"
+  },
+  {
+    "id": "HL88",
+    "title": "Jahrhundertwende-Altbauhaus von 1906 mit Garten und Ausbaupotenzial (Hollabrunn)",
+    "category": "shortlist",
+    "shortlist_rank": null,
+    "type": "EFH",
+    "location_town": "Hollabrunn",
+    "plz": "2020",
+    "district_or_region": "Bezirk Hollabrunn",
+    "region": "Hollabrunn/Korneuburg-north",
+    "price_eur": 325000,
+    "price_note": "in budget; REMAX Gold, commission 3% + 20% USt",
+    "living_m2": 120.0,
+    "plot_m2": 448.0,
+    "rooms": "3.5",
+    "year_built": 1906,
+    "energy_hwb_class": null,
+    "energy_hwb_value": null,
+    "heating": "Fernwärme + Kachelofen",
+    "heating_tech": "Wood + District heating",
+    "heating_tech_source": "Kachelofen; Fernwärme",
+    "has_garden": true,
+    "has_parking": true,
+    "has_garage": true,
+    "has_pool": false,
+    "has_sauna": false,
+    "parking_note": "Garage",
+    "condition_note": "Altbau 1906, laufend instand gehalten (Renovierungen 1986-2012); Revitalisierung Keller, zeitgemäße Renovierung Wohnbereich und Dachbodenausbau (45 m² Potenzial) einzuplanen; Keller + Garage 39,6 m²; separate Werkstatt; Garten 448 m²",
+    "lat": 48.558247,
+    "lon": 16.086283,
+    "location_precision": "listing_coords",
+    "url_primary": "https://www.willhaben.at/iad/immobilien/d/haus-kaufen/niederoesterreich/hollabrunn/jahrhundertwende-charme-in-zentraler-lage-historisches-altbauhaus-von-1906-mit-garten-und-ausbaupotenzial-in-hollabrunn-1113506610/",
+    "url_alt": null,
+    "notes": "Evening watch 2026-11-19. Hollabrunn Altbau €325,000 / 120 m² / plot 448 m² / 3.5 rooms / BJ 1906 / district heating + tile stove / cellar + garage + workshop / renovation needed / REMAX Gold. ~40 min car (21st district) / ~70 min PT (8th district). adid 1113506610.",
+    "research_date": "2026-11-19",
+    "listing_status": "active",
+    "first_seen": "2026-11-19",
+    "last_seen": "2026-11-19",
+    "change_flags": "new",
+    "disappeared_date": null,
+    "seller_type": "makler",
+    "seller_type_note": "ISPRIVATE=0; REMAX Gold; commission 3% + 20% USt",
+    "makler_name": "REMAX Gold",
+    "price_per_m2": 2708.33,
+    "betriebskosten_monat_eur": null,
+    "betriebskosten_note": "nicht angegeben",
+    "drive_anton_boeck_min": 40,
+    "drive_anton_boeck_note": "osrm_free_flow",
+    "pt_lange_gasse_min": 70,
+    "pt_lange_gasse_note": "vao_hafas_weekday_100000_best_of_5",
+    "finish_status": "sanierungsbedarf",
+    "finish_status_note": "Renovierung Wohnbereich/Keller, Dachboden unausgebaut",
+    "finish_status_source": "willhaben detail",
+    "source_links": null,
+    "fee_grunderwerbsteuer_eur": 11375,
+    "fee_grundbuch_eur": 3575,
+    "fee_notar_eur": 4875,
+    "fee_makler_eur": 11700,
+    "fees_statutory_pct": 6.1,
+    "fees_makler_pct": 3.6,
+    "fees_total_eur": 31525,
+    "all_in_price_eur": 356525,
+    "image": "img/HL88.webp",
+    "archive": "archive/HL88.html",
+    "archived_at": "2026-11-19",
+    "first_seen_at": "2026-11-19T17:36",
+    "fit_score": 27,
+    "fit_label": "Not recommended",
+    "fit_components": {
+      "cost": 24.0,
+      "pt": 9.5,
+      "drive": 3.4,
+      "living": 3.5,
+      "garden": 4.4,
+      "storage": 4,
+      "ready": 2.8,
+      "room5": 0,
+      "sauna": 0,
+      "penalty": -25
+    },
+    "rooms_ok": false,
+    "rec_summary": "Weak fit (27/100): Cellar mentioned; Only 3 rooms — fails the 4-room need.",
+    "rec_strengths": [
+      "Cellar mentioned"
+    ],
+    "rec_weaknesses": [
+      "Only 3 rooms — fails the 4-room need",
+      "Renovation needed before moving in (listing: renovation needed)"
+    ],
+    "rec_opportunities": [
+      "Renovate to own taste; NÖ/federal renovation subsidies (e.g. Sanierungsbonus, heating replacement) may reduce cost"
+    ],
+    "reno_estimate_low": 85000,
+    "reno_estimate_high": 170000,
+    "total_cost_low": 441525,
+    "total_cost_high": 526525,
+    "operating_monthly_est": 366,
+    "operating_note": "Est. ~€366/month: BK €150 (assumed, not in listing) + heating ~€216 (HWB 180 assumed, Wood + District heating). Estimate.",
+    "has_cellar": "yes",
+    "garden_est_m2": 376,
+    "move_in_readiness": "renovation",
+    "move_in_note": "listing: renovation needed",
+    "fit_scored_at": "2026-11-19",
+    "reno_basis": "renovation needed, heavy (old/poor energy/complete): €700–1,400/m²"
   }
 ]
